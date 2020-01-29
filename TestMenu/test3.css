@@ -1,0 +1,225 @@
+.contain {
+  box-sizing: border-box;
+  padding: 10px;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.menu {
+  position: absolute;
+  background-color: black;
+
+  padding: 5px;
+  position: fixed;
+  min-width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 5px 3px black;
+}
+.toggleBtn {
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  transition: background-color 500ms;
+}
+.toggleBtn:hover i {
+  color: black;
+  transition: color 500ms;
+}
+.toggleBtn i {
+  color: white;
+  transition: color 500ms;
+}
+
+.toggleBtn:hover {
+  background-color: white;
+  transition: background-color 500ms;
+  cursor: pointer;
+}
+.main {
+  padding-top: 55px;
+}
+.sidebar {
+  position: fixed;
+
+  top: 60px;
+  left: -300px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+.sidebar.show {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.85);
+  height: 100%;
+  box-shadow: 0px 100vw 1px 100vw rgba(0, 0, 0, 0.5), 0px 10px 5px 5px rgba(0, 0, 0, 0.7);
+  transition: left 0.2s linear, width 0.2s linear;
+  z-index: 5;
+}
+
+.sidebar.show + .main {
+  max-height: 95vh;
+  overflow: hidden;
+}
+.photo {
+  height: 150px;
+  width: 150px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto 25px auto;
+  padding: 10px;
+  transition: height 0.2s linear, width 0.2s linear;
+}
+.photo i {
+  font-size: 8em;
+  color: white;
+  transition: font-size 0.2s linear;
+}
+.sidebar-container {
+  background: rgba(0, 0, 0, 1); /* fallback for old browsers */
+  width: 100%;
+  height: 100%;
+  padding: 5px 2px;
+}
+.sidebar-item {
+  background: rgba(255, 255, 255, 0.7);
+  height: 100px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  margin: 20px auto;
+  color: black;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  padding-left: 50px;
+  border-radius: 5px;
+  position: relative;
+}
+.sidebar-item i {
+  font-size: 3em;
+  margin-right: 25px;
+  height: 50px;
+  width: 50px;
+}
+.title-item {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.sidebar-item:hover {
+  color: white;
+  cursor: pointer;
+  background-color: #1e3c72;
+}
+.submenu {
+  position: absolute;
+  right: 300px;
+  top: 0px;
+  background-color: black;
+  width: 250px;
+  padding: 10px;
+  transition: right 0.5s ease-in-out;
+  z-index: -1;
+}
+.submenu-item {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  justify-content: flex-start;
+  color: #000;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid black;
+}
+.submenu-item:hover {
+  color: white;
+
+  cursor: pointer;
+  background-color: #1e3c72;
+  text-decoration: none;
+}
+.submenu.show {
+  right: -265px;
+  transition: right 0.5s ease-in-out;
+  z-index: -1;
+}
+@media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) { */
+  .sidebar.show {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 150px;
+    background-color: black;
+    height: 100%;
+    box-shadow: 0px 100vw 1px 100vw rgba(0, 0, 0, 0.5), 0px 10px 5px 5px rgba(0, 0, 0, 0.7);
+    transition: left 0.2s linear, width 0.2s linear;
+  }
+  .photo {
+    height: 75px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto 25px auto;
+    padding: 5px;
+    transition: height 0.2s linear, width 0.2s linear;
+    border-radius: 50%;
+    /* background-color: white; */
+  }
+  .photo i {
+    font-size: 4em;
+    color: white;
+    transition: font-size 0.2s linear;
+  }
+  .sidebar-item {
+    /* background-color: red; */
+    height: 85px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 5px 0px;
+    flex-direction: column;
+    padding-left: 10px;
+    color: black;
+    border-bottom: 2px solid black;
+  }
+  .sidebar-item i {
+    font-size: 3em;
+    margin: auto;
+  }
+  .title-item {
+    font-size: 1.2em;
+    text-align: center;
+  }
+  .submenu {
+    position: absolute;
+    right: 200px;
+    top: 0px;
+    background-color: black;
+    width: 200px;
+    padding: 10px;
+    transition: right 0.5s ease-in-out;
+  }
+  .submenu.show {
+    right: -200px;
+    transition: right 0.5s ease-in-out;
+    z-index: -1;
+  }
+  .submenu-item .title-item {
+    font-size: 1.1em;
+    text-align: start;
+  }
+  .submenu-item i {
+    margin: 0px 5px;
+  }
+}
