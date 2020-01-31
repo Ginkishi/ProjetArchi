@@ -15,7 +15,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="<?= LOCAL_DIR ?>vehicule">Liste des véhicules</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="<?= LOCAL_DIR ?>login/disconnect">Déconnexion</a>
             </li>
             <li class="nav-item dropdown">
