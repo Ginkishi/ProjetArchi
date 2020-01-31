@@ -61,4 +61,17 @@ class LoginController
             $login->index();
         }
     }
+	
+	public function disconnect()
+	{
+		session_start();
+		unset($_SESSION);
+		session_destroy();
+		
+		$host = $_SERVER['HTTP_HOST'] . DS;
+        $uri = "projetarchi" . DS . ROOT_DIR . "/login";
+        $extra = "";
+
+        header("Location: http://$host$uri$extra");
+	}
 }
