@@ -30,10 +30,33 @@ class API
 		$query = self::$bdd->query("select P_NOM, P_PRENOM , P_GRADE from `pompier` where P_CODE='" . $user . "' and P_MDP='" . $mp . "';");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
+	
 	public static function getAllVehicules()
 	{
 		self::checkBDD();
 		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE;");
+		return $query->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getAllVehiculesId()
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT V_INDICATIF, V_ID FROM `vehicule`;");
+		return $query->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getVehiculeById($id)
+	{
+		self::checkBDD();
+		$id = self::cleanUserInput($id);
+		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
+		return $query->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getAllUsersId()
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT P_NOM, P_PRENOM ,P_CODE FROM `pompier`;");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
