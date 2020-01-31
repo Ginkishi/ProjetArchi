@@ -11,6 +11,16 @@ class LoginController
 
     public function renderview($viewname)
     {
+        session_start();
+        if(isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"]))
+        {
+            $host = $_SERVER['HTTP_HOST'] . DS;
+            $uri = "projetarchi" . DS . ROOT_DIR . "/home";
+            $extra = "";
+
+            header("Location: http://$host$uri$extra");
+        }
+
         echo '<!doctype html>';
         echo '<html lang="fr">';
         echo '<head>';
