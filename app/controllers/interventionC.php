@@ -30,7 +30,7 @@ class InterventionController
         echo '<html lang="fr">';
         echo '<head>';
         include VIEWS . DS . 'common' . DS . 'head.php';
-        echo '<link href="../views/assets/css/intervention.css" rel="stylesheet">';
+        echo '<link href="' . LOCAL_ASSETS . '/css/intervention.css" rel="stylesheet">';
         echo '</head>';
         echo '<body>';
         include VIEWS . DS . 'common' . DS . 'nav.php';

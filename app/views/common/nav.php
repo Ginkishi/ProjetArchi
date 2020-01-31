@@ -7,10 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?= LOCAL_DIR ?>home/index">Accueil<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Employee</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="<?= LOCAL_DIR ?>intervention/add">Ajouter une intervention</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="<?= LOCAL_DIR ?>vehicule">Liste des véhicules</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
