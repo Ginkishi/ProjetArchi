@@ -12,3 +12,8 @@ define('LOCAL_DIR', 'http://' . $_SERVER["HTTP_HOST"] . DS . "projetarchi" . DS 
 define('LOCAL_VENDORS', LOCAL_DIR . "vendors");
 define('LOCAL_ASSETS', LOCAL_DIR . "views" . DS . "assets");
 define('API_PATH', ROOT . DS . ".." . DS . "api");
+//// base interne
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'EB');

@@ -2,7 +2,7 @@
 <div class="form-container">
     <h1>Compte-rendu d'intervention</h1>
     <div class="formulaire">
-        <form action="" method="post">
+        <form action="../index.php?c=Intervention&m=addInterventionToBDD" method="post">
             <h3>INTERVENTION</h3>
             <div class="section">
                 <label>Num&eacute;ro d'intervention <span class="important">*</span>: <input type="text" name="numIntervention"></label>
@@ -12,13 +12,14 @@
                 <label for="">Type d'intervention <span class="important">*</span>: <input type="text" name="typeIntervention"></label>
                 <label for="">Important : <input type="checkbox" name="important"></label>
                 <label for="">Requ&eacute;rant <span class="important">*</span>: <select name="requerant" id="requerant">
-                        <option value="">CODIS</option>
+                        <option value="CODIS">CODIS</option>
+                        <option value="Alerte Locale">Alerte locale</option>
                     </select></label>
                 <label for=""></label>
-                <label for="">Date de déclenchement <span class="important">*</span>: <input type="text"></label>
-                <label for="">Heure de déclenchement <span class="important">*</span>: <input type="text"></label>
-                <label for="">Date de fin <span class="important">*</span>: <input type="text"></label>
-                <label for="">Heure de fin <span class="important">*</span>: <input type="text"></label>
+                <label for="">Date de déclenchement <span class="important">*</span>: <input type="text" name="dateDeclenchement"></label>
+                <label for="">Heure de déclenchement <span class="important">*</span>: <input type="text" name="heureDeclenchement"></label>
+                <label for="">Date de fin <span class="important">*</span>: <input type="text" name="dateFin"></label>
+                <label for="">Heure de fin <span class="important">*</span>: <input type="text" name="heureFin"></label>
             </div>
             <h3>ENGINS ET PERSONNEL</h3>
             <div class="section">
@@ -26,17 +27,17 @@
                         <option value="">Selectionner un v&eacute;hicule</option>
                     </select></label>
                 <label for="">Ronde : <input type="checkbox" name="ronde"></label>
-                <label for="">Date de d&eacute;part <span class="important">*</span>: <input type="text"></label>
-                <label for="">Heure de d&eacute;part <span class="important">*</span>: <input type="text"></label>
-                <label for="">Date d'arriv&eacute; sur le lieux : <input type="text"></label>
-                <label for="">Heure d'arriv&eacute; sur le lieux : <input type="text"></label>
-                <label for="">Date de retour <span class="important">*</span>: <input type="text"></label>
-                <label for="">Heure de retour <span class="important">*</span>: <input type="text"></label>
+                <label for="">Date de d&eacute;part <span class="important">*</span>: <input type="text" name="dateDepart"></label>
+                <label for="">Heure de d&eacute;part <span class="important">*</span>: <input type="text" name="heureDepart"></label>
+                <label for="">Date d'arriv&eacute;e sur le lieux : <input type="text" name="dateArrivee"></label>
+                <label for="">Heure d'arriv&eacute;e sur le lieux : <input type="text" name="heureArrivee"></label>
+                <label for="">Date de retour <span class="important">*</span>: <input type="text" name="dateRetour"></label>
+                <label for="">Heure de retour <span class="important">*</span>: <input type="text" name="heureRetour"></label>
                 <button id="addEngin">Ajouter un autre véhicule</button>
             </div>
             <h3>RESPONSABLE</h3>
             <div class="section">
-                <label for="">Nom du responsable : <input type="text"></label>
+                <label for="">Nom du responsable : <input type="text" name="responsable"></label>
             </div>
             <input type="submit" value="Sauver">
         </form>

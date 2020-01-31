@@ -11,7 +11,7 @@ SET time_zone = "+00:00";
 #-----------------------------
 
 DROP TABLE IF EXISTS interventions;
-CREATE TABLE `interventions` ( `IDIntervention` INT NOT NULL , `NIntervention` INT NOT NULL , 
+CREATE TABLE `interventions` ( `IDIntervention` INT NOT NULL AUTO_INCREMENT , `NIntervention` INT NOT NULL , 
 `OPM` BOOLEAN NOT NULL , `Commune` VARCHAR(50) NOT NULL , `Adresse` VARCHAR(100) NOT NULL ,
  `IDTypeIntervention` INT NOT NULL , `Important` BOOLEAN NOT NULL , `Requerant` VARCHAR(15) NOT NULL ,
  `DateDeclenchement` TIMESTAMP NOT NULL , `DateFin` TIMESTAMP NOT NULL, `IDResponsable` INT NOT NULL , `IDCreateur` INT NOT NULL, PRIMARY KEY (`IDIntervention`))

@@ -59,4 +59,18 @@ class API
 		$query = self::$bdd->query("SELECT P_NOM, P_PRENOM ,P_CODE FROM `pompier`;");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
+	public static function getCodeTypeIntervention($description)
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT TI_CODE FROM `type_intervention` WHERE TI_DESCRIPTION='$description';"); 
+		$row = $query->fetch();
+		return $row['TI_CODE'];
+	}
+	public static function getPompierID($prenom,$nom)
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT P_ID FROM `pompier` WHERE P_NOM='$nom' AND P_PRENOM='$prenom';");
+		$row = $query->fetch();
+		return $row['P_ID'];
+	}
 }
