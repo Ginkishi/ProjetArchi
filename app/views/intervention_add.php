@@ -16,13 +16,14 @@
                         <option value="Alerte Locale">Alerte locale</option>
                     </select></label>
                 <label for=""></label>
-                <label for="">Date de déclenchement <span class="important">*</span>: <input type="text" name="dateDeclenchement"></label>
+                <label for="">Date de déclenchement <span class="important">*</span>: <input type="text" name="dateDeclenchement" value=""></label>
                 <label for="">Heure de déclenchement <span class="important">*</span>: <input type="text" name="heureDeclenchement"></label>
                 <label for="">Date de fin <span class="important">*</span>: <input type="text" name="dateFin"></label>
                 <label for="">Heure de fin <span class="important">*</span>: <input type="text" name="heureFin"></label>
             </div>
             <h3>ENGINS ET PERSONNEL</h3>
             <div class="section">
+
                 <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
                         <option value="">Selectionner un v&eacute;hicule</option>
                     </select></label>
@@ -32,8 +33,15 @@
                 <label for="">Date d'arriv&eacute;e sur le lieux : <input type="text" name="dateArrivee"></label>
                 <label for="">Heure d'arriv&eacute;e sur le lieux : <input type="text" name="heureArrivee"></label>
                 <label for="">Date de retour <span class="important">*</span>: <input type="text" name="dateRetour"></label>
-                <label for="">Heure de retour <span class="important">*</span>: <input type="text" name="heureRetour"></label>
-                <button id="addEngin">Ajouter un autre véhicule</button>
+                <label for="">Heure de retour <span class="important">*</span>: <input type="text" name="heureRetour" id="here5"></label>
+                <input type="button" id="addEngin" onclick="addField()" value="Ajouter un autre véhicule" >
+                <script>
+function addField() {
+    console.log("bonjour");
+// creation de plusieurs engins 
+}
+</script>
+
             </div>
             <h3>RESPONSABLE</h3>
             <div class="section">
