@@ -1,36 +1,82 @@
-#  IDPersonne ------> table pompier
-#  IDTypeIntervention ------------> table type_intervention
-#  IDvehicule -----------> table type_vehicule
-#  IDRole -------------------> table type_vehicule_role
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 02 fév. 2020 à 14:43
+-- Version du serveur :  5.7.19
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
-#-----------------------------
-# table interventions
-#-----------------------------
 
-DROP TABLE IF EXISTS interventions;
-CREATE TABLE `interventions` ( `IDIntervention` INT NOT NULL AUTO_INCREMENT , `NIntervention` INT NOT NULL , 
-`OPM` BOOLEAN NOT NULL , `Commune` VARCHAR(50) NOT NULL , `Adresse` VARCHAR(100) NOT NULL ,
- `IDTypeIntervention` INT NOT NULL , `Important` BOOLEAN NOT NULL , `Requerant` VARCHAR(15) NOT NULL ,
- `DateDeclenchement` TIMESTAMP NOT NULL , `DateFin` TIMESTAMP NOT NULL, `IDResponsable` INT NOT NULL , `IDCreateur` INT NOT NULL, PRIMARY KEY (`IDIntervention`))
-  ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-#-----------------------------
-# table vehiculeUtilise
-#-----------------------------
+--
+-- Base de données :  `einterventions`
+--
 
-DROP TABLE IF EXISTS vehiculeUtilise;
-CREATE TABLE `vehiculeUtilise` ( `IDVehicule` INT NOT NULL , `IDIntervention` INT NOT NULL, 
-`DateDepart` TIMESTAMP NOT NULL , `DateArrive` TIMESTAMP NOT NULL , `DateRetour` TIMESTAMP NOT NULL ,
-PRIMARY KEY (`IDVehicule`, `IDIntervention`)) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+-- --------------------------------------------------------
 
-#-----------------------------
-# table personnelDuVehicule
-#-----------------------------
+--
+-- Structure de la table `interventions`
+--
 
-DROP TABLE IF EXISTS personnelDuVehicule;
-CREATE TABLE `personnelDuVehicule` ( `IDVehicule` INT NOT NULL , `IDPersonne` INT NOT NULL , 
-`IDIntervention` INT NOT NULL , `IDrole` INT NOT NULL , PRIMARY KEY (`IDVehicule`, `IDPersonne`, `IDIntervention`)) 
-ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+DROP TABLE IF EXISTS `interventions`;
+CREATE TABLE IF NOT EXISTS `interventions` (
+  `IDIntervention` int(11) NOT NULL AUTO_INCREMENT,
+  `NIntervention` int(11) NOT NULL,
+  `OPM` tinyint(1) NOT NULL,
+  `Commune` varchar(50) NOT NULL,
+  `Adresse` varchar(100) NOT NULL,
+  `TypeIntervention` varchar(30) NOT NULL,
+  `Important` tinyint(1) NOT NULL,
+  `Requerant` varchar(15) NOT NULL,
+  `DateDeclenchement` timestamp NOT NULL,
+  `DateFin` timestamp NOT NULL,
+  `IDResponsable` int(11) NOT NULL,
+  `IDCreateur` int(11) NOT NULL,
+  PRIMARY KEY (`IDIntervention`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `personnelduvehicule`
+--
+
+DROP TABLE IF EXISTS `personnelduvehicule`;
+CREATE TABLE IF NOT EXISTS `personnelduvehicule` (
+  `IDVehicule` int(11) NOT NULL,
+  `IDPersonne` int(11) NOT NULL,
+  `IDIntervention` int(11) NOT NULL,
+  `IDrole` int(11) NOT NULL,
+  PRIMARY KEY (`IDVehicule`,`IDPersonne`,`IDIntervention`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vehiculeutilise`
+--
+
+DROP TABLE IF EXISTS `vehiculeutilise`;
+CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
+  `IDVehicule` int(11) NOT NULL,
+  `IDIntervention` int(11) NOT NULL,
+  `DateDepart` timestamp NOT NULL,
+  `DateArrive` timestamp NOT NULL,
+  `DateRetour` timestamp NOT NULL,
+  PRIMARY KEY (`IDVehicule`,`IDIntervention`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -18,11 +18,12 @@ class InterventionM
     public function AddIntervention($numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable)
     {   echo "je suis connecté yay 1!";
 
-     /* echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
+        echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
      
         echo $dateFin."<br>";
         echo $heureFin."<br>";
-        echo $responsable."<br>"; */
+        echo $responsable."<br>"; 
+        echo $typeIntervention."<br>";
         $res=explode(" ", $responsable);
       
         $prenom=$res[0];
@@ -35,7 +36,6 @@ class InterventionM
       /* echo $idresp;
        echo $type;
        echo "fin";*/ 
-       $this->con->query("INSERT INTO  interventions VALUES(0,$numIntervention,$opm,'$commune','$adresse',
-       '$type',$important,'$requerant','$datedec','$datef',$idresp,1);");
+       $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, IDTypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,1);");
     }
 }
