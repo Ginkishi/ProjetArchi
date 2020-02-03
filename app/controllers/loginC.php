@@ -11,7 +11,20 @@ class LoginController
 
     public function renderview($viewname)
     {
-        session_start();
+		
+
+		if (version_compare(phpversion(), '5.4.0', '<')) {
+			 if(session_id() == '') {
+				session_start();
+			}
+		}
+		else
+		{
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+		}
+
         if(isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"]))
         {
             $host = $_SERVER['HTTP_HOST'] . DS;
@@ -43,7 +56,20 @@ class LoginController
     public function authenticate()
     {
         //var_dump($_POST);
-        session_start();
+		
+		
+
+		if (version_compare(phpversion(), '5.4.0', '<')) {
+			 if(session_id() == '') {
+				session_start();
+			 }
+		 }
+		 else
+		 {
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+		 }
         if ((isset($_POST["username"]) && !empty($_POST["username"])) && isset($_POST["password"]) && !empty($_POST["password"])) {
             $ndc = $_POST["username"];
             $pass = $_POST["password"];

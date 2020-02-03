@@ -2,7 +2,7 @@
 <div class="form-container">
     <h1>Compte-rendu d'intervention</h1>
     <div class="formulaire">
-        <form action="../index.php?c=Intervention&m=addInterventionToBDD" method="post">
+        <form action="" method="post">
             <h3>INTERVENTION</h3>
             <div class="section">
                 <label>Num&eacute;ro d'intervention <span class="important">*</span>: <input type="text" name="numIntervention"></label>
@@ -23,7 +23,6 @@
             </div>
             <h3>ENGINS ET PERSONNEL</h3>
             <div class="section">
-
                 <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
                         <option value="">Selectionner un v&eacute;hicule</option>
                     </select></label>
@@ -34,14 +33,13 @@
                 <label for="">Heure d'arriv&eacute;e sur le lieux : <input type="text" name="heureArrivee"></label>
                 <label for="">Date de retour <span class="important">*</span>: <input type="text" name="dateRetour"></label>
                 <label for="">Heure de retour <span class="important">*</span>: <input type="text" name="heureRetour" id="here5"></label>
-                <input type="button" id="addEngin" onclick="addField()" value="Ajouter un autre véhicule" >
+                <input type="button" id="addEngin" onclick="addField()" value="Ajouter un autre véhicule">
                 <script>
-function addField() {
-    console.log("bonjour");
-// creation de plusieurs engins 
-}
-</script>
-
+                function addField() {
+                    console.log("bonjour");
+                    // creation de plusieurs engins 
+                }
+                </script>
             </div>
             <h3>RESPONSABLE</h3>
             <div class="section">

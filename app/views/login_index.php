@@ -9,6 +9,22 @@
             <input type="password" id="password" name="password" placeholder="Mot de passe" required></div>
         <input type="submit" value="Connexion" id="loginBtn" name="loginBtn">
         <?php
+		
+			
+
+			if (version_compare(phpversion(), '5.4.0', '<')) {
+				 if(session_id() == '') {
+					session_start();
+				 }
+			 }
+			 else
+			 {
+				if (session_status() == PHP_SESSION_NONE) {
+					session_start();
+				}
+			 }
+
+
             if(isset($_SESSION["error_message"]))
             {
                 echo "<p class='error_message'>".$_SESSION["error_message"]."</p>";
