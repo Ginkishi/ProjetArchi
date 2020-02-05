@@ -73,4 +73,11 @@ class API
 		$row = $query->fetch();
 		return $row['P_ID'];
 	}
+	public static function getTypeInterventionList()
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT TI_DESCRIPTION FROM `type_intervention`;");
+		return	$query;
+		
+	}
 }

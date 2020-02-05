@@ -1,8 +1,8 @@
 <!--version 1 -->
 <div class="form-container">
-    <div class="formulaire">
+    <div class="formulaire"> 
         <h2>Compte-rendu d'intervention</h2>
-        <form action="" method="post">
+        <form action="../intervention/addinterventiontobdd" method="post">
             <div class="section">
                 <h3>INTERVENTION</h3>
                 <div class="txtb"><input type="text" placeholder="Numéro d'intervention"><span></span></div>
