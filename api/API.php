@@ -80,4 +80,11 @@ class API
 		return	$query;
 		
 	}
+	public static function getAllVehiculesIndicatif()
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT V_INDICATIF FROM `vehicule`;");
+		return $query;
+	}
+	
 }

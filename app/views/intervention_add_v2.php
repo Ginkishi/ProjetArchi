@@ -1,4 +1,9 @@
 <!--version 1 -->
+<?php
+require_once(".." . DS . API_DIRNAME . "/API.php");
+$typeList = API::getTypeInterventionList();
+$typeVehicule = API::getAllVehiculesIndicatif();
+?>
 <div class="form-container">
     <div class="formulaire"> 
         <h2>Compte-rendu d'intervention</h2>
@@ -13,27 +18,87 @@
                 <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
                 <label for="">Requ&eacute;rant <span class="important">*</span>: <select name="requerant" id="requerant">
                         <option value="">CODIS</option>
+                        <?php
+                while ($donnees = $typeList->fetch())
+                {
+                ?>
+               <option value="<?php
+                    
+                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                    if ($output == "") 
+                    {
+                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
+                    }
+                    echo $output;
+                 ?>"> 
+                  <?php 
+                  $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                    if ($output == "")
+                     {
+                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
+                     }
+                     echo $output;
+                     ?> 
+                 </option>
+                    <?php
+                    }
+                    ?>   
+                    </select></label>
+               
+               
+                    <label for="">Important : <input type="checkbox" name="important"></label>
+                <label for="">Requ&eacute;rant <span class="important">*</span>: <select name="requerant" id="requerant">
+                        <option value="CODIS">CODIS</option>
+                        <option value="Alerte Locale">Alerte locale</option>
                     </select></label>
                 <label for=""></label>
-                <div class="txtb"><input type="text" placeholder="Date de déclenchement"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Heure de déclenchement"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Date de fin"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Heure de fin"><span></span></div>
+                <label for="">Date de déclenchement <span class="important">*</span>: <input type="date" name="dateDeclenchement" value="<?php echo date('Y-m-d'); ?>"></label>
+                <label for="">Heure de déclenchement <span class="important">*</span>: <input type="time" name="heureDeclenchement" value="<?php echo  date('H:i'); ?>"></label>
+                <label for="">Date de fin <span class="important">*</span>: <input type="date" name="dateFin" value="<?php echo date('Y-m-d'); ?>"></label>
+                <label for="">Heure de fin <span class="important">*</span>: <input type="time" name="heureFin" value="<?php echo  date('H:i'); ?>"></label>
             </div>
-            <div class="section">
                 <h3>ENGINS ET PERSONNEL</h3>
                 <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
                         <option value="">Selectionner un v&eacute;hicule</option>
+
+                        <?php
+                while ($vehicule = $typeVehicule->fetch())
+                {
+                ?>
+               <option value="<?php
+                    
+                 $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                    if ($output == "") 
+                    {
+                     $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+                    }
+                    echo $output;
+                 ?>"> 
+                  <?php 
+                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                    if ($output == "")
+                     {
+                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+                     }
+                     echo $output;
+                     ?> 
+                 </option>
+                    <?php
+                    }
+                    ?> 
+
                     </select></label>
-                <div class="check"><input type="checkbox" id="ronde" name="ronde"><label for="ronde">Ronde</label></div>
-                <div class="txtb"><input type="text" placeholder="Date de départ"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Heure de départ"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Date de d'arrivée"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Date de fin"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Heure de d'arrivée"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Date de retour"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Heure de retour"><span></span></div>
-                <button id="addEngin" type="button" class="btn btn-warning btn-lg">Ajouter un autre véhicule</button>
+              
+
+                    
+                <label for="">Ronde : <input type="checkbox" name="ronde"></label>
+                <label for="">Date de d&eacute;part <span class="important">*</span>: <input type="date" name="dateDepart" value="<?php echo date('Y-m-d'); ?>"></label>
+                <label for="">Heure de d&eacute;part <span class="important">*</span>: <input type="time" name="heureDepart" value="<?php echo  date('H:i'); ?>"></label>
+                <label for="">Date d'arriv&eacute;e sur le lieux : <input type="date" name="dateArrivee" value="<?php echo date('Y-m-d'); ?>"></label>
+                <label for="">Heure d'arriv&eacute;e sur le lieux : <input type="time" name="heureArrivee" value="<?php echo  date('H:i'); ?>"></label>
+                <label for="">Date de retour <span class="important">*</span>: <input type="date" name="dateRetour" value="<?php echo date('Y-m-d'); ?>"></label>
+                <label for="">Heure de retour <span class="important">*</span>: <input type="time" name="heureRetour" id="here5" value="<?php echo  date('H:i'); ?>"></label>
+                <input type="button" id="addEngin" onclick="addField()" value="Ajouter un autre véhicule" >
             </div>
             <div class="section">
                 <h3>RESPONSABLE</h3>

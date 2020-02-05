@@ -2,6 +2,7 @@
 <?php
 require_once(".." . DS . API_DIRNAME . "/API.php");
 $typeList = API::getTypeInterventionList();
+$typeVehicule = API::getAllVehiculesIndicatif();
 ?>
 <div class="form-container">
     <h1>Compte-rendu d'intervention</h1>
@@ -13,15 +14,15 @@ $typeList = API::getTypeInterventionList();
                 <label>OPM : <input type="checkbox" name="opm"></label>
                 <label for="">Adresse <span class="important">*</span>: <input type="text" name="adresse"></label>
                 <label for="">Commune <span class="important">*</span>: <input type="text" name="commune"></label>
-
                 <label for="">Type d'intervention <span class="important">*</span>: <select name="typeIntervention" id="typeIntervention">
-                <?php
+                <option value="">Selectionner un type d'intervention</option>
+            <?php
                 while ($donnees = $typeList->fetch())
                 {
                 ?>
                <option value="<?php
                     
-                     $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                     if ($output == "") 
                     {
                      $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
@@ -39,8 +40,7 @@ $typeList = API::getTypeInterventionList();
                  </option>
                     <?php
                     }
-                    ?> 
-                        
+                    ?>   
                 </select></label> 
 
                
@@ -59,7 +59,37 @@ $typeList = API::getTypeInterventionList();
             <div class="section">
                 <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
                         <option value="">Selectionner un v&eacute;hicule</option>
-                    </select></label>
+                    
+
+                        <?php
+                while ($vehicule = $typeVehicule->fetch())
+                {
+                ?>
+               <option value="<?php
+                    
+                 $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                    if ($output == "") 
+                    {
+                     $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+                    }
+                    echo $output;
+                 ?>"> 
+                  <?php 
+                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                    if ($output == "")
+                     {
+                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+                     }
+                     echo $output;
+                     ?> 
+                 </option>
+                    <?php
+                    }
+                    ?> 
+                
+                </select></label>
+                       
+                  
                 <label for="">Ronde : <input type="checkbox" name="ronde"></label>
                 <label for="">Date de d&eacute;part <span class="important">*</span>: <input type="date" name="dateDepart" value="<?php echo date('Y-m-d'); ?>"></label>
                 <label for="">Heure de d&eacute;part <span class="important">*</span>: <input type="time" name="heureDepart" value="<?php echo  date('H:i'); ?>"></label>

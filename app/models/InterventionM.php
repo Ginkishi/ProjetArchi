@@ -36,7 +36,7 @@ class InterventionM
       /* echo $idresp;
        echo $type;
        echo "fin";*/ 
-    if($this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,1);"))
-        echo "done";
+  $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,1);");
+        //echo
     }
 }
