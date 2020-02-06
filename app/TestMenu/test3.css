@@ -103,27 +103,30 @@
   position: relative;
   margin-bottom: 5px;
   flex-wrap: wrap;
-  transition: height 0.5s linear;
+  transition: height 0.2s linear;
+  cursor: pointer;
 }
 .sidebar-item.show {
-  height: 250px;
-  transition: height 0.5s linear;
+  height: auto;
+  transition: height 0.2s linear;
 }
 .sidebar-item.drop:after {
-  content: "";
+  content: "+";
   height: 25px;
   width: 25px;
   position: absolute;
-  top: 8px;
+  top: -16px;
   right: 15px;
-  transform: rotate(45deg);
-  border-right: 3px solid white;
-  border-top: 3px solid white;
-  transition: transform 0.5s linear;
+  /* transform: rotate(45deg); */
+  /* border-right: 3px solid red;
+  border-top: 3px solid white; */
+  transition: content 0.2s ease-in;
+  font-size: 48px;
 }
 .sidebar-item.drop.show:after {
-  transform: rotate(135deg);
-  transition: transform 0.5s linear;
+  content: "-";
+  /* transform: rotate(135deg); */
+  transition: content 0.2s ease-in;
 }
 .sidebar-item i {
   font-size: 2em;
@@ -146,7 +149,7 @@
   padding-left: 25px;
   width: 100%;
   box-shadow: 0 0 10px 1px #0f0f0f;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .submenu .submenu-item .title-item {
   font-size: 1em;
