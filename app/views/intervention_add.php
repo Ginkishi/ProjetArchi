@@ -14,11 +14,9 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <div class="check"><input type="checkbox" id="opm" name="opm"><label for="opm">OPM</label></div>
                 <div class="txtb"><input type="text" placeholder="Adresse"><span></span></div>
                 <div class="txtb"><input type="text" placeholder="Commune"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Type d'intervention"><span></span></div>
-                <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
-                <div class="select"> <label for="">Requ&eacute;rant <span class="important">*</span>: </label><select name="requerant" id="requerant">
-                        <option value="">CODIS</option>
-                        <?php
+                <div class="select"> <label for="">Type d'intervention <span class="important">*</span>: </label><select name="requerant" id="requerant">
+                <option value="">Selectionner un type d'intervention</option>
+                <?php
                         while ($donnees = $typeList->fetch()) {
                         ?>
                         <option value="<?php
@@ -40,6 +38,13 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                         <?php
                         }
                         ?>
+                    </select>
+                </div>
+
+                <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
+                <div class="select"> <label for="">Requ&eacute;rant <span class="important">*</span>: </label><select name="requerant" id="requerant">
+                        <option value="">CODIS</option>
+                        <option value="Alerte Locale">Alerte locale</option>
                     </select>
                 </div>
                 <!-- <label for="">Important : <input type="checkbox" name="important"></label>

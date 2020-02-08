@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
   `DateDepart` timestamp NOT NULL,
   `DateArrive` timestamp NOT NULL,
   `DateRetour` timestamp NOT NULL,
+  `Ronde` tinyint(1) NOT NULL,
   PRIMARY KEY (`IDVehicule`,`IDIntervention`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
