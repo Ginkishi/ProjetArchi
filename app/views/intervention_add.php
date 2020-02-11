@@ -1,8 +1,9 @@
 <!--version 1 -->
 <?php
-require_once(".." . DS . API_DIRNAME . "/API.php");
+include ".." . "/" . API_DIRNAME . "/API.php";
 $typeList = API::getTypeInterventionList();
 $typeVehicule = API::getAllVehiculesIndicatif();
+
 ?>
 <div class="form-container">
     <div class="formulaire">
@@ -10,37 +11,42 @@ $typeVehicule = API::getAllVehiculesIndicatif();
         <form action="../intervention/addinterventiontobdd" method="post">
             <div class="section">
                 <h3>INTERVENTION</h3>
-                <div class="txtb"><input type="text" placeholder="Numéro d'intervention"><span></span></div>
+                <div class="txtb"><input type="text"  name="numIntervention" placeholder="Numéro d'intervention"><span></span></div>
                 <div class="check"><input type="checkbox" id="opm" name="opm"><label for="opm">OPM</label></div>
-                <div class="txtb"><input type="text" placeholder="Adresse"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Commune"><span></span></div>
-                <div class="select"> <label for="">Type d'intervention <span class="important">*</span>: </label><select name="requerant" id="requerant">
+                <div class="txtb"><input type="text" name="adresse" placeholder="Adresse"><span></span></div>
+                <div class="txtb"><input type="text"  name="commune" placeholder="Commune"><span></span></div>
+                <div class="select"> <label for="">Type d'intervention <span class="important">*</span>: </label>
+                <select name="typeIntervention" id="typeIntervention">
                 <option value="">Selectionner un type d'intervention</option>
                 <?php
                         while ($donnees = $typeList->fetch()) {
-                        ?>
-                        <option value="<?php
+                ?>
+                        <option value="
+                        
+                <?php
 
-                                            $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
-                                            if ($output == "") {
-                                                $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
-                                            }
-                                            echo $output;
-                                            ?>">
-                            <?php
-                                $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
-                                if ($output == "") {
-                                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
-                                }
-                                echo $output;
-                                ?>
-                        </option>
-                        <?php
+                         $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                         if ($output == "") 
+                         {
+                              $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                         }
+                              echo $output;
+                ?>
+                            ">
+                <?php
+                        $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                        if ($output == "") 
+                        {
+                            $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
                         }
-                        ?>
+                             echo $output;
+                ?>
+                        </option>
+                <?php
+                        }
+                ?>
                     </select>
                 </div>
-
                 <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
                 <div class="select"> <label for="">Requ&eacute;rant <span class="important">*</span>: </label><select name="requerant" id="requerant">
                         <option value="">CODIS</option>
@@ -63,7 +69,8 @@ $typeVehicule = API::getAllVehiculesIndicatif();
             </div>
             <div class="section">
                 <h3>ENGINS ET PERSONNEL</h3>
-                <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
+                <label for="">Nom de l'engin : 
+                <select name="typeEngin" id="nomEngin" onChange="javascript:addTeam();">
                         <option value="">Selectionner un v&eacute;hicule</option>
                         <?php
                         while ($vehicule = $typeVehicule->fetch()) {
@@ -105,12 +112,107 @@ $typeVehicule = API::getAllVehiculesIndicatif();
             </div>
             <div class="section">
                 <h3>RESPONSABLE</h3>
-                <div class="txtb"><input type="text" placeholder="Nom du responsable"><span></span></div>
+                <div class="txtb"><input type="text" name="responsable" placeholder="Nom du responsable"><span></span></div>
             </div>
             <input type="submit" value="Sauver" class="btn btn-primary btn-lg">
         </form>
     </div>
 </div>
+<script type='text/javascript'>
+    function getXMLHttpRequest() {
+        var xhr = null;
+
+        if (window.XMLHttpRequest || window.ActiveXObject) 
+        {
+                if (window.ActiveXObject) {
+                try {
+                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch(e) 
+                    {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                } 
+                else
+                {
+                    xhr = new XMLHttpRequest(); 
+                }
+        }
+        else 
+        {
+                alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+                return null;
+        }
+
+        return xhr;
+}
+ function addTeam() 
+{
+    var sel = document.getElementById("nomEngin");
+    var opt=sel.options[sel.selectedIndex].text;
+    
+ 
+     ///---------------- partie ajax
+     var xhr = getXMLHttpRequest();
+     xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+        {
+                selection(xhr.responseText,sel);
+        }
+      };
+ 
+        var sVar = encodeURIComponent(opt);
+ 
+        xhr.open("GET", "../views/team.php?variable=" + sVar, true);
+        xhr.send(null);
+  
+} 
+// solution pour le probleme d'encodage 
+function html_entity_decode(str) {
+  var ta = document.createElement("textarea");
+  ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  toReturn = ta.value;
+  ta = null;
+  return toReturn
+} 
+ //ajout des champs pour l'equipe
+  function selection(xml,sel)
+  {
+       liste=xml.split("%");
+        for ( let i =1 ;  i < liste.length ; i++){
+          liste[i]=html_entity_decode(liste[i]);
+        }
+      for ( let i =1 ;  i < liste.length ; i++)
+        {      
+                var div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                var label=document.createElement("label");
+                label.setAttribute("for","")
+                var text=document.createTextNode(liste[i]);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                label.appendChild(text);
+                label.appendChild(span);
+                var deuxpoints=document.createTextNode(":");
+                label.appendChild(deuxpoints);
+                var input=document.createElement("input");
+                input.setAttribute("type","text");
+                input.setAttribute("name",liste[i]);
+                input.setAttribute("placeholder",liste[i]);
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+                div.appendChild(span2);
+                sel.parentNode.insertBefore(div,sel.nextSibling);
+        }
+      console.log(liste);
+   }
+// creation de plusieurs engins 
+
+</script>
+
+
 <script>
 var label = document.querySelectorAll(".txtb input");
 label.forEach(element => {

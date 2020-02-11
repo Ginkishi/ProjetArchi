@@ -34,7 +34,7 @@ class API
 	public static function getAllVehicules()
 	{
 		self::checkBDD();
-		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE;");
+		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE;");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
@@ -49,7 +49,7 @@ class API
 	{
 		self::checkBDD();
 		$id = self::cleanUserInput($id);
-		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
+		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
@@ -86,5 +86,12 @@ class API
 		$query = self::$bdd->query("SELECT V_INDICATIF FROM `vehicule`;");
 		return $query;
 	}
+	public static function getTeam($indicatif)
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT ROLE_NAME  FROM `type_vehicule_role` tvr INNER JOIN vehicule v where v. V_INDICATIF='$indicatif' and tvr.TV_CODE = v.TV_CODE;");
+		return $query;
+	}
+	
 	
 }

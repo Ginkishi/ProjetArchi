@@ -18,12 +18,12 @@ class InterventionM
     public function AddIntervention($numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable)
     {   echo "je suis connecté yay 1!";
 
-      //  echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
+       echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
      
-      //  echo $dateFin."<br>";
-      //  echo $heureFin."<br>";
-      //  echo $responsable."<br>"; 
-      //  echo $typeIntervention."<br>";
+        echo $dateFin."<br>";
+        echo $heureFin."<br>";
+       echo $responsable."<br>"; 
+       echo $typeIntervention."<br>";
         $res=explode(" ", $responsable);
       
         $prenom=$res[0];

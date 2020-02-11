@@ -1,6 +1,6 @@
 <!--version 1 -->
 <?php
-require_once(".." . DS . API_DIRNAME . "/API.php");
+require_once(".." . DS . API_DIRNAME . DS."API.php");
 $typeList = API::getTypeInterventionList();
 $typeVehicule = API::getAllVehiculesIndicatif();
 ?>
@@ -18,9 +18,10 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <option value="">Selectionner un type d'intervention</option>
             <?php
                 while ($donnees = $typeList->fetch())
-                {
-                ?>
-               <option value="<?php
+                 {
+            ?>
+               <option value="
+            <?php
                     
                  $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                     if ($output == "") 
@@ -28,19 +29,20 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                      $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
                     }
                     echo $output;
-                 ?>"> 
-                  <?php 
+            ?>
+                    "> 
+            <?php 
                   $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                     if ($output == "")
                      {
                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
                      }
                      echo $output;
-                     ?> 
+           ?> 
                  </option>
-                    <?php
+            <?php
                     }
-                    ?>   
+            ?>   
                 </select></label> 
 
                
@@ -57,7 +59,8 @@ $typeVehicule = API::getAllVehiculesIndicatif();
             </div>
             <h3>ENGINS ET PERSONNEL</h3>
             <div class="section">
-                <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
+                 <label for="">Nom de l'engin :
+                 <select name="typeEngin" id="nomEngin" onChange="javascript:addField();">
                         <option value="">Selectionner un v&eacute;hicule</option>
                     
 
@@ -98,14 +101,6 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <label for="">Date de retour <span class="important">*</span>: <input type="date" name="dateRetour" value="<?php echo date('Y-m-d'); ?>"></label>
                 <label for="">Heure de retour <span class="important">*</span>: <input type="time" name="heureRetour" id="here5" value="<?php echo  date('H:i'); ?>"></label>
                 <input type="button" id="addEngin" onclick="addField()" value="Ajouter un autre véhicule" >
-                <script>
-function addField() {
-    console.log("bonjour");
-    
-// creation de plusieurs engins 
-}
-</script>
-
             </div>
             <h3>RESPONSABLE</h3>
             <div class="section">
@@ -115,3 +110,11 @@ function addField() {
         </form>
     </div>
 </div>
+
+<script>
+function addField() {
+//  console.log("bonjour");
+    
+// creation de plusieurs engins 
+}
+</script>
