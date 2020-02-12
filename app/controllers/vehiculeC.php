@@ -1,15 +1,19 @@
 <?php
-	require_once(".." . DS . API_DIRNAME . "/API.php");
+	require_once(MODELS.DS."vehiculeM.php");
 	require_once(VIEWS.DS."view.php");
+	
 	class VehiculeController
 	{
-		public function construct()
+		private $modelVehicule;
+		
+		public function __construct()
 		{
+			$this->modelVehicule = new VehiculeModel();
 		}
 
 		public function index()
 		{
-			$records = API::getAllVehicules();
+			$records = $this->modelVehicule->getListe();
 			
 			$v = new View();
 			$v->ajouterVariable("records",$records);

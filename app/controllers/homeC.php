@@ -3,7 +3,7 @@
 	
 	class HomeController
 	{
-		public function construct()
+		public function __construct()
 		{
 		}
 		
@@ -13,3 +13,4 @@
 			$v->afficher("home_index");
 		}
 	}
+?>

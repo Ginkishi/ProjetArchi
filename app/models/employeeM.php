@@ -1,6 +1,6 @@
 <?php
 class EmployeeModel {
-    public function construct(){}
+    public function __construct(){}
     public function list(){}
 }
 ?>
