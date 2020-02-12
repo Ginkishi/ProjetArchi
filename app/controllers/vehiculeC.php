@@ -14,7 +14,6 @@
 		public function index()
 		{
 			$records = $this->modelVehicule->getListe();
-			
 			$v = new View();
 			$v->ajouterVariable("records",$records);
 			$v->afficher("vehicule_index");

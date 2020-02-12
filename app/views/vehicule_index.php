@@ -16,7 +16,6 @@
 			echo "Composition :<br>";
 			echo utf8_encode($r["ROLE_NAME"]) . "<br>";
 		} else {
-
 			echo utf8_encode($r["ROLE_NAME"]) . "<br>";
 		}
 	}

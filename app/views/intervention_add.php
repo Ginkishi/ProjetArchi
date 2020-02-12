@@ -1,9 +1,8 @@
 <!--version 1 -->
 <?php
-include ".." . "/" . API_DIRNAME . "/API.php";
-$typeList = API::getTypeInterventionList();
-$typeVehicule = API::getAllVehiculesIndicatif();
-
+	include ".." . "/" . API_DIRNAME . "/API.php";
+	$typeList = API::getTypeInterventionList();
+	$typeVehicule = API::getAllVehiculesIndicatif();
 ?>
 <div class="form-container">
     <div class="formulaire">

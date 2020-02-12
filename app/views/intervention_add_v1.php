@@ -1,8 +1,8 @@
 <!--version 1 -->
 <?php
-require_once(".." . DS . API_DIRNAME . DS."API.php");
-$typeList = API::getTypeInterventionList();
-$typeVehicule = API::getAllVehiculesIndicatif();
+	require_once(".." . DS . API_DIRNAME . DS."API.php");
+	$typeList = API::getTypeInterventionList();
+	$typeVehicule = API::getAllVehiculesIndicatif();
 ?>
 <div class="form-container">
     <h1>Compte-rendu d'intervention</h1>
@@ -112,9 +112,9 @@ $typeVehicule = API::getAllVehiculesIndicatif();
 </div>
 
 <script>
-function addField() {
-//  console.log("bonjour");
-    
-// creation de plusieurs engins 
-}
+	function addField() {
+	//  console.log("bonjour");
+		
+	// creation de plusieurs engins 
+	}
 </script>
