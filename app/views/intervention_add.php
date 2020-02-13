@@ -177,13 +177,20 @@ function html_entity_decode(str) {
  //ajout des champs pour l'equipe
   function selection(xml,sel)
   {
-       liste=xml.split("%");
-        for ( let i =1 ;  i < liste.length ; i++){
-          liste[i]=html_entity_decode(liste[i]);
+        while(document.contains(document.getElementById("team"))) 
+        {
+                 document.getElementById("team").remove();
+        }   
+          liste=xml.split("%");
+          
+        for ( let i =1 ;  i < liste.length ; i++)
+        {
+                 liste[i]=html_entity_decode(liste[i]);
         }
-      for ( let i =1 ;  i < liste.length ; i++)
+        for ( let i =1 ;  i < liste.length ; i++)
         {      
                 var div=document.createElement("div");
+                div.setAttribute("id","team");
                 div.setAttribute("class","txtb");
                 var label=document.createElement("label");
                 label.setAttribute("for","")
