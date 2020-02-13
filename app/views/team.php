@@ -1,12 +1,11 @@
 <?php
+	header( 'content-type: text/html; charset=UTF-8' );
+	include ("../../api/API.php"); // a modifier ....
 
-header( 'content-type: text/html; charset=UTF-8' );
-include ("../../api/API.php"); // a modifier ....
-
-$variable = (isset($_GET["variable"])) ? $_GET["variable"] : NULL;
+	$variable = (isset($_GET["variable"])) ? $_GET["variable"] : NULL;
 
 
-if ($variable) 
+	if ($variable) 
     {     $typeList = API:: getTeam($variable);
         while ($donnees = $typeList->fetch())
          {
@@ -25,7 +24,6 @@ if ($variable)
     } 
     else 
     {
-	echo "FAIL";
+		echo "FAIL";
     }
-
 ?>
