@@ -10,10 +10,10 @@
         <form action="../intervention/addinterventiontobdd" method="post">
             <div class="section">
                 <h3>INTERVENTION</h3>
-                <div class="txtb"><input type="text"  name="numIntervention" placeholder="Numéro d'intervention"><span></span></div>
+                <div class="txtb"><input type="text" required name="numIntervention" placeholder="Numéro d'intervention"><span></span></div>
                 <div class="check"><input type="checkbox" id="opm" name="opm"><label for="opm">OPM</label></div>
-                <div class="txtb"><input type="text" name="adresse" placeholder="Adresse"><span></span></div>
-                <div class="txtb"><input type="text"  name="commune" placeholder="Commune"><span></span></div>
+                <div class="txtb"><input type="text"  required name="adresse" placeholder="Adresse"><span></span></div>
+                <div class="txtb"><input type="text"  required  name="commune" placeholder="Commune"><span></span></div>
                 <div class="select"> <label for="">Type d'intervention <span class="important">*</span>: </label>
                 <select name="typeIntervention" id="typeIntervention">
                 <option value="">Selectionner un type d'intervention</option>
@@ -107,11 +107,11 @@
                         value="<?php echo date('Y-m-d'); ?>"><span></span></div>
                 <div class="txtb"><label for="">Heure de retour <span class="important">*</span>: </label><input type="time" name="heureRetour" placeholder="Heure de retour"
                         value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <button class="btn btn-secondary btn-lg" id="addEngin" onclick="addField()">Ajouter un véhicule</button>
+                <button class="btn btn-secondary btn-lg" id="addEngin" >Ajouter un véhicule</button>
             </div>
             <div class="section">
                 <h3>RESPONSABLE</h3>
-                <div class="txtb"><input type="text" name="responsable" placeholder="Nom du responsable"><span></span></div>
+                <div class="txtb"><input type="text" name="responsable" placeholder="Nom du responsable" required><span></span></div>
             </div>
             <input type="submit" value="Sauver" class="btn btn-primary btn-lg">
         </form>
@@ -204,6 +204,7 @@ function html_entity_decode(str) {
                 label.appendChild(deuxpoints);
                 var input=document.createElement("input");
                 input.setAttribute("type","text");
+                input.required= true;
                 input.setAttribute("name",liste[i]);
                 input.setAttribute("placeholder",liste[i]);
                 var span2=document.createElement("span");
