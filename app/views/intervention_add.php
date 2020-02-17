@@ -94,7 +94,7 @@
                         }
                         ?>
                     </select></label>
-                <div class="check"><input type="checkbox" id="ronde" name="ronde"><label for="ronde">Ronde</label></div>
+                <div class="check"><input type="checkbox" id="ronde" name="ronde[]"><label for="ronde">Ronde</label></div>
                 <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart[]" placeholder="Date de départ"
                         value="<?php echo date('Y-m-d'); ?>"><span></span></div>
                 <div class="txtb"><label for="">Heure de départ <span class="important">*</span>: </label><input type="time" name="heureDepart[]" placeholder="Heure de départ"
@@ -279,7 +279,7 @@ function addtoform(types)
                 var input=document.createElement("input");
                 input.setAttribute("type","checkbox");
                 input.setAttribute("id","ronde"+nbvehicule);
-                input.setAttribute("name","ronde"+nbvehicule);
+                input.setAttribute("name","ronde[]");
                 var label=document.createElement("label");
                 label.setAttribute("for","ronde"+nbvehicule);
                 var text=document.createTextNode("Ronde");
