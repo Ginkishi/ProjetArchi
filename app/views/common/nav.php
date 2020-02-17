@@ -17,7 +17,7 @@
         <div class="sidebar-item drop">
             <span class="title-item"><i class="fa fa-map-marker fa-2x"></i>Intervention</span>
             <div class="submenu">
-                <a href="/test" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Liste</span></a>
+                <a href="<?= LOCAL_DIR ?>intervention/list" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Liste</span></a>
                 <a href="<?= LOCAL_DIR ?>intervention/add" class="submenu-item"><span class="title-item"><i class="fa fa-plus-circle fa-2x"></i>Ajouter</span></a>
             </div>
         </div>

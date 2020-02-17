@@ -34,9 +34,13 @@ class InterventionController
 		echo '<link href="' . LOCAL_VENDORS . DS . 'personal/css/intervention.css" rel="stylesheet">';
 		echo '</head>';
 		echo '<body>';
+		echo '<div class="contain">';
 		include VIEWS . DS . 'common' . DS . 'nav.php';
+		echo '<div class="main">';
 
 		include VIEWS . DS . "intervention_add.php";
+		echo '</div>';
+		echo '</div>';
 		include VIEWS . DS . 'common' . DS . 'bs_js.php';
 		echo '<body>';
 	}

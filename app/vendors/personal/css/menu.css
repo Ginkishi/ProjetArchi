@@ -1,3 +1,6 @@
+/* body {
+  background: #232526;
+} */
 .contain {
   box-sizing: border-box;
   padding: 10px;
@@ -43,7 +46,8 @@
 
   top: 60px;
   left: -325px;
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5); */
+  box-shadow: 0px 0px 5px 3px black;
   min-width: 300px;
   max-width: 300px;
 }
@@ -182,6 +186,7 @@
 a.sidebar-item:hover {
   text-decoration: none;
   color: #fff;
+  cursor: pointer;
 }
 .submenu {
   width: 100%;
@@ -247,6 +252,7 @@ a.sidebar-item:hover {
   background-color: #93291e;
   cursor: pointer;
   color: white;
+  box-shadow: 0 0 5px 1px #0f0f0f;
 }
 /* 
 @media screen and (max-width: 767px) {

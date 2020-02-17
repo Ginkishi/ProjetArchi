@@ -18,30 +18,30 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                     <select class="form-control" name="typeIntervention" id="typeIntervention">
                         <option value="">Selectionner un type d'intervention</option>
                         <?php
-                                                while ($donnees = $typeList->fetch()) {
-                                                ?>
+                        while ($donnees = $typeList->fetch()) {
+                        ?>
                         <option value="
                         
                 <?php
 
-                                                        $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
-                                                        if ($output == "") {
-                                                                $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
-                                                        }
-                                                        echo $output;
+                            $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                            if ($output == "") {
+                                $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                            }
+                            echo $output;
                 ?>
                             ">
                             <?php
-                                                                $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
-                                                                if ($output == "") {
-                                                                        $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
-                                                                }
-                                                                echo $output;
-                                                                ?>
+                                $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                                if ($output == "") {
+                                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                                }
+                                echo $output;
+                                ?>
                         </option>
                         <?php
-                                                }
-                                                ?>
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
@@ -70,27 +70,27 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                     <select name="typeEngin" id="nomEngin" onChange="javascript:addTeam();">
                         <option value="">Selectionner un v&eacute;hicule</option>
                         <?php
-                                                while ($vehicule = $typeVehicule->fetch()) {
-                                                ?>
+                        while ($vehicule = $typeVehicule->fetch()) {
+                        ?>
                         <option value="<?php
 
-                                                                        $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
-                                                                        if ($output == "") {
-                                                                                $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
-                                                                        }
-                                                                        echo $output;
-                                                                        ?>">
+                                            $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                                            if ($output == "") {
+                                                $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                            }
+                                            echo $output;
+                                            ?>">
                             <?php
-                                                                $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
-                                                                if ($output == "") {
-                                                                        $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
-                                                                }
-                                                                echo $output;
-                                                                ?>
+                                $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                                if ($output == "") {
+                                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                }
+                                echo $output;
+                                ?>
                         </option>
                         <?php
-                                                }
-                                                ?>
+                        }
+                        ?>
                     </select></label>
                 <div class="check"><input type="checkbox" id="ronde" name="ronde"><label for="ronde">Ronde</label></div>
                 <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart" placeholder="Date de départ"

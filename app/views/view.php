@@ -36,7 +36,7 @@ class View
         echo '</head>';
         echo '<body>';
         echo '<div class="contain">';
-        include VIEWS . DS . 'common' . DS . 'nav_v2.php';
+        include VIEWS . DS . 'common' . DS . 'nav.php';
         echo '<div class="main">';
         include VIEWS . DS . strtolower($displayfile) . ".php";
         echo '</div>';
