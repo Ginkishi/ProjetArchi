@@ -36,7 +36,7 @@
   max-height: 235px;
   min-width: 30%;
   max-width: 30%;
-  margin: 10px 20px 10px 0px;
+  /* margin: 10px 20px 10px 0px; */
   /* padding: 10px; */
   color: #ffffff;
   border-radius: 10px;
@@ -164,7 +164,18 @@
   background: #2a5298;
   padding: 20px;
   font-family: "Ubuntu", sans-serif;
-  box-shadow: 0px 0px 15px 2px black;
+
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px black;
+}
+
+.datenow {
+  text-align: center;
+  font-family: "Ubuntu", sans-serif;
+  background: #232526;
+  color: white;
+  box-shadow: 0px 0px 5px 2px black;
+  border-radius: 5px;
+  padding: 10px;
 }

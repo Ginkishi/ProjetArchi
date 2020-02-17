@@ -1,5 +1,7 @@
+<?php setlocale(LC_TIME, "fr_FR"); ?>
 <div class="home-container">
     <h2 class="home-title"><img class="home-logo" src="../vendors/personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
+    <h3 class="datenow"> Aujourd'hui, nous sommes le <?= utf8_encode(strftime(" %A %e %B %Y")); ?></h3>
     <div class="intervention-container">
         <div class="valid-intervention">
             <div class="intervention-title">Interventions validées</div>
