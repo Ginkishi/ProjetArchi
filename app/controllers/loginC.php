@@ -73,11 +73,14 @@
 		public function disconnect()
 		{
 			session_start();
-			unset($_SESSION);
-			session_destroy();
 
 			$v = new View();
-			$v->ajouterVariable("sucess_message", "Vous avez bien été déconnecté!");
+			if(isset($_SESSION) && isset($_SESSION["id"]) && isset($_SESSION["code"]) && isset($_SESSION["nom"]) && isset($_SESSION["prenom"]) && isset($_SESSION["grade"]))
+			{
+				$v->ajouterVariable("sucess_message", "Vous avez bien été déconnecté!");
+				unset($_SESSION);
+			}		
+			session_destroy();
 			$v->afficherLogin();
 		}
 	}
