@@ -84,20 +84,45 @@
 				/// le format de la date yyyy-mm-dd 
 				/// le format de l'heure hh:mm:ss
 				$InterventionModel = new InterventionM();
-				$InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable);
-
+				$IDintervention= $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable);
+                echo "id".$IDintervention."<br>";
 				//partie vehicule et equipe
 				$n=$_POST["dateDepart"];
 				$nbvehicule=sizeof($n);
 				echo $nbvehicule;
 				for($i = 0; $i <$nbvehicule; $i++) 
 				{
-						$vehicule= isset($_POST["typeEngin"][$i]) ?$_POST["typeEngin"][$i] : NULL;
+						$IDvehicule= isset($_POST["typeEngin"][$i]) ?$_POST["typeEngin"][$i] : NULL;
 						
 						$datedepart=$_POST["dateDepart"][$i];
-				
-	                    echo .$vehicule;
-						echo $datedepart;
+						$heuredepart=$_POST["heureDepart"][$i];
+
+						$datearrive=$_POST["dateArrivee"][$i];
+						$heurearrive=$_POST["heureArrivee"][$i];
+
+						$dateretour=$_POST["dateRetour"][$i];
+						$heureretour=$_POST["heureRetour"][$i];
+						if (isset($_POST["ronde"][$i])) 
+						{
+							$ronde = 1;
+						} 
+						else 
+						{
+							$ronde = 0;
+						}
+				        
+	                    echo "vehicule".$IDvehicule."<br>";
+						echo $datedepart."<br>";
+						echo $heuredepart."<br>";
+						
+						echo $datearrive."<br>";
+						echo $heurearrive."<br>";
+						
+						echo $dateretour."<br>";
+						echo $heureretour."<br>";
+
+				$InterventionModel->AddVehiculeUsed($IDvehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde);
+
 				}
 				
 			}
