@@ -109,7 +109,7 @@
                         value="<?php echo  date('H:i'); ?>"><span></span></div>
                 
             </div>
-                <div class=section>
+                <div class="section" id="buttonadd">
                 <button type="button" onClick="javascript:AddEngin();" class="btn btn-secondary btn-lg" id="addEngin" >Ajouter un véhicule</button>
                 </div>
             <div class="section">
@@ -244,10 +244,10 @@ function AddEngin(){
 }
 function addtoform(types)
 {      liste=types.split("%");
-               var section=document.getElementById("sectionaEngin");
+               var section=document.getElementById("buttonadd");
                 var sectionEngin=document.createElement("div");
                  sectionEngin.setAttribute("class","section");
-                 section.insertAdjacentElement('afterend',sectionEngin);
+                 section.insertAdjacentElement('beforebegin',sectionEngin);
                 var label=document.createElement("label");
                 label.setAttribute("for","");
                 var nom=document.createTextNode("Nom de L'engin");
