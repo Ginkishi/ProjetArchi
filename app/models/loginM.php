@@ -8,7 +8,8 @@
         public function connect($username, $password)
         {
             if(isset($username) && !empty($username) && isset($password) && !empty($password)) {
-                $record = API::getIdentification($ndc, md5($pass));
+                $record = API::getIdentification($username, md5($password));
+                return $record;
             }
         }
     }
