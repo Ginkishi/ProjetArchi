@@ -55,6 +55,8 @@
 
 			if (sizeof($record) == 1) {
 				//var_dump($record[0]);
+				$_SESSION["id"] = $record[0]['P_ID'];
+				$_SESSION["code"] = $record[0]['P_CODE'];
 				$_SESSION["nom"] = $record[0]['P_NOM'];
 				$_SESSION["prenom"] = $record[0]['P_PRENOM'];
 				$_SESSION["grade"] = $record[0]['P_GRADE'];
