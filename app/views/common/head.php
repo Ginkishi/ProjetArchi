@@ -8,5 +8,6 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 <!-- Bootstrap core CSS -->
 <link href="<?= LOCAL_VENDORS ?>/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?= LOCAL_VENDORS ?>/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="starter-template.css" rel="stylesheet">
+<link href="<?= LOCAL_VENDORS ?>/personal/css/menu.css" rel="stylesheet">
