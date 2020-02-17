@@ -32,7 +32,7 @@
 			}
 		   	else
 		   	{
-				$v->afficher("login_index");
+				$v->afficherLogin();
 		   	}
 		}
 
@@ -59,16 +59,12 @@
 				$_SESSION["prenom"] = $record[0]['P_PRENOM'];
 				$_SESSION["grade"] = $record[0]['P_GRADE'];
 
-				$host = $_SERVER['HTTP_HOST'] . DS;
-				$uri = "projetarchi" . DS . ROOT_DIR . "/home";
-				$extra = "";
-
 				$v = new View();
 				$v->afficher("home_index");
 			} else {
-				$_SESSION["error_message"] = "Impossible de se connecter!";
 				$v = new View();
-				$v->afficher("login_index");
+				$v->ajouterVariable("error_message", "Impossible de se connecter!");
+				$v->afficherLogin();
 			}
 		}
 		
@@ -77,12 +73,10 @@
 			session_start();
 			unset($_SESSION);
 			session_destroy();
-			
-			$host = $_SERVER['HTTP_HOST'] . DS;
-			$uri = "projetarchi" . DS . ROOT_DIR . "/login";
-			$extra = "";
 
-			header("Location: http://$host$uri$extra");
+			$v = new View();
+			$v->ajouterVariable("sucess_message", "Vous avez bien été déconnecté!");
+			$v->afficherLogin();
 		}
 	}
 ?>
