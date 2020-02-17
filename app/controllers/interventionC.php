@@ -46,14 +46,14 @@
 
 
 			if ((isset($_POST["numIntervention"]) && !empty($_POST["numIntervention"])) 
-		  && isset($_POST["adresse"]) && !empty($_POST["adresse"])
+				&& isset($_POST["adresse"]) && !empty($_POST["adresse"])
 				&& (isset($_POST["commune"]) && !empty($_POST["commune"]))
 				&& (isset($_POST["typeIntervention"]) && !empty($_POST["typeIntervention"]))
 				&& (isset($_POST["dateDeclenchement"]) && !empty($_POST["dateDeclenchement"])) 
 				&& (isset($_POST["heureDeclenchement"]) && !empty($_POST["heureDeclenchement"]))
 				&& (isset($_POST["dateFin"]) && !empty($_POST["dateFin"])) 
 				&& (isset($_POST["heureFin"]) && !empty($_POST["heureFin"]))
-			   && (isset($_POST["responsable"]) && !empty($_POST["responsable"]))
+			    && (isset($_POST["responsable"]) && !empty($_POST["responsable"]))
 				) 
 				{   
 					
@@ -85,6 +85,14 @@
 				/// le format de l'heure hh:mm:ss
 				$InterventionModel = new InterventionM();
 				$InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable);
+
+				//partie vehicule et equipe
+				$n=$_POST["dateDepart"];
+				$nbvehicule=sizeof($n);
+				echo $nbvehicule;
+				for($i = 0; $i <$nbvehicule; $i++) {
+                
+				}
 				
 			}
 			/// un traiment d'erreur a effectuer apres eg: champ non rempli

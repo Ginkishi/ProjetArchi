@@ -95,17 +95,17 @@
                         ?>
                     </select></label>
                 <div class="check"><input type="checkbox" id="ronde" name="ronde"><label for="ronde">Ronde</label></div>
-                <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart" placeholder="Date de départ"
+                <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart[]" placeholder="Date de départ"
                         value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de départ <span class="important">*</span>: </label><input type="time" name="heureDepart" placeholder="Heure de départ"
+                <div class="txtb"><label for="">Heure de départ <span class="important">*</span>: </label><input type="time" name="heureDepart[]" placeholder="Heure de départ"
                         value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="date" name="dateArrivee"
+                <div class="txtb"><label for="">Date d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="date" name="dateArrivee[]"
                         placeholder="Date d'arriv&eacute;e sur le lieux : " value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="time" name="heureArrivee"
+                <div class="txtb"><label for="">Heure d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="time" name="heureArrivee[]"
                         placeholder="Heure d'arriv&eacute;e sur le lieux : " value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date de retour <span class="important">*</span>: </label><input type="date" name="dateRetour" placeholder="Date de retour"
+                <div class="txtb"><label for="">Date de retour <span class="important">*</span>: </label><input type="date" name="dateRetour[]" placeholder="Date de retour"
                         value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de retour <span class="important">*</span>: </label><input type="time" name="heureRetour" placeholder="Heure de retour"
+                <div class="txtb"><label for="">Heure de retour <span class="important">*</span>: </label><input type="time" name="heureRetour[]" placeholder="Heure de retour"
                         value="<?php echo  date('H:i'); ?>"><span></span></div>
                 
             </div>
@@ -216,7 +216,7 @@ function selection(xml,sel,p)
                 var input=document.createElement("input");
                 input.setAttribute("type","text");
                 input.required= true;
-                input.setAttribute("name",liste[i]);
+                input.setAttribute("name",liste[i]+"[]");
                 input.setAttribute("placeholder",liste[i]);
                 var span2=document.createElement("span");
                 div.appendChild(label);
@@ -301,7 +301,7 @@ function addtoform(types)
                 label.appendChild(span);
                 input=document.createElement("input");
                 input.setAttribute("type","date");
-                input.setAttribute("name","dateDepart");
+                input.setAttribute("name","dateDepart[]");
                 input.setAttribute("placeholder","Date de départ");
                 input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
                 var span2=document.createElement("span");
@@ -322,7 +322,7 @@ function addtoform(types)
                 label.appendChild(span);
                 input=document.createElement("input");
                 input.setAttribute("type","time");
-                input.setAttribute("name","heureDepart");
+                input.setAttribute("name","heureDepart[]");
                 input.setAttribute("placeholder","Heure de départ");
                 input.setAttribute("value","<?php echo  date('H:i'); ?>");
                 var span2=document.createElement("span");
@@ -333,7 +333,7 @@ function addtoform(types)
                 div.setAttribute("class","txtb");
                 label=document.createElement("label");
                 label.setAttribute("for","");
-                text=document.createTextNode("Date d'arrivée");
+                text=document.createTextNode("Date d'arrivée sur le lieux");
                 label.append(text);
                 var span=document.createElement("span");
                 span.setAttribute("class","important");
@@ -343,7 +343,7 @@ function addtoform(types)
                 label.appendChild(span);
                 input=document.createElement("input");
                 input.setAttribute("type","date");
-                input.setAttribute("name","dateArrivee");
+                input.setAttribute("name","dateArrivee[]");
                 input.setAttribute("placeholder","Date d'arrivée sur le lieux");
                 input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
                 var span2=document.createElement("span");
@@ -354,7 +354,7 @@ function addtoform(types)
                 div.setAttribute("class","txtb");
                 label=document.createElement("label");
                 label.setAttribute("for","");
-                text=document.createTextNode("Heure d'arrivée");
+                text=document.createTextNode("Heure d'arrivée sur le lieux");
                 label.append(text);
                 var span=document.createElement("span");
                 span.setAttribute("class","important");
@@ -364,7 +364,7 @@ function addtoform(types)
                 label.appendChild(span);
                 input=document.createElement("input");
                 input.setAttribute("type","time");
-                input.setAttribute("name","heureArrivee");
+                input.setAttribute("name","heureArrivee[]");
                 input.setAttribute("placeholder","Heure d'arrivée");
                 input.setAttribute("value","<?php echo  date('H:i'); ?>");
                 var span2=document.createElement("span");
@@ -385,7 +385,7 @@ function addtoform(types)
                 label.appendChild(span);
                 input=document.createElement("input");
                 input.setAttribute("type","date");
-                input.setAttribute("name","dateRetour");
+                input.setAttribute("name","dateRetour[]");
                 input.setAttribute("placeholder","Date de retour");
                 input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
                 var span2=document.createElement("span");
@@ -406,7 +406,7 @@ function addtoform(types)
                 label.appendChild(span);
                 input=document.createElement("input");
                 input.setAttribute("type","time");
-                input.setAttribute("name","heureRetour");
+                input.setAttribute("name","heureRetour[]");
                 input.setAttribute("placeholder","Heure de retour");
                 input.setAttribute("value","<?php echo  date('H:i'); ?>");
                 var span2=document.createElement("span");
