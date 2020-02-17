@@ -8,7 +8,7 @@ html {
 
 .contain {
   box-sizing: border-box;
-  padding: 10px;
+  /* padding: 10px; */
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
@@ -46,7 +46,7 @@ html {
 .main {
   padding-top: 60px;
   transition: padding-left 0.15s linear;
-  min-height: 100vh;
+  min-height: 95vh;
 }
 .sidebar {
   position: fixed;
@@ -80,7 +80,7 @@ html {
 
   padding-left: 300px;
   transition: padding-left 0.15s linear;
-  min-height: 100vh;
+  max-height: 95vh;
 }
 .photo {
   height: 150px;
@@ -105,6 +105,7 @@ html {
   height: 100%;
   padding: 5px 2px;
   /* overflow-y: auto; */
+  max-height: 95vh;
 }
 .sidebar-item {
   background-color: #202020;
@@ -228,6 +229,7 @@ a.sidebar-item:hover {
 .nom {
   font-weight: bold;
   font-size: 1.2em;
+  text-transform: capitalize;
 }
 .role::before,
 .role::after {
