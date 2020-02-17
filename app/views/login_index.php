@@ -1,5 +1,5 @@
 <div class="form-login">
-    <form action="login/authenticate" method="post">
+    <form action="<?= LOCAL_DIR ?>login/authenticate" method="post">
         <div class="icon-header"><i class="fa fa-user-circle" aria-hidden="true"></i></div>
         <div class="champ">
             <label for="username"><i class="fa fa-user" aria-hidden="true"></i></label>
