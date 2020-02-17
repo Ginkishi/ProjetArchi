@@ -114,3 +114,9 @@ body {
   color: red;
   margin: 20px auto 0px auto;
 }
+
+.sucess_message
+{
+  color: green;
+  margin: 20px auto 0px auto;
+}
