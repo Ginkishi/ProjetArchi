@@ -1,6 +1,6 @@
 <?php
-
-require_once(".." . DS . API_DIRNAME . "/API.php");
+require_once(VIEWS . DS . "view.php");
+require_once(MODELS . DS . "loginM.php");
 require_once("./controllers/homeC.php");
 
 class LoginController
@@ -8,11 +8,9 @@ class LoginController
 	public function __construct()
 	{
 	}
-
-	public function renderview($viewname)
+	public function index()
 	{
-
-
+		// Check if PHP session is started (start it if not already started)
 		if (version_compare(phpversion(), '5.4.0', '<')) {
 			if (session_id() == '') {
 				session_start();
@@ -23,39 +21,17 @@ class LoginController
 			}
 		}
 
+		// Si deja connecter -> redirection vers la home page
+		$v = new View();
 		if (isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"])) {
-			$host = $_SERVER['HTTP_HOST'] . DS;
-			$uri = "projetarchi" . DS . ROOT_DIR . "/home";
-			$extra = "";
-
-			header("Location: http://$host$uri$extra");
+			$v->afficher("home_index");
+		} else {
+			$v->afficherLogin();
 		}
-
-		echo '<!doctype html>';
-		echo '<html lang="fr">';
-		echo '<head>';
-		include VIEWS . DS . 'common' . DS . 'head.php';
-		echo '<link href="' . LOCAL_VENDORS . DS . 'personal/css/login.css" rel="stylesheet">';
-		echo '<link href="' . LOCAL_VENDORS . DS . 'font-awesome/css/font-awesome.min.css" rel="stylesheet">';
-		echo '</head>';
-		echo '<body>';
-		include VIEWS . DS . 'login_' . strtolower($viewname) . ".php";
-
-		include VIEWS . DS . 'common' . DS . 'bs_js.php';
-		echo '</body></html>';
-	}
-
-	public function index()
-	{
-		$this->renderview('index');
 	}
 
 	public function authenticate()
 	{
-		//var_dump($_POST);
-
-
-
 		if (version_compare(phpversion(), '5.4.0', '<')) {
 			if (session_id() == '') {
 				session_start();
@@ -65,44 +41,36 @@ class LoginController
 				session_start();
 			}
 		}
-		if ((isset($_POST["username"]) && !empty($_POST["username"])) && isset($_POST["password"]) && !empty($_POST["password"])) {
-			$ndc = $_POST["username"];
-			$pass = $_POST["password"];
-			$record = API::getIdentification($ndc, md5($pass));
 
-			if (sizeof($record) == 1) {
-				//var_dump($record[0]);
-				$_SESSION["nom"] = $record[0]['P_NOM'];
-				$_SESSION["prenom"] = $record[0]['P_PRENOM'];
-				$_SESSION["grade"] = $record[0]['P_GRADE'];
+		$modele = new LoginModel();
+		$record = $modele->connect($_POST["username"], $_POST["password"]);
 
-				$host = $_SERVER['HTTP_HOST'] . DS;
-				$uri = "projetarchi" . DS . ROOT_DIR . "/home";
-				$extra = "";
+		if (sizeof($record) == 1) {
+			//var_dump($record[0]);
+			$_SESSION["id"] = $record[0]['P_ID'];
+			$_SESSION["code"] = $record[0]['P_CODE'];
+			$_SESSION["nom"] = $record[0]['P_NOM'];
+			$_SESSION["prenom"] = $record[0]['P_PRENOM'];
+			$_SESSION["grade"] = $record[0]['P_GRADE'];
 
-				header("Location: http://$host$uri$extra");
-			} else {
-				$_SESSION["error_message"] = "Impossible de se connecter!";
-				$login = new LoginController();
-				$login->index();
-			}
+			$v = new View();
+			$v->afficher("home_index");
 		} else {
-			$_SESSION["error_message"] = "Veuillez entrez des identifiants de connexion";
-			$login = new LoginController();
-			$login->index();
+			$v = new View();
+			$v->ajouterVariable("error_message", "Impossible de se connecter!");
+			$v->afficherLogin();
 		}
 	}
-
 	public function disconnect()
 	{
 		session_start();
-		unset($_SESSION);
+
+		$v = new View();
+		if (isset($_SESSION) && isset($_SESSION["id"]) && isset($_SESSION["code"]) && isset($_SESSION["nom"]) && isset($_SESSION["prenom"]) && isset($_SESSION["grade"])) {
+			$v->ajouterVariable("sucess_message", "Vous avez bien été déconnecté!");
+			unset($_SESSION);
+		}
 		session_destroy();
-
-		$host = $_SERVER['HTTP_HOST'] . DS;
-		$uri = "projetarchi" . DS . ROOT_DIR . "/login";
-		$extra = "";
-
-		header("Location: http://$host$uri$extra");
+		$v->afficherLogin();
 	}
 }

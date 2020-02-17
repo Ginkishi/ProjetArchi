@@ -4,14 +4,8 @@ class View
     private $listevar;
     private $listLinks;
     private $listScripts;
-    public function __construct()
-    {
-        $this->listevar = [];
-    }
-    public function ajouterVariable($nom, $valeur)
-    {
-        $this->listevar[$nom] = $valeur;
-    }
+
+
     public function ajouterLink($dossier, $valeur)
     {
         $this->listLinks[$valeur] = $dossier;
@@ -43,6 +37,34 @@ class View
         echo '</div>';
         include VIEWS . DS . 'common' . DS . 'bs_js.php';
 
+        echo '</body></html>';
+    }
+
+    public function __construct()
+    {
+        $this->listevar = [];
+    }
+    public function ajouterVariable($nom, $valeur)
+    {
+        $this->listevar[$nom] = $valeur;
+    }
+
+
+    public function afficherLogin()
+    {
+        extract($this->listevar);
+        echo '<!doctype html>';
+        echo '<html lang="fr">';
+        echo '<head>';
+        include VIEWS . DS . 'common' . DS . 'head.php';
+        echo '<link href="./views/assets/css/login.css" rel="stylesheet">';
+        echo '<link href="./views/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">';
+
+        echo '<link href="../views/assets/css/login.css" rel="stylesheet">';
+        echo '<link href="../views/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">';
+        echo '</head><body>';
+        include VIEWS . DS . 'login_index.php';
+        include VIEWS . DS . 'common' . DS . 'bs_js.php';
         echo '</body></html>';
     }
 }
