@@ -1,5 +1,5 @@
 <div class="form-login">
-    <form action="index.php?c=login&m=authenticate" method="post">
+    <form action="login/authenticate" method="post">
         <div class="icon-header"><i class="fa fa-user-circle" aria-hidden="true"></i></div>
         <div class="champ">
             <label for="username"><i class="fa fa-user" aria-hidden="true"></i></label>
@@ -9,26 +9,13 @@
             <input type="password" id="password" name="password" placeholder="Mot de passe" required></div>
         <input type="submit" value="Connexion" id="loginBtn" name="loginBtn">
         <?php
-		
-			
-
-			if (version_compare(phpversion(), '5.4.0', '<')) {
-				 if(session_id() == '') {
-					session_start();
-				 }
-			 }
-			 else
-			 {
-				if (session_status() == PHP_SESSION_NONE) {
-					session_start();
-				}
-			 }
-
-
-            if(isset($_SESSION["error_message"]))
+            if(isset($error_message))
             {
-                echo "<p class='error_message'>".$_SESSION["error_message"]."</p>";
-                unset($_SESSION["error_message"]);
+                echo "<p class='error_message'>".$error_message."</p>";
+            }
+            if(isset($sucess_message))
+            {
+                echo "<p class='sucess_message'>".$sucess_message."</p>";
             }
         ?>
     </form>
