@@ -1,4 +1,5 @@
 <div class="home-container">
+    <h2 class="home-title"><img class="home-logo" src="../vendors/personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
     <div class="intervention-container">
         <div class="valid-intervention">
             <div class="intervention-title">Interventions validées</div>

@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   background-position: center;
 } */
+
 .home-container {
   /* background-color: #191b20; */
   width: 100%;
@@ -75,6 +76,7 @@
 }
 .intervention-title {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-size: 2em;
   text-align: center;
   min-width: 100%;
@@ -152,4 +154,17 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
+}
+.home-logo {
+  max-height: 100px;
+}
+.home-title {
+  font-size: 4em;
+  text-align: center;
+  background: #2a5298;
+  padding: 20px;
+  font-family: "Ubuntu", sans-serif;
+  box-shadow: 0px 0px 15px 2px black;
+  color: white;
+  border-radius: 10px;
 }
