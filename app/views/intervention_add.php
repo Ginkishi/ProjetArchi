@@ -69,7 +69,7 @@
             <div class="section" id="sectionaEngin">
                 <h3>ENGINS ET PERSONNEL</h3>
                 <label for="">Nom de l'engin : 
-                <select name="typeEngin" id="nomEngin%0" onChange="javascript:addTeam(this.id);">
+                <select name="typeEngin0" id="nomEngin%0" onChange="javascript:addTeam(this.id);">
                         <option value="">Selectionner un v&eacute;hicule</option>
                         <?php
                         while ($vehicule = $typeVehicule->fetch()) {
@@ -253,7 +253,7 @@ function addtoform(types)
                 var nom=document.createTextNode("Nom de L'engin");
                 label.appendChild(nom);
                 var select=document.createElement("select");
-                select.setAttribute("name","typeEngin");
+                select.setAttribute("name","typeEngin"+nbvehicule);
                 select.setAttribute("id","nomEngin%"+nbvehicule);
                 select.setAttribute("onChange","javascript:addTeam(this.id);");
                 var option=document.createElement("option");

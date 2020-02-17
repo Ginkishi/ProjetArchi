@@ -37,5 +37,18 @@
 	  $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,1);");
 			//echo
 		}
+
+		public function AddVehiculeUsed($IdVehicule,$IDIntervention,$DateDepart,$DateArrive,$DateRetour){
+
+			echo $IdVehicule;
+			echo $IDIntervention;
+			echo $DateDepart;
+			echo $DateArrive;
+			echo $DateRetour;
+
+
+
+
+		}
 	}
 ?>
