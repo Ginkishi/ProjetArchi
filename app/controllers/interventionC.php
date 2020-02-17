@@ -90,8 +90,14 @@
 				$n=$_POST["dateDepart"];
 				$nbvehicule=sizeof($n);
 				echo $nbvehicule;
-				for($i = 0; $i <$nbvehicule; $i++) {
-                
+				for($i = 0; $i <$nbvehicule; $i++) 
+				{
+						$vehicule= isset($_POST["typeEngin"][$i]) ?$_POST["typeEngin"][$i] : NULL;
+						
+						$datedepart=$_POST["dateDepart"][$i];
+				
+	                    echo .$vehicule;
+						echo $datedepart;
 				}
 				
 			}

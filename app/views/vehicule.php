@@ -9,6 +9,13 @@
          {
             
             
+            $output = htmlentities($donnees['V_ID'], 0, "UTF-8");
+            if ($output == "") 
+            {
+             $output = htmlentities(utf8_encode($donnees['V_ID']), 0, "UTF-8"); 
+            }
+            echo '%'.$output;
+              
             $output = htmlentities($donnees['V_INDICATIF'], 0, "UTF-8");
             if ($output == "") 
             {

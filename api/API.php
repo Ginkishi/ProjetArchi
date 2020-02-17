@@ -83,7 +83,7 @@ class API
 	public static function getAllVehiculesIndicatif()
 	{
 		self::checkBDD();
-		$query = self::$bdd->query("SELECT V_INDICATIF FROM `vehicule`;");
+		$query = self::$bdd->query("SELECT V_ID, V_INDICATIF FROM `vehicule`;");
 		return $query;
 	}
 	public static function getTeam($indicatif)

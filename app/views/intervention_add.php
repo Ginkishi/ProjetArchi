@@ -48,7 +48,7 @@
                 </div>
                 <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
                 <div class="select"> <label for="">Requ&eacute;rant <span class="important">*</span>: </label><select name="requerant" id="requerant">
-                        <option value="">CODIS</option>
+                        <option value="codis">CODIS</option>
                         <option value="Alerte Locale">Alerte locale</option>
                     </select>
                 </div>
@@ -69,16 +69,16 @@
             <div class="section" id="sectionaEngin">
                 <h3>ENGINS ET PERSONNEL</h3>
                 <label for="">Nom de l'engin : 
-                <select name="typeEngin0" id="nomEngin%0" onChange="javascript:addTeam(this.id);">
-                        <option value="">Selectionner un v&eacute;hicule</option>
+                <select name="typeEngin[]" id="nomEngin%0" onChange="javascript:addTeam(this.id);">
+                        <option value="none">Selectionner un v&eacute;hicule</option>
                         <?php
                         while ($vehicule = $typeVehicule->fetch()) {
                         ?>
                         <option value="<?php
 
-                                            $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                                            $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
                                             if ($output == "") {
-                                                $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                                $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8");
                                             }
                                             echo $output;
                                             ?>">
@@ -244,6 +244,7 @@ function AddEngin(){
 }
 function addtoform(types)
 {      liste=types.split("%");
+     
                var section=document.getElementById("buttonadd");
                 var sectionEngin=document.createElement("div");
                  sectionEngin.setAttribute("class","section");
@@ -253,7 +254,7 @@ function addtoform(types)
                 var nom=document.createTextNode("Nom de L'engin");
                 label.appendChild(nom);
                 var select=document.createElement("select");
-                select.setAttribute("name","typeEngin"+nbvehicule);
+                select.setAttribute("name","typeEngin[]");
                 select.setAttribute("id","nomEngin%"+nbvehicule);
                 select.setAttribute("onChange","javascript:addTeam(this.id);");
                 var option=document.createElement("option");
@@ -261,11 +262,11 @@ function addtoform(types)
                 var text=document.createTextNode("Selection un véhicule");
                 option.appendChild(text);
                 select.appendChild(option);
-                for ( let i =1 ;  i < liste.length ; i++)
+                for ( let i =1 ;  i < liste.length ; i=i+2)
                 { 
                         var option=document.createElement("option");
                         option.setAttribute("value",liste[i]);
-                        var text=document.createTextNode(liste[i]);
+                        var text=document.createTextNode(liste[i+1]);
                         option.appendChild(text);
                         select.appendChild(option);
                 }
