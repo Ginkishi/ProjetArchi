@@ -43,13 +43,13 @@
 		public function addInterventionToBDD()
 		{ 
 			
-				/*	$array = array_keys($_POST);
+					$array = array_keys($_POST);
 
 					foreach ($array as $value)
 					{
 					echo $value; echo '<br />';
 					}
-                */
+                
      
 			   include_once dirname(__FILE__) . "\..\models\InterventionM.php";
                // 1- recuperer le type d'equipe pour chaque vehicule
