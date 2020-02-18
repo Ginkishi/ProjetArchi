@@ -49,13 +49,6 @@ class InterventionController
 		echo "coucou";
 		include_once dirname(__FILE__) . "\..\models\InterventionM.php";
 
-		$composition[$i] = array();
-		$team = $InterventionModel->getVehiculeById($i);
-		foreach ($team as $r) {
-			array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
-			//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
-		}
-
 
 		if ((isset($_POST["numIntervention"]) && !empty($_POST["numIntervention"]))
 			&& isset($_POST["adresse"]) && !empty($_POST["adresse"])
