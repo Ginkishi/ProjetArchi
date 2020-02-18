@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `interventions` (
   `IDResponsable` int (11) NOT NULL,
   `IDCreateur` int (11) NOT NULL,
   PRIMARY KEY (`IDIntervention`)
-) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 --
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `personnelduvehicule` (
   `IDIntervention` int (11) NOT NULL,
   `IDrole` tinyint (4) NOT NULL,
   PRIMARY KEY (`IDVehicule`, `IDPersonne`, `IDIntervention`)
-) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 --
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
   `DateRetour` timestamp NOT NULL,
   `Ronde` tinyint (1) NOT NULL,
   PRIMARY KEY (`IDVehicule`, `IDIntervention`, `DateDepart`)
-) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 COMMIT;
 

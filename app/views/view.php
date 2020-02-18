@@ -29,7 +29,7 @@ class View
         }
         echo '</head>';
         echo '<body>';
-        echo '<div class="contain">';
+        echo '<div class="contain shadow">';
         include VIEWS . DS . 'common' . DS . 'nav.php';
         echo '<div class="main">';
         include VIEWS . DS . strtolower($displayfile) . ".php";
