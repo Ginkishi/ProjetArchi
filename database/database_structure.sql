@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `personnelduvehicule` (
   `IDVehicule` int(11) NOT NULL,
   `IDPersonne` int(11) NOT NULL,
   `IDIntervention` int(11) NOT NULL,
-  `IDrole` int(11) NOT NULL,
+  `IDrole` 	tinyint(4) NOT NULL,
   PRIMARY KEY (`IDVehicule`,`IDPersonne`,`IDIntervention`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
