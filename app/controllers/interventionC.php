@@ -49,34 +49,13 @@ class InterventionController
 		echo "coucou";
 		include_once dirname(__FILE__) . "\..\models\InterventionM.php";
 
-		foreach ($array as $value) {
-			echo $value;
-			echo '<br />';
+		$composition[$i] = array();
+		$team = $InterventionModel->getVehiculeById($i);
+		foreach ($team as $r) {
+			array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
+			//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
 		}
 
-
-		include_once dirname(__FILE__) . "\..\models\InterventionM.php";
-		// 1- recuperer le type d'equipe pour chaque vehicule
-		$InterventionModel = new InterventionM();
-
-		// recuperer le nombre de vehicule dans la base
-		$nbv = $InterventionModel->Nbvehicule();
-		// creer un tableau pour garder le nombre de vehicules du meme type utilisé lors d'une intervention
-		$incremant = array();
-		for ($i = 0; $i <= $nbv - 1; $i++) {
-			array_push($incremant, 0);
-		}
-		//la composition d'equipe pour chaque vehicule 
-		$composition = array();
-		for ($i = 0; $i <= $nbv; $i++) {
-
-			$composition[$i] = array();
-			$team = $InterventionModel->getVehiculeById($i);
-			foreach ($team as $r) {
-				array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
-				//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
-			}
-		}
 
 		if ((isset($_POST["numIntervention"]) && !empty($_POST["numIntervention"]))
 			&& isset($_POST["adresse"]) && !empty($_POST["adresse"])
