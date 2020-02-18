@@ -27,7 +27,7 @@ class API
 		self::checkBDD();
 		$user = self::cleanUserInput($user);
 		$mp = self::cleanUserInput($mp);
-		$query = self::$bdd->query("select P_NOM, P_PRENOM , P_GRADE from `pompier` where P_CODE='" . $user . "' and P_MDP='" . $mp . "';");
+		$query = self::$bdd->query("select P_ID,P_CODE,P_NOM, P_PRENOM , P_GRADE from `pompier` where P_CODE='" . $user . "' and P_MDP='" . $mp . "';");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
