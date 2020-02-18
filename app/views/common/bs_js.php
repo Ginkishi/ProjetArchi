@@ -8,4 +8,5 @@ window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim
 </script>
 <script src="<?= LOCAL_VENDORS ?>/bootstrap/dist/js/popper.min.js"></script>
 <script src="<?= LOCAL_VENDORS ?>/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?= LOCAL_VENDORS ?>/personal/js/menu.js"></script>
 <!--<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>-->
