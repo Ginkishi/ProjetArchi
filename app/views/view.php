@@ -57,11 +57,9 @@ class View
         echo '<html lang="fr">';
         echo '<head>';
         include VIEWS . DS . 'common' . DS . 'head.php';
-        echo '<link href="./views/assets/css/login.css" rel="stylesheet">';
-        echo '<link href="./views/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">';
+        echo '<link href="' . LOCAL_VENDORS . DS . "personal" . DS . "css" . DS . "login" . '.css" rel="stylesheet">';
+        echo '<link href="' . LOCAL_VENDORS . DS . "font-awesome" . DS . "css" . DS . "font-awesome.min" . '.css" rel="stylesheet">';
 
-        echo '<link href="../views/assets/css/login.css" rel="stylesheet">';
-        echo '<link href="../views/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">';
         echo '</head><body>';
         include VIEWS . DS . 'login_index.php';
         include VIEWS . DS . 'common' . DS . 'bs_js.php';

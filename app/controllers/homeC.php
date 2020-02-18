@@ -10,7 +10,7 @@ class HomeController
 	public function index()
 	{
 		$v = new View();
-
+		$v->ajouterLink("personal", "home");
 		$v->afficher("home_index");
 	}
 }
