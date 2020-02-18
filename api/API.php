@@ -89,9 +89,28 @@ class API
 	public static function getTeam($indicatif)
 	{
 		self::checkBDD();
-		$query = self::$bdd->query("SELECT ROLE_NAME  FROM `type_vehicule_role` tvr INNER JOIN vehicule v where v. V_INDICATIF='$indicatif' and tvr.TV_CODE = v.TV_CODE;");
+		$query = self::$bdd->query("SELECT ROLE_NAME  FROM `type_vehicule_role` tvr INNER JOIN vehicule v WHERE v. V_INDICATIF='$indicatif' and tvr.TV_CODE = v.TV_CODE;");
 		return $query;
 	}
-	
-	
+	public static function getNBvehicule(){
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT COUNT(*) as nb FROM vehicule;");
+		$data = $query->fetch();
+		$nb = $data['nb'];
+		return $nb;
+	}
+	public static function getIDRole($name,$code){
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT ROLE_ID  FROM `type_vehicule_role`  WHERE ROLE_NAME='$name' AND TV_CODE='$code'; ");
+		$row = $query->fetch();
+		return $row['ROLE_ID'];
+	}
+	public static function getVehiculeTV_CODE($id){
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT TV_CODE  FROM `vehicule`  WHERE V_ID=$id;");
+		$row = $query->fetch();
+		return $row['TV_CODE'];
+
+	}
+
 }
