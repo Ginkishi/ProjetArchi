@@ -1,5 +1,6 @@
 <div class="menu">
     <div id="toggleBtn" class="toggleBtn"><i class="fa fa-bars fa-2x"></i></div>
+    <div class="darkbtn"><label><input type="checkbox" id="darkbtn"><span class="check"></span></label></div>
 </div>
 <div class="sidebar show" id="sidebar">
     <div class="photo">

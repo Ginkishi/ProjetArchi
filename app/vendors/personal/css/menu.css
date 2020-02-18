@@ -13,6 +13,11 @@ html {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
+  transition: background-color 0.5s linear;
+}
+.contain.shadow {
+  background: #232526;
+  transition: background-color 0.5s linear;
 }
 /* Menu */
 .menu {
@@ -26,6 +31,9 @@ html {
   left: 0;
   box-shadow: 0px 0px 5px 3px black;
   z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 /* Bouton Hamburger */
 .toggleBtn {
@@ -305,4 +313,52 @@ a.sidebar-item:hover {
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+.darkbtn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.darkbtn label {
+  margin: 0;
+}
+input[type="checkbox"]#darkbtn {
+  -webkit-appearance: none;
+  visibility: hidden;
+  display: none;
+}
+.check {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 20px;
+  background: #092c3e;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: ease-in 1s;
+  margin: 10px;
+  z-index: -1000;
+}
+
+input[type="checkbox"]#darkbtn:checked ~ span.check {
+  background: #ffffff;
+  /* box-shadow: 0 0 0 4000px #092c3e4f; */
+}
+.check::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #ffffff;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: ease-in 0.5s;
+}
+
+input[type="checkbox"]#darkbtn:checked ~ span.check::before {
+  transform: translateX(20px);
+  background: #092c3e;
 }
