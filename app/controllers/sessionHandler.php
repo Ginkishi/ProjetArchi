@@ -62,12 +62,12 @@
 		
 		public static function aTousLesRoles(...$roles)
 		{
-			return GestionnaireSession::array_values_identical($roles, ["Connard", "Enculé", "Bâtard"]); 
+			return GestionnaireSession::array_values_identical($roles, $_SESSION["roles"]); 
 		}
 		
 		public static function aUnDesRoles(...$roles)
 		{
-			return GestionnaireSession::hasIntersection($roles, ["Bâtard", "Pute", "Sac à Merde"]); 
+			return GestionnaireSession::hasIntersection($roles, $_SESSION["roles"]); 
 		}
 	}
 ?>
