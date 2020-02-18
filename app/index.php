@@ -5,11 +5,19 @@
 	date_default_timezone_set('Europe/Paris');
 	setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
 
+	$existingController = ["home", "intervention", "login", "vehicule", "test"];
 
 	// =====================  Détermination du controleur à utiliser: Est-ce que j'ai un paramètre 'c' dans mon URL?
 	if (isset($_GET['c']) && !empty($_GET['c'])) {
 		//Il y a un paramètre de précisé: c'est le nom du controleur demandé.
 		$controller = strtolower(trim($_GET['c']));
+
+		// Si le controleur qu'on essaye d'acceder n'existe pas, on redirigera vers home/index
+		if(!in_array($controller, $existingController))
+		{
+			$controller = "home";
+			$_GET['m'] = "index";
+		}
 	} else {
 		//Pas de paramètre => le contrôleur par défaut est le contrôleur HOME
 		$controller = 'login';
