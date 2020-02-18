@@ -32,4 +32,41 @@
             <div class="see-more"><a href="#">Voir plus</a></div>
         </div> -->
     </div>
+    <div class="cards-container">
+        <div class="cards">
+            <div class="logo valid"><i class="far fa-check-circle"></i></div>
+            <div class="body">
+                <div class="title">10</div>
+                <div class="subtitle">Intervention validée</div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="logo wait"><i class="fas fa-clock"></i></div>
+            <div class="body">
+                <div class="title">5</div>
+                <div class="subtitle">Intervention en attente</div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="logo fail"><i class="far fa-times-circle"></i></div>
+            <div class="body">
+                <div class="title">2</div>
+                <div class="subtitle">Intervention refusée</div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="logo info"><i class="fas fa-info"></i></div>
+            <div class="body">
+                <div class="title">50</div>
+                <div class="subtitle">Nouvelle informations</div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="logo msg"><i class="far fa-envelope"></i></div>
+            <div class="body">
+                <div class="title">50</div>
+                <div class="subtitle">Nouveaux messages</div>
+            </div>
+        </div>
+    </div>
 </div>
