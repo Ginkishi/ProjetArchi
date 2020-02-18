@@ -154,8 +154,8 @@ function getXMLHttpRequest()
 function addTeam(p) 
 {       
     var sel = document.getElementById(p);
-    console.log(sel);
     var opt=sel.options[sel.selectedIndex].text;
+    var val=sel.options[sel.selectedIndex].value;
     
  
      ///---------------- partie ajax
@@ -163,7 +163,7 @@ function addTeam(p)
      xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
         {
-                selection(xhr.responseText,sel,p);
+                selection(xhr.responseText,sel,p,val);
         }
       };
  
@@ -174,19 +174,11 @@ function addTeam(p)
   
 } 
 
-// solution pour le probleme d'encodage 
-function html_entity_decode(str) 
-{
-  var ta = document.createElement("textarea");
-  ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  toReturn = ta.value;
-  ta = null;
-  return toReturn
-} 
+
  //ajout des champs pour l'equipe
-function selection(xml,sel,p)
+function selection(xml,sel,p,val)
 {        var nb=p.split("%");
-        
+        console.log(val);
         while(document.contains(document.getElementById("team"+nb[1])))
           {
                  document.getElementById("team"+nb[1]).remove();
@@ -418,6 +410,16 @@ function addtoform(types)
         console.log(types);
 
 }
+
+// solution pour le probleme d'encodage 
+function html_entity_decode(str) 
+{
+  var ta = document.createElement("textarea");
+  ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  toReturn = ta.value;
+  ta = null;
+  return toReturn
+} 
 </script>
 
 <script>
