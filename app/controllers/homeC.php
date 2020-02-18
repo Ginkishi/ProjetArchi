@@ -1,6 +1,5 @@
 <?php
 	require_once(VIEWS.DS."view.php");
-	
 	class HomeController
 	{
 		public function __construct()
