@@ -4,7 +4,9 @@
   background-repeat: no-repeat;
   background-position: center;
 } */
-
+.lead {
+  text-align: center;
+}
 .home-container {
   width: 100%;
   min-height: 90vh;

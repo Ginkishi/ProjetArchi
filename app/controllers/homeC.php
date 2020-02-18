@@ -11,6 +11,6 @@ class HomeController
 	{
 		$v = new View();
 		$v->ajouterLink("personal", "home");
-		$v->afficher("home_index_v2");
+		$v->afficher("home_index");
 	}
 }

@@ -54,6 +54,7 @@ class LoginController
 			$_SESSION["grade"] = $record[0]['P_GRADE'];
 
 			$v = new View();
+			$v->ajouterLink("personal", "home");
 			$v->afficher("home_index");
 		} else {
 			$v = new View();
