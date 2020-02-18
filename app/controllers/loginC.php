@@ -36,8 +36,7 @@ class LoginController
 		if (sizeof($record) == 1) {
 			//var_dump($record[0]);
 			GestionnaireSession::initializeSession(
-				$record[0]['P_ID'],
-				$record[0]['P_CODE'],
+
 				$record[0]['P_NOM'],
 				$record[0]['P_PRENOM'],
 				$record[0]['P_GRADE']
@@ -47,7 +46,7 @@ class LoginController
 				$_SESSION["nom"] = $record[0]['P_NOM'];
 				$_SESSION["prenom"] = $record[0]['P_PRENOM'];
 				$_SESSION["grade"] = $record[0]['P_GRADE'];*/
-
+			// var_dump($record);
 			$v = new View();
 			$v->ajouterLink("personal", "home");
 			$v->afficher("home_index");
