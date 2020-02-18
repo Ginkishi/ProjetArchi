@@ -20,10 +20,21 @@
 			   	}
 		   	}
 		}
+		
+		
+		public static function initializeSession($id, $code, $nom, $prenom, $grade)
+		{
+			$_SESSION["id"] = $id;
+			$_SESSION["code"] = $code;
+			$_SESSION["nom"] = $nom;
+			$_SESSION["prenom"] = $prenom;
+			$_SESSION["grade"] = $grade;
+		}
+		
 
 		public static function is_set()
 		{
-			return isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"]);
+			return (isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"]));
 		}
 		
 		public static function un_set()
