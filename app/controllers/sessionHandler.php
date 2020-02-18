@@ -20,9 +20,10 @@ class GestionnaireSession
 	}
 
 
-	public static function initializeSession($nom, $prenom, $grade)
+	public static function initializeSession($id, $code, $nom, $prenom, $grade)
 	{
-
+		$_SESSION["id"] = $id;
+		$_SESSION["code"] = $code;
 		$_SESSION["nom"] = $nom;
 		$_SESSION["prenom"] = $prenom;
 		$_SESSION["grade"] = $grade;

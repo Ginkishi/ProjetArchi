@@ -36,7 +36,8 @@ class LoginController
 		if (sizeof($record) == 1) {
 			//var_dump($record[0]);
 			GestionnaireSession::initializeSession(
-
+				$record[0]['P_ID'],
+				$record[0]['P_CODE'],
 				$record[0]['P_NOM'],
 				$record[0]['P_PRENOM'],
 				$record[0]['P_GRADE']
