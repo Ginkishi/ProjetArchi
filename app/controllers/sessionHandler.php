@@ -1,6 +1,6 @@
 <?php
 
-	class SessionHandler
+	class GestionnaireSession
 	{
 		public function __construct()
 		{
@@ -23,7 +23,7 @@
 
 		public static function is_set()
 		{
-			return isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"])
+			return isset($_SESSION) && isset($_SESSION["nom"]) && !empty($_SESSION["nom"]) && isset($_SESSION["prenom"]) && !empty($_SESSION["prenom"]) && isset($_SESSION["grade"]) && !empty($_SESSION["grade"]);
 		}
 		
 		public static function un_set()
@@ -36,9 +36,38 @@
 			session_destroy();
 		}
 		
-		public static function aLesRoles(...$roles)
+		private static function array_values_identical($a, $b)
 		{
-			var_dump($roles);
+			$x = array_values($a);
+			$y = array_values($b);
+
+			sort($x);
+			sort($y);
+
+			return $x === $y;
+		}
+		
+		private static function hasIntersection($arr1, $arr2)
+		{
+			foreach($arr1 as $val1)
+			{
+				foreach($arr2 as $val2)
+				{
+					if($val1 == $val2)
+					{ return true; }
+				}
+			}
+			return false;
+		}
+		
+		public static function aTousLesRoles(...$roles)
+		{
+			return GestionnaireSession::array_values_identical($roles, ["Connard", "Enculé", "Bâtard"]); 
+		}
+		
+		public static function aUnDesRoles(...$roles)
+		{
+			return GestionnaireSession::hasIntersection($roles, ["Bâtard", "Pute", "Sac à Merde"]); 
 		}
 	}
 ?>
