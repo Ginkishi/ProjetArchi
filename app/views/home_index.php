@@ -1,6 +1,7 @@
 <?php
 require_once(CONTROLLERS.DS."sessionHandler.php");
 GestionnaireSession::ouvreSession();
+setlocale(LC_TIME, "fr_FR");
 ?>
 <div class="home-container">
     <h2 class="home-title"><img class="home-logo" src="../vendors/personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
