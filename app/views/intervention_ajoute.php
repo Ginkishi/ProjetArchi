@@ -1,3 +1,4 @@
+<main>
 <div class="form-container">
     <h1>Intervention ajoutée</h1>
     <div class="formulaire">
@@ -5,3 +6,4 @@
        </p>
     </div>
 </div>
+</main>

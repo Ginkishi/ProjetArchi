@@ -1,28 +1,27 @@
 <!--version 1 -->
 <?php
-require_once(".." . DS . API_DIRNAME . "/API.php");
-$typeList = API::getTypeInterventionList();
-$typeVehicule = API::getAllVehiculesIndicatif();
+	require_once(".." . DS . API_DIRNAME . DS."API.php");
+	$typeList = API::getTypeInterventionList();
+	$typeVehicule = API::getAllVehiculesIndicatif();
 ?>
 <div class="form-container">
-    <div class="formulaire"> 
-        <h2>Compte-rendu d'intervention</h2>
+    <h1>Compte-rendu d'intervention</h1>
+    <div class="formulaire">
         <form action="../intervention/addinterventiontobdd" method="post">
+            <h3>INTERVENTION</h3>
             <div class="section">
-                <h3>INTERVENTION</h3>
-                <div class="txtb"><input type="text" placeholder="Numéro d'intervention"><span></span></div>
-                <div class="check"><input type="checkbox" id="opm" name="opm"><label for="opm">OPM</label></div>
-                <div class="txtb"><input type="text" placeholder="Adresse"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Commune"><span></span></div>
-                <div class="txtb"><input type="text" placeholder="Type d'intervention"><span></span></div>
-                <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
-                <label for="">Requ&eacute;rant <span class="important">*</span>: <select name="requerant" id="requerant">
-                        <option value="">CODIS</option>
-                        <?php
+                <label>Num&eacute;ro d'intervention <span class="important">*</span>: <input type="text" name="numIntervention"></label>
+                <label>OPM : <input type="checkbox" name="opm"></label>
+                <label for="">Adresse <span class="important">*</span>: <input type="text" name="adresse"></label>
+                <label for="">Commune <span class="important">*</span>: <input type="text" name="commune"></label>
+                <label for="">Type d'intervention <span class="important">*</span>: <select name="typeIntervention" id="typeIntervention">
+                <option value="">Selectionner un type d'intervention</option>
+            <?php
                 while ($donnees = $typeList->fetch())
-                {
-                ?>
-               <option value="<?php
+                 {
+            ?>
+               <option value="
+            <?php
                     
                  $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                     if ($output == "") 
@@ -30,23 +29,24 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                      $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
                     }
                     echo $output;
-                 ?>"> 
-                  <?php 
+            ?>
+                    "> 
+            <?php 
                   $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                     if ($output == "")
                      {
                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
                      }
                      echo $output;
-                     ?> 
+           ?> 
                  </option>
-                    <?php
+            <?php
                     }
-                    ?>   
-                    </select></label>
+            ?>   
+                </select></label> 
+
                
-               
-                    <label for="">Important : <input type="checkbox" name="important"></label>
+                <label for="">Important : <input type="checkbox" name="important"></label>
                 <label for="">Requ&eacute;rant <span class="important">*</span>: <select name="requerant" id="requerant">
                         <option value="CODIS">CODIS</option>
                         <option value="Alerte Locale">Alerte locale</option>
@@ -57,9 +57,12 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <label for="">Date de fin <span class="important">*</span>: <input type="date" name="dateFin" value="<?php echo date('Y-m-d'); ?>"></label>
                 <label for="">Heure de fin <span class="important">*</span>: <input type="time" name="heureFin" value="<?php echo  date('H:i'); ?>"></label>
             </div>
-                <h3>ENGINS ET PERSONNEL</h3>
-                <label for="">Nom de l'engin : <select name="typeEngin" id="nomEngin">
+            <h3>ENGINS ET PERSONNEL</h3>
+            <div class="section">
+                 <label for="">Nom de l'engin :
+                 <select name="typeEngin" id="nomEngin" onChange="javascript:addField();">
                         <option value="">Selectionner un v&eacute;hicule</option>
+                    
 
                         <?php
                 while ($vehicule = $typeVehicule->fetch())
@@ -86,11 +89,10 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                     <?php
                     }
                     ?> 
-
-                    </select></label>
-              
-
-                    
+                
+                </select></label>
+                       
+                  
                 <label for="">Ronde : <input type="checkbox" name="ronde"></label>
                 <label for="">Date de d&eacute;part <span class="important">*</span>: <input type="date" name="dateDepart" value="<?php echo date('Y-m-d'); ?>"></label>
                 <label for="">Heure de d&eacute;part <span class="important">*</span>: <input type="time" name="heureDepart" value="<?php echo  date('H:i'); ?>"></label>
@@ -100,27 +102,19 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <label for="">Heure de retour <span class="important">*</span>: <input type="time" name="heureRetour" id="here5" value="<?php echo  date('H:i'); ?>"></label>
                 <input type="button" id="addEngin" onclick="addField()" value="Ajouter un autre véhicule" >
             </div>
+            <h3>RESPONSABLE</h3>
             <div class="section">
-                <h3>RESPONSABLE</h3>
-                <div class="txtb"><input type="text" placeholder="Nom du responsable"><span></span></div>
+                <label for="">Nom du responsable : <input type="text" name="responsable" value="admin admin"></label>
             </div>
-            <input type="submit" value="Sauver" class="btn btn-primary btn-lg">
+            <input type="submit" value="Sauver">
         </form>
     </div>
 </div>
+
 <script>
-var label = document.querySelectorAll(".txtb input");
-label.forEach(element => {
-    element.addEventListener("focus", (e) => {
-        e.target.classList.add("focus");
-    });
-    element.addEventListener("blur", (e) => {
-        if (e.target.value === "") {
-            e.target.classList.remove("focus");
-        }
-
-
-    });
-
-});
+	function addField() {
+	//  console.log("bonjour");
+		
+	// creation de plusieurs engins 
+	}
 </script>

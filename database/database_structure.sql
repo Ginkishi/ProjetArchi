@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `personnelduvehicule` (
   `IDVehicule` int(11) NOT NULL,
   `IDPersonne` int(11) NOT NULL,
   `IDIntervention` int(11) NOT NULL,
-  `IDrole` int(11) NOT NULL,
+  `IDrole` 	tinyint(4) NOT NULL,
   PRIMARY KEY (`IDVehicule`,`IDPersonne`,`IDIntervention`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -73,7 +73,8 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
   `DateDepart` timestamp NOT NULL,
   `DateArrive` timestamp NOT NULL,
   `DateRetour` timestamp NOT NULL,
-  PRIMARY KEY (`IDVehicule`,`IDIntervention`)
+  `Ronde` tinyint(1) NOT NULL,
+  PRIMARY KEY (`IDVehicule`,`IDIntervention`,`DateDepart`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
