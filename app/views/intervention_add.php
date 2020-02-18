@@ -399,15 +399,6 @@ function addtoform(types) {
     console.log(types);
 
 }
-
-// solution pour le probleme d'encodage 
-function html_entity_decode(str) {
-    var ta = document.createElement("textarea");
-    ta.innerHTML = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    toReturn = ta.value;
-    ta = null;
-    return toReturn
-}
 </script>
 <script>
 var label = document.querySelectorAll(".txtb input");
