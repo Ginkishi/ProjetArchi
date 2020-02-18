@@ -72,9 +72,9 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                         ?>
                         <option value="<?php
 
-                                            $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                                            $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
                                             if ($output == "") {
-                                                $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                                $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8");
                                             }
                                             echo $output;
                                             ?>">
@@ -90,18 +90,18 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                         }
                         ?>
                     </select></label>
-                <div class="check"><input type="checkbox" id="ronde" name="ronde"><label for="ronde">Ronde</label></div>
-                <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart" placeholder="Date de départ"
+                <div class="check"><input type="checkbox" id="ronde" name="ronde[]"><label for="ronde">Ronde</label></div>
+                <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart[]" placeholder="Date de départ"
                         value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de départ <span class="important">*</span>: </label><input type="time" name="heureDepart" placeholder="Heure de départ"
+                <div class="txtb"><label for="">Heure de départ <span class="important">*</span>: </label><input type="time" name="heureDepart[]" placeholder="Heure de départ"
                         value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="date" name="dateArrivee"
+                <div class="txtb"><label for="">Date d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="date" name="dateArrivee[]"
                         placeholder="Date d'arriv&eacute;e sur le lieux : " value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="time" name="heureArrivee"
+                <div class="txtb"><label for="">Heure d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="time" name="heureArrivee[]"
                         placeholder="Heure d'arriv&eacute;e sur le lieux : " value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date de retour <span class="important">*</span>: </label><input type="date" name="dateRetour" placeholder="Date de retour"
+                <div class="txtb"><label for="">Date de retour <span class="important">*</span>: </label><input type="date" name="dateRetour[]" placeholder="Date de retour"
                         value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de retour <span class="important">*</span>: </label><input type="time" name="heureRetour" placeholder="Heure de retour"
+                <div class="txtb"><label for="">Heure de retour <span class="important">*</span>: </label><input type="time" name="heureRetour[]" placeholder="Heure de retour"
                         value="<?php echo  date('H:i'); ?>"><span></span></div>
             </div>
             <div class=section>
