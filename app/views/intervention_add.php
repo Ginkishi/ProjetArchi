@@ -129,5 +129,8 @@
                 </div>
             </div>
         </div>
+        <div class="champ">
+            <input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg">
+        </div>
     </form>
 </div>
