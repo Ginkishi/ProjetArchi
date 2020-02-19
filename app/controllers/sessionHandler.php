@@ -29,6 +29,10 @@ class GestionnaireSession
 		$_SESSION["grade"] = $grade;
 	}
 
+	public static function getAttribut($a)
+	{
+		return $_SESSION[$a];
+	}
 
 	public static function is_set()
 	{
