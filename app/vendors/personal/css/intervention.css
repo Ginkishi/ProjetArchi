@@ -274,7 +274,7 @@ input[type="text"]:focus {
     background: none;
     outline: none;
     border: none;
-    font-size: 16px;
+    font-size: 22px;
     height: 32px;
     border-bottom: 1px solid black;
     color: rgb(0, 132, 255);
@@ -311,7 +311,7 @@ input[type="text"]:focus {
     grid-template-columns: 1fr 1fr;
   }
   .champ label {
-    font-size: 14px;
+    font-size: 26px;
     color: gray;
   }
 }
