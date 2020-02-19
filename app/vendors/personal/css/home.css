@@ -7,7 +7,9 @@
 
 .lead {
   text-align: center;
+  transition: color 0.5s linear;
 }
+
 .home-container {
   width: 100%;
   min-height: 90vh;
@@ -274,4 +276,8 @@
   background-color: white;
   color: #000;
   transition: background-color 0.5s linear, color 0.5s linear;
+}
+.contain.shadow .lead {
+  color: #ffffff;
+  transition: color 0.5s linear;
 }
