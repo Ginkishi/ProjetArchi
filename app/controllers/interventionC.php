@@ -34,7 +34,7 @@ class InterventionController
 		echo '<link href="' . LOCAL_VENDORS . DS . "personal" . DS . "css" . DS . "intervention" . '.css" rel="stylesheet">';
 		echo '</head>';
 		echo '<body>';
-		echo '<div class="contain">';
+		echo '<div class="contain shadow">';
 		include VIEWS . DS . 'common' . DS . 'nav.php';
 		echo '<div class="main">';
 		include VIEWS . DS . "intervention_add.php";
