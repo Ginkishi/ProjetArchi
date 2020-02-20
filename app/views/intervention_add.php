@@ -106,39 +106,45 @@
         <div class="section engin">
             <h2 class="title">Engins et Personnels</h2>
             <div class="body" id="premiervehicule">
-                <div class="champ">
-                    <label for="">Nom du v&eacute;hicule</label>
-                    <select name="typeEngin[]" id="nomEngin%0" class="form-control" onChange="javascript:addTeam(this.id);">
-                        <option value="">Selectionnez un véhicule</option>
-                        
-                        <?php
-                while ($vehicule = $typeVehicule->fetch())
-                {
-                ?>
-               <option value="<?php
-                    
-                 $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
-                    if ($output == "") 
-                    {
-                     $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
-                    }
-                    echo $output;
-                 ?>"> 
-                  <?php 
-                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
-                    if ($output == "")
-                     {
-                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
-                     }
-                     echo $output;
-                     ?> 
-                 </option>
-                    <?php
-                    }
-                    ?> 
-                
-                    </select>
-                </div>
+            	 <div class="group-champ col2">
+	                <div class="champ">
+	                    <label for="">Nom du v&eacute;hicule</label>
+	                    <select name="typeEngin[]" id="nomEngin%0" class="form-control" onChange="javascript:addTeam(this.id);">
+	                        <option value="">Selectionnez un véhicule</option>
+	                        
+	                        <?php
+	                while ($vehicule = $typeVehicule->fetch())
+	                {
+	                ?>
+	               <option value="<?php
+	                    
+	                 $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+	                    if ($output == "") 
+	                    {
+	                     $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                    }
+	                    echo $output;
+	                 ?>"> 
+	                  <?php 
+	                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+	                    if ($output == "")
+	                     {
+	                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                     }
+	                     echo $output;
+	                     ?> 
+	                 </option>
+	                    <?php
+	                    }
+	                    ?> 
+	                
+	                    </select>
+	                </div>
+                    <div class="champ mycheckbox">
+                        <label for="">Ronde</label>
+                        <input type="checkbox" name="ronde[]" id="ronde">
+                    </div>
+	             </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date de départ</label>
