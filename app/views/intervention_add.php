@@ -105,7 +105,7 @@
         </div>
         <div class="section engin">
             <h2 class="title">Engins et Personnels</h2>
-            <div class="body">
+            <div class="body" id="premiervehicule">
                 <div class="champ">
                     <label for="">Nom du v&eacute;hicule</label>
                     <select name="typeEngin[]" id="nomEngin%0" class="form-control" onChange="javascript:addTeam(this.id);">
@@ -176,7 +176,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-danger btn-lg" id="addVehicule">Ajouter un véhicule</button>
+              <button class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
         <div class="section resp">
             <h2 class="title">Responsable</h2>
@@ -298,6 +298,199 @@ function selection(xml,sel,p,val)
         }
       console.log(liste);
 }
+function AddEngin(){
+        nbvehicule++;
+        console.log(nbvehicule);
+        var xhr = getXMLHttpRequest();
+     xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+        {
+                 addtoform(xhr.responseText);
+        }
+      };
+ 
+        xhr.open("GET", "../views/vehicule.php?", true);
+        xhr.send(null);
+}
+function addtoform(types)
+{      liste=types.split("%");
+     
+               var section=document.getElementById("premiervehicule");
+                 var body=document.createElement("div");
+                body.setAttribute("class","body");
+                section.insertAdjacentElement('beforeend',body);
+                var champ=document.createElement("div");
+                champ.setAttribute("class","champ");
+                var label=document.createElement("label");
+                label.setAttribute("for","");
+                var nom=document.createTextNode("Nom de véhicule");
+                label.appendChild(nom);
+                champ.appendChild(label);
+                var select=document.createElement("select");
+                select.setAttribute("class","form-control");
+                select.setAttribute("name","typeEngin[]");
+                select.setAttribute("id","nomEngin%"+nbvehicule);
+                select.setAttribute("onChange","javascript:addTeam(this.id);");
+                var option=document.createElement("option");
+                option.setAttribute("value","");
+                var text=document.createTextNode("Selection un véhicule");
+                option.appendChild(text);
+                select.appendChild(option);
+                for ( let i =1 ;  i < liste.length ; i=i+2)
+                { 
+                        var option=document.createElement("option");
+                        option.setAttribute("value",liste[i]);
+                        var text=document.createTextNode(liste[i+1]);
+                        option.appendChild(text);
+                        select.appendChild(option);
+                }
+                champ.appendChild(select);
+        body.appendChild(champ);
+                var champ=document.createElement("div");
+                champ.setAttribute("class","group-champ col2");
+                var div=document.createElement("div");
+                div.setAttribute("class","champ");
+                champ.appendChild(div);
+                var input=document.createElement("input");
+                input.setAttribute("type","checkbox");
+                input.setAttribute("id","ronde"+nbvehicule);
+                input.setAttribute("name","ronde[]");
+                var label=document.createElement("label");
+                label.setAttribute("for","ronde"+nbvehicule);
+                var text=document.createTextNode("Ronde");
+                label.appendChild(text);
+                div.appendChild(input);
+                div.appendChild(label);
+        sectionEngin.appendChild(div);
 
+                div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                label=document.createElement("label");
+                label.setAttribute("for","");
+                text=document.createTextNode("Date de départ");
+                label.append(text);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                deuxpoint=document.createTextNode(":");
+                label.appendChild(span);
+                input=document.createElement("input");
+                input.setAttribute("type","date");
+                input.setAttribute("name","dateDepart[]");
+                input.setAttribute("placeholder","Date de départ");
+                input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+        sectionEngin.appendChild(div);
+                div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                label=document.createElement("label");
+                label.setAttribute("for","");
+                text=document.createTextNode("Heure de départ");
+                label.append(text);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                deuxpoint=document.createTextNode(":");
+                label.appendChild(span);
+                input=document.createElement("input");
+                input.setAttribute("type","time");
+                input.setAttribute("name","heureDepart[]");
+                input.setAttribute("placeholder","Heure de départ");
+                input.setAttribute("value","<?php echo  date('H:i'); ?>");
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+        sectionEngin.appendChild(div);
+                div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                label=document.createElement("label");
+                label.setAttribute("for","");
+                text=document.createTextNode("Date d'arrivée sur le lieux");
+                label.append(text);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                deuxpoint=document.createTextNode(":");
+                label.appendChild(span);
+                input=document.createElement("input");
+                input.setAttribute("type","date");
+                input.setAttribute("name","dateArrivee[]");
+                input.setAttribute("placeholder","Date d'arrivée sur le lieux");
+                input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+        sectionEngin.appendChild(div);
+                div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                label=document.createElement("label");
+                label.setAttribute("for","");
+                text=document.createTextNode("Heure d'arrivée sur le lieux");
+                label.append(text);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                deuxpoint=document.createTextNode(":");
+                label.appendChild(span);
+                input=document.createElement("input");
+                input.setAttribute("type","time");
+                input.setAttribute("name","heureArrivee[]");
+                input.setAttribute("placeholder","Heure d'arrivée");
+                input.setAttribute("value","<?php echo  date('H:i'); ?>");
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+        sectionEngin.appendChild(div);
+                div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                label=document.createElement("label");
+                label.setAttribute("for","");
+                text=document.createTextNode("Date de retour");
+                label.append(text);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                deuxpoint=document.createTextNode(":");
+                label.appendChild(span);
+                input=document.createElement("input");
+                input.setAttribute("type","date");
+                input.setAttribute("name","dateRetour[]");
+                input.setAttribute("placeholder","Date de retour");
+                input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+        sectionEngin.appendChild(div);
+                div=document.createElement("div");
+                div.setAttribute("class","txtb");
+                label=document.createElement("label");
+                label.setAttribute("for","");
+                text=document.createTextNode("Heure de retour");
+                label.append(text);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                deuxpoint=document.createTextNode(":");
+                label.appendChild(span);
+                input=document.createElement("input");
+                input.setAttribute("type","time");
+                input.setAttribute("name","heureRetour[]");
+                input.setAttribute("placeholder","Heure de retour");
+                input.setAttribute("value","<?php echo  date('H:i'); ?>");
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+        sectionEngin.appendChild(div);
+      
+
+}
 
 </script>
