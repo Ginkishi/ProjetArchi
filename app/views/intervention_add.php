@@ -74,11 +74,17 @@
         <div class="section engin">
             <h2 class="title">Engins et Personnels</h2>
             <div class="body">
-                <div class="champ">
-                    <label for="">Nom du v&eacute;hicule</label>
-                    <select name="typeEngin[]" id="nomEngin%0" class="form-control">
-                        <option value="">Selectionnez un véhicule</option>
-                    </select>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Nom du v&eacute;hicule</label>
+                        <select name="typeEngin[]" id="nomEngin%0" class="form-control">
+                            <option value="">Selectionnez un véhicule</option>
+                        </select>
+                    </div>
+                    <div class="champ mycheckbox">
+                        <label for="">Ronde</label>
+                        <input type="checkbox" name="ronde[]" id="ronde">
+                    </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
