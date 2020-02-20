@@ -108,7 +108,7 @@
             <div class="body">
                 <div class="champ">
                     <label for="">Nom du v&eacute;hicule</label>
-                    <select name="typeEngin[]" id="nomEngin%0" class="form-control">
+                    <select name="typeEngin[]" id="nomEngin%0" class="form-control" onChange="javascript:addTeam(this.id);">
                         <option value="">Selectionnez un véhicule</option>
                         
                         <?php
@@ -193,6 +193,111 @@
         </div>
     </form>
 </div>
-<script>
+
+<script type='text/javascript'>
+var nbvehicule=0;
+function getXMLHttpRequest() 
+{
+        var xhr = null;
+
+        if (window.XMLHttpRequest || window.ActiveXObject) 
+        {
+                if (window.ActiveXObject) {
+                try {
+                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch(e) 
+                    {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                } 
+                else
+                {
+                    xhr = new XMLHttpRequest(); 
+                }
+        }
+        else 
+        {
+                alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+                return null;
+        }
+
+        return xhr;
+}
+function addTeam(p) 
+{       
+    var sel = document.getElementById(p);
+    var opt=sel.options[sel.selectedIndex].text;
+    var val=sel.options[sel.selectedIndex].value;
+    
+ 
+     ///---------------- partie ajax
+     var xhr = getXMLHttpRequest();
+     xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+        {
+                selection(xhr.responseText,sel,p,val);
+        }
+      };
+ 
+        var sVar = encodeURIComponent(opt);
+ 
+        xhr.open("GET", "../views/team.php?variable=" + sVar, true);
+        xhr.send(null);
+  
+} 
+
+// solution pour le probleme d'encodage 
+function html_entity_decode(str) 
+{
+  var ta = document.createElement("textarea");
+  ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  toReturn = ta.value;
+  ta = null;
+  return toReturn
+} 
+ //ajout des champs pour l'equipe
+function selection(xml,sel,p,val)
+{        var nb=p.split("%");
+        console.log(val);
+        while(document.contains(document.getElementById("team"+nb[1])))
+          {
+                 document.getElementById("team"+nb[1]).remove();
+        }   
+          liste=xml.split("%");
+          
+        for ( let i =1 ;  i < liste.length ; i++)
+        {
+                 liste[i]=html_entity_decode(liste[i]);
+        }
+        for ( let i =1 ;  i < liste.length ; i++)
+        {      
+                var div=document.createElement("div");
+                div.setAttribute("id","team"+nb[1]);
+                div.setAttribute("class","champ");
+                var label=document.createElement("label");
+                label.setAttribute("for","")
+                var text=document.createTextNode(liste[i]);
+                var span=document.createElement("span");
+                span.setAttribute("class","important");
+                var etoile=document.createTextNode("*");
+                span.appendChild(etoile);
+                label.appendChild(text);
+                label.appendChild(span);
+                var deuxpoints=document.createTextNode(":");
+                label.appendChild(deuxpoints);
+                var input=document.createElement("input");
+                input.setAttribute("type","text");
+                input.required= true;
+                input.setAttribute("name",liste[i]+"[]");
+                input.setAttribute("placeholder",liste[i]);
+                var span2=document.createElement("span");
+                div.appendChild(label);
+                div.appendChild(input);
+                div.appendChild(span2);
+                sel.parentNode.insertBefore(div,sel.nextSibling);
+        }
+      console.log(liste);
+}
+
 
 </script>
