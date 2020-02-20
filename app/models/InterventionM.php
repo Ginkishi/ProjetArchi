@@ -13,7 +13,7 @@
 		}
 
 
-		public function AddIntervention($numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable)
+		public function AddIntervention($numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable,$idcreateur)
 		{  
 
 		 //  echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
@@ -34,7 +34,7 @@
 		  /* echo $idresp;
 		   echo $type;
 		   echo "fin";*/ 
-	      $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,1);");
+	      $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur);");
 			//echo
 			$query=$this->con->query("SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'");
 			$ID = $query->fetch();
