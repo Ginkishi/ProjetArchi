@@ -61,6 +61,7 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                         <label for="">Réquerant</label>
                         <select name="requerant" id="requerant" class="form-control">
                             <option value="">CODIS</option>
+                            <option value="">Alerte locale</option>
                         </select>
                     </div>
                     <div class="group-champ col2">
