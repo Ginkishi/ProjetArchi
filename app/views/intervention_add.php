@@ -110,6 +110,33 @@
                     <label for="">Nom du v&eacute;hicule</label>
                     <select name="typeEngin[]" id="nomEngin%0" class="form-control">
                         <option value="">Selectionnez un véhicule</option>
+                        
+                        <?php
+                while ($vehicule = $typeVehicule->fetch())
+                {
+                ?>
+               <option value="<?php
+                    
+                 $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                    if ($output == "") 
+                    {
+                     $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+                    }
+                    echo $output;
+                 ?>"> 
+                  <?php 
+                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                    if ($output == "")
+                     {
+                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+                     }
+                     echo $output;
+                     ?> 
+                 </option>
+                    <?php
+                    }
+                    ?> 
+                
                     </select>
                 </div>
                 <div class="group-champ col2">
@@ -166,3 +193,6 @@
         </div>
     </form>
 </div>
+<script>
+
+</script>
