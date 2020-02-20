@@ -1,3 +1,8 @@
+<?php
+	require_once(".." . DS . API_DIRNAME . DS."API.php");
+	$typeList = API::getTypeInterventionList();
+	$typeVehicule = API::getAllVehiculesIndicatif();
+?>
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
     <form action="#">
@@ -25,6 +30,33 @@
                     <label for="">Type d'intervention</label>
                     <select name="typeIntervention" id="typeIntervention" class="form-control">
                         <option value="">Selectionnez un type d'intervention</option>
+                        <?php
+                while ($donnees = $typeList->fetch())
+                 {
+            ?>
+               <option value="
+            <?php
+                    
+                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                    if ($output == "") 
+                    {
+                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
+                    }
+                    echo $output;
+            ?>
+                    "> 
+            <?php 
+                  $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                    if ($output == "")
+                     {
+                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8"); 
+                     }
+                     echo $output;
+           ?> 
+                 </option>
+            <?php
+                    }
+            ?>   
                     </select>
                 </div>
                 <div class="group-champ col2">
