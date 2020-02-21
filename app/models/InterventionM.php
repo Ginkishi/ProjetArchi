@@ -44,27 +44,26 @@
 
 		public function AddVehiculeUsed($IdVehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde)
 		{
-            //echo"je suis la";
-			//echo $IdVehicule;
-			//echo $IDintervention;
+            echo"je suis la"."<br>";
+			echo $IdVehicule."<br>";
+			echo $IDintervention."<br>";
 
-			//echo $datedepart;
-		   // echo $heuredepart;
+			 echo $datedepart."<br>";
+		     echo $heuredepart."<br>";
 			$datedepart=$datedepart." ".$heuredepart;
 
-			//echo $datearrive;
-			//echo $heurearrive;
+			echo $datearrive."<br>";
+			echo $heurearrive."<br>";
 			$datearrive=$datearrive." ".$heurearrive;
-			
-			//echo $dateretour;
-			//echo $heureretour;
+			echo $ronde."<br>";
+			echo $dateretour."<br>";
+		   	echo $heureretour."<br>";
 
 			$dateretour=$dateretour." ".$heureretour;
-			
-			$this->con->query("INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);");
-
+			  $sql="INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
+			  echo $sql;
+			$this->con->query($sql);
 		}
-
 		public function Nbvehicule(){
 
 			return API::getNBvehicule();

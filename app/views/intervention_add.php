@@ -5,7 +5,7 @@ $typeVehicule = API::getAllVehiculesIndicatif();
 ?>
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
-    <form action="#">
+    <form action="../intervention/addinterventiontobdd" method="post">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
@@ -78,24 +78,24 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date déclenchement</label>
-                        <input type="date" autocomplete="off" name="dateDeclenchement">
+                        <input type="date" autocomplete="off" name="dateDeclenchement" value= "<?php echo date('Y-m-d'); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure déclenchement</label>
-                        <input type="time" autocomplete="off" name="heureDeclenchement">
+                        <input type="time" autocomplete="off" name="heureDeclenchement" value= "<?php echo  date('H:i'); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date de fin</label>
-                        <input type="date" autocomplete="off" name="dateFin">
+                        <input type="date" autocomplete="off" name="dateFin" value= "<?php echo date('Y-m-d'); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure de fin</label>
-                        <input type="time" autocomplete="off" name="heureFin">
+                        <input type="time" autocomplete="off" name="heureFin" value= "<?php echo  date('H:i'); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ $typeVehicule = API::getAllVehiculesIndicatif();
         </div>
         <div class="section engin">
             <h2 class="title">Engins et Personnels</h2>
-            <div class="body" id="premiervehicule">
+            <div class="body" >
             	 <div class="group-champ col2">
 	                <div class="champ">
 	                    <label for="">Nom du v&eacute;hicule</label>
@@ -116,10 +116,10 @@ $typeVehicule = API::getAllVehiculesIndicatif();
 	                ?>
 	               <option value="<?php
 	                    
-	                 $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+	                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
 	                    if ($output == "") 
 	                    {
-	                     $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                     $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8"); 
 	                    }
 	                    echo $output;
 	                 ?>"> 
@@ -146,36 +146,36 @@ $typeVehicule = API::getAllVehiculesIndicatif();
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date de départ</label>
-                        <input type="date" autocomplete="off" name="dateDepart[]">
+                        <input type="date" autocomplete="off" name="dateDepart[]" value= "<?php echo date('Y-m-d'); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure de départ</label>
-                        <input type="time" autocomplete="off" name="heureDepart[]">
+                        <input type="time" autocomplete="off" name="heureDepart[]" value= "<?php echo  date('H:i'); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date d'arrivée sur les lieux</label>
-                        <input type="date" autocomplete="off" name="dateArrivee[]">
+                        <input type="date" autocomplete="off" name="dateArrivee[]" value= "<?php echo date('Y-m-d'); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure d'arrivée sur les lieux</label>
-                        <input type="time" autocomplete="off" name="heureArrivee[]">
+                        <input type="time" autocomplete="off" name="heureArrivee[]" value= "<?php echo  date('H:i'); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date de retour</label>
-                        <input type="date" autocomplete="off" name="dateRetour[]">
+                        <input type="date" autocomplete="off" name="dateRetour[]" value= "<?php echo date('Y-m-d'); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure de retour</label>
-                        <input type="time" autocomplete="off" name="heureRetour[]">
+                        <input type="time" autocomplete="off" name="heureRetour[]" value= "<?php echo  date('H:i'); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
@@ -308,10 +308,10 @@ function AddEngin() {
 function addtoform(types) {
     liste = types.split("%");
 
-    var section = document.getElementById("premiervehicule");
+    var section = document.getElementById("addVehicule");
     var body = document.createElement("div");
     body.setAttribute("class", "body");
-    section.insertAdjacentElement('beforeend', body);
+    section.insertAdjacentElement('beforebegin', body);
     var champ2 = document.createElement("div");
     champ2.setAttribute("class", "group-champ col2");
         var champ = document.createElement("div");
