@@ -1,10 +1,10 @@
 <?php
-require_once(CONTROLLERS.DS."sessionHandler.php");
+require_once(CONTROLLERS . DS . "sessionHandler.php");
 GestionnaireSession::ouvreSession();
 setlocale(LC_TIME, "fr_FR");
 ?>
 <div class="home-container">
-    <h2 class="home-title"><img class="home-logo" src="../vendors/personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
+    <h2 class="home-title"><img class="home-logo" src="<?= LOCAL_VENDORS . DS ?>personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
     <h3 class="datenow"> Aujourd'hui, nous sommes le <?= utf8_encode(strftime(" %A %e %B %Y")); ?></h3>
     <?= "<p class='lead'>Bonjour " . $_SESSION["grade"] . " " . $_SESSION['nom'] . " " . $_SESSION['prenom'] . "</p>";  ?>
     <div class="intervention-container">
