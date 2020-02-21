@@ -1,6 +1,6 @@
 <?php
 require_once("config.php");
-require_once(CONTROLLERS.DS."sessionHandler.php");
+require_once(CONTROLLERS . DS . "sessionHandler.php");
 
 error_reporting(E_STRICT | E_ALL);
 date_default_timezone_set('Europe/Paris');
@@ -32,11 +32,9 @@ if (isset($_GET['m']) && !empty($_GET['m'])) {
 	$method = 'index';
 }
 
-if($controller != "login")
-{
+if ($controller != "login") {
 	GestionnaireSession::ouvreSession();
-	if(!GestionnaireSession::is_set())
-	{
+	if (!GestionnaireSession::is_set()) {
 		$controller = "login";
 		$method = "index";
 	}
