@@ -13,7 +13,7 @@
 		}
 
 
-		public function AddIntervention($numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable,$idcreateur)
+		public function AddIntervention($numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable,$idcreateur, $status)
 		{  
 
 		 //  echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
@@ -34,7 +34,7 @@
 		  /* echo $idresp;
 		   echo $type;
 		   echo "fin";*/ 
-	      $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur);");
+	      $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur, $status);");
 			//echo
 			$query=$this->con->query("SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'");
 			$ID = $query->fetch();
@@ -44,27 +44,26 @@
 
 		public function AddVehiculeUsed($IdVehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde)
 		{
-            //echo"je suis la";
-			//echo $IdVehicule;
-			//echo $IDintervention;
+            echo"je suis la"."<br>";
+			echo $IdVehicule."<br>";
+			echo $IDintervention."<br>";
 
-			//echo $datedepart;
-		   // echo $heuredepart;
+			 echo $datedepart."<br>";
+		     echo $heuredepart."<br>";
 			$datedepart=$datedepart." ".$heuredepart;
 
-			//echo $datearrive;
-			//echo $heurearrive;
+			echo $datearrive."<br>";
+			echo $heurearrive."<br>";
 			$datearrive=$datearrive." ".$heurearrive;
-			
-			//echo $dateretour;
-			//echo $heureretour;
+			echo $ronde."<br>";
+			echo $dateretour."<br>";
+		   	echo $heureretour."<br>";
 
 			$dateretour=$dateretour." ".$heureretour;
-			
-			$this->con->query("INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);");
-
+			  $sql="INSERT INTO  `vehiculeutilise` (IDVehicule, IDIntervention, DateDepart, DateArrive, DateRetour,Ronde) VALUES($IdVehicule,$IDintervention,'$datedepart','$datearrive', '$dateretour',$ronde);";
+			  echo $sql;
+			$this->con->query($sql);
 		}
-
 		public function Nbvehicule(){
 
 			return API::getNBvehicule();

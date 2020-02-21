@@ -51,9 +51,21 @@ CREATE TABLE IF NOT EXISTS `interventions` (
   `DateFin` timestamp NOT NULL,
   `IDResponsable` int (11) NOT NULL,
   `IDCreateur` int (11) NOT NULL,
+   `IDstatus` int(11) NOT NULL,
   PRIMARY KEY (`IDIntervention`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+CREATE TABLE IF NOT EXISTS  `status` ( 
+  `IDstatus` INT NOT NULL , 
+  `label` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`IDstatus`)
+   ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- validé par le chef
+-- validé par le responsable
+-- en cours de validation du chef
+-- chef demande modification 
+-- en cours de validation du responsable
 -- --------------------------------------------------------
 --
 -- Structure de la table `personnelduvehicule`
@@ -83,6 +95,14 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
   `Ronde` tinyint (1) NOT NULL,
   PRIMARY KEY (`IDVehicule`, `IDIntervention`, `DateDepart`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+
+INSERT INTO `status` (`IDstatus`, `label`) VALUES 
+    ('0', 'En cours de validation du responsable'),
+    ('1', 'Validé par le responsable'), 
+    ('2', 'En cours de validation du chef'),
+    ('3', 'Chef demande modification '),
+    ('4', 'Validé par le chef');
 
 COMMIT;
 

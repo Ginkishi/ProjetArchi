@@ -116,8 +116,8 @@ class InterventionController
 
 			/// le format de la date yyyy-mm-dd 
 			/// le format de l'heure hh:mm:ss
-
-			$IDintervention = $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable,$_SESSION['id']);
+                $status=1;
+			$IDintervention = $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable,$_SESSION['id'],$status);
 			//  echo "id".$IDintervention."<br>";
 			//3- partie ajout vehicule et equipe
 			$n = $_POST["dateDepart"];
@@ -165,7 +165,7 @@ class InterventionController
 				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend);
 			}
 		}
-		/// un traiment d'erreur a effectuer apres eg: champ non rempli
+		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		//  $Intervention = new InterventionController();
 		// $Intervention->index();
 	}
