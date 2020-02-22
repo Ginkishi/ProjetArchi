@@ -59,6 +59,7 @@ class API
 		$query = self::$bdd->query("SELECT P_NOM, P_PRENOM ,P_CODE FROM `pompier`;");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
+
 	public static function getCodeTypeIntervention($description)
 	{
 		self::checkBDD();
@@ -66,6 +67,7 @@ class API
 		$row = $query->fetch();
 		return $row['TI_CODE'];
 	}
+
 	public static function getPompierID($prenom, $nom)
 	{
 		self::checkBDD();
@@ -73,24 +75,28 @@ class API
 		$row = $query->fetch();
 		return $row['P_ID'];
 	}
+
 	public static function getTypeInterventionList()
 	{
 		self::checkBDD();
 		$query = self::$bdd->query("SELECT TI_DESCRIPTION FROM `type_intervention`;");
 		return	$query;
 	}
+
 	public static function getAllVehiculesIndicatif()
 	{
 		self::checkBDD();
 		$query = self::$bdd->query("SELECT V_ID, V_INDICATIF FROM `vehicule`;");
 		return $query;
 	}
+
 	public static function getTeam($indicatif)
 	{
 		self::checkBDD();
 		$query = self::$bdd->query("SELECT ROLE_NAME  FROM `type_vehicule_role` tvr INNER JOIN vehicule v WHERE v. V_INDICATIF='$indicatif' and tvr.TV_CODE = v.TV_CODE;");
 		return $query;
 	}
+
 	public static function getNBvehicule()
 	{
 		self::checkBDD();
@@ -99,6 +105,7 @@ class API
 		$nb = $data['nb'];
 		return $nb;
 	}
+
 	public static function getIDRole($name, $code)
 	{
 		self::checkBDD();
@@ -106,11 +113,22 @@ class API
 		$row = $query->fetch();
 		return $row['ROLE_ID'];
 	}
+
 	public static function getVehiculeTV_CODE($id)
 	{
 		self::checkBDD();
 		$query = self::$bdd->query("SELECT TV_CODE  FROM `vehicule`  WHERE V_ID=$id;");
 		$row = $query->fetch();
 		return $row['TV_CODE'];
+	}
+
+	
+
+	public static function getPompierById($id)
+	{
+		self::checkBDD();
+		$id = self::cleanUserInput($id);
+		$query = self::$bdd->query("SELECT P_PRENOM, P_NOM  FROM `pompier`  WHERE P_ID=$id;");
+		return $query->fetch(PDO::FETCH_ASSOC);
 	}
 }

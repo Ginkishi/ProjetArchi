@@ -46,8 +46,22 @@
 		{  
 			$query=$this->con->query("SELECT * FROM  interventions where IDIntervention=$id");
 			$record = $query->fetch();
+			$res = API::getPompierById($record["IDResponsable"]);
+			$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
 		    return $record;
 		}
+
+		public function getAllVehiculeByIntervention($id)
+		{  
+			$query=$this->con->query("SELECT * FROM  vehiculeutilise where IDIntervention=$id");
+			$record = $query->fetchAll(PDO::FETCH_ASSOC);
+			for($i=0; $i<sizeof($record);$i++)
+			{
+				$record[$i]["vehicule"] = API::getVehiculeById($record[$i]["IDVehicule"]);
+			}
+		    return $record;
+		}
+		
 
 
 		public function AddVehiculeUsed($IdVehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde)
