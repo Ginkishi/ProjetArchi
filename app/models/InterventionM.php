@@ -65,14 +65,15 @@
 			$this->con->query($sql);
 		}
 		public function Nbvehicule(){
-
 			return API::getNBvehicule();
 		}
+		
+		
 		public function getVehiculeById($id){
-
-
 			return API::getVehiculeById($id);
 		}
+		
+		
 		public function AddTeamToVehicule($IDvehicule,$IDintervention,$listetosend)
 		{
 		
