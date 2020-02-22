@@ -1,8 +1,3 @@
-<?php
-require_once(".." . DS . API_DIRNAME . DS . "API.php");
-$typeList = API::getTypeInterventionList();
-$typeVehicule = API::getAllVehiculesIndicatif();
-?>
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
     <form action="../intervention/addinterventiontobdd" method="post">

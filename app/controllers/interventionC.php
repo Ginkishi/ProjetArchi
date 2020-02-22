@@ -1,7 +1,7 @@
 <?php
 
 require_once(VIEWS . DS . "view.php");
-
+require_once(MODELS . DS . "InterventionM.php");
 class InterventionController
 {
 
@@ -20,7 +20,12 @@ class InterventionController
 
 	public function add()
 	{
+		$InterventionModel = new InterventionM();
+		$typeList = $InterventionModel->getTypeInterventionList();
+		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
 		$v = new View();
+		$v->ajouterVariable("typeList",$typeList);
+		$v->ajouterVariable("typeVehicule",$typeVehicule);
 		$v->ajouterLink("personal", "intervention");
 		$v->afficher("intervention_add");
 	}
@@ -28,8 +33,12 @@ class InterventionController
 
 	public function modification($id)
 	{
+		$InterventionModel = new InterventionM();
+		$typeList = $InterventionModel->getTypeInterventionList();
+		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
 		$v = new View();
-		echo $id;
+		$v->ajouterVariable("typeList",$typeList);
+		$v->ajouterVariable("typeVehicule",$typeVehicule);
 		$v->ajouterVariable("id",$id);
 		$v->ajouterLink("personal", "intervention");
 		$v->afficher("intervention_modification");

@@ -9,7 +9,6 @@
 		{
 			$dbconnect = new DBConnect();
 			$this->con = $dbconnect->connect();
-		
 		}
 
 
@@ -42,7 +41,7 @@
           
 		}
 
-		
+
 		public function AddVehiculeUsed($IdVehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde)
 		{
             echo"je suis la"."<br>";
@@ -79,6 +78,19 @@
 			return API::getVehiculeById($id);
 		}
 
+
+		
+		public function getTypeInterventionList(){
+
+
+			return API::getTypeInterventionList();
+		}
+
+		public function getAllVehiculesIndicatif(){
+
+
+			return API::getAllVehiculesIndicatif();
+		}
 
 		public function AddTeamToVehicule($IDvehicule,$IDintervention,$listetosend)
 		{
