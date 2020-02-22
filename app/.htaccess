@@ -1,5 +1,6 @@
 RewriteEngine On # Turn on the rewriting engine
 RewriteRule ^([a-z]*)/?$ index.php?c=$1 [NC,L]
 RewriteRule ^([a-z]*)/([a-z]+)/?$ index.php?c=$1&m=$2 [NC,L] #Pris en compte
+RewriteRule ^([a-z]*)/([a-z]+)/([0-9]*)/?$ index.php?c=$1&m=$2&id=$3 [NC,L] #Pris en compte
 
-RewriteRule ^app/([a-z]*)/([0-9]*)$ index3.php?c=$1&m=$2
+RewriteRule ^([a-z]*)/([a-z]+)/([0-9]*)/?$ index.php?c=$1&m=$2&id=$3 [NC,L]

@@ -1,48 +1,40 @@
 <?php
+
+require_once(VIEWS . DS . "view.php");
+
 class InterventionController
 {
 
 	public function __construct()
 	{
 	}
-	public function renderview($viewname)
-	{
-		echo '<!doctype html>';
-		echo '<html lang="fr">';
-		echo '<head>';
-		include VIEWS . DS . 'common' . DS . 'head.php';
-		echo '</head>';
-		echo '<body>';
-		include VIEWS . DS . 'common' . DS . 'nav.php';
 
-		include VIEWS . DS . 'intervention_' . strtolower($viewname) . ".php";
-		include VIEWS . DS . 'common' . DS . 'bs_js.php';
-		echo '<body>';
-	}
+
 	public function index()
 	{
-		//Pas de données à gérer
-		//La vue à afficher est la vue index
-		$this->renderview('ajoute');
+		$v = new View();
+		$v->ajouterLink("personal", "intervention");
+		$v->afficher("intervention_ajoute");
 	}
+
+
 	public function add()
 	{
-		echo '<!doctype html>';
-		echo '<html lang="fr">';
-		echo '<head>';
-		include VIEWS . DS . 'common' . DS . 'head.php';
-		echo '<link href="' . LOCAL_VENDORS . DS . "personal" . DS . "css" . DS . "intervention" . '.css" rel="stylesheet">';
-		echo '</head>';
-		echo '<body>';
-		echo '<div class="contain shadow">';
-		include VIEWS . DS . 'common' . DS . 'nav.php';
-		echo '<div class="main">';
-		include VIEWS . DS . "intervention_add.php";
-		echo '</div>';
-		echo '</div>';
-		include VIEWS . DS . 'common' . DS . 'bs_js.php';
-		echo '</body></html>';
+		$v = new View();
+		$v->ajouterLink("personal", "intervention");
+		$v->afficher("intervention_add");
 	}
+
+
+	public function modification($id)
+	{
+		$v = new View();
+		echo $id;
+		$v->ajouterVariable("id",$id);
+		$v->ajouterLink("personal", "intervention");
+		$v->afficher("intervention_modification");
+	}
+
 	public function addInterventionToBDD()
 	{
 

@@ -42,6 +42,7 @@
           
 		}
 
+		
 		public function AddVehiculeUsed($IdVehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde)
 		{
             echo"je suis la"."<br>";
@@ -64,15 +65,21 @@
 			  echo $sql;
 			$this->con->query($sql);
 		}
+
+
 		public function Nbvehicule(){
 
 			return API::getNBvehicule();
 		}
+
+
 		public function getVehiculeById($id){
 
 
 			return API::getVehiculeById($id);
 		}
+
+
 		public function AddTeamToVehicule($IDvehicule,$IDintervention,$listetosend)
 		{
 		
