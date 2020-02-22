@@ -42,6 +42,14 @@
 		}
 
 
+		public function getInterventionById($id)
+		{  
+			$query=$this->con->query("SELECT * FROM  interventions where IDIntervention=$id");
+			$record = $query->fetch();
+		    return $record;
+		}
+
+
 		public function AddVehiculeUsed($IdVehicule,$IDintervention,$datedepart,$heuredepart,$datearrive,$heurearrive,$dateretour,$heureretour,$ronde)
 		{
             echo"je suis la"."<br>";

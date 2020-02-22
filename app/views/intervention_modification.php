@@ -7,17 +7,17 @@
                 <div class="group-champ col3">
                     <div class="champ">
                         <label for="">Numéro d'intervention</label>
-                        <input type="text" autocomplete="off" name="numIntervention" value=<?php echo $id; ?> required>
+                        <input type="text" autocomplete="off" name="numIntervention" value=<?php echo $intervention["NIntervention"]; ?> required>
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Commune</label>
-                        <input type="text" autocomplete="off" name="commune" required>
+                        <input type="text" autocomplete="off" name="commune" value="<?php echo $intervention["Commune"]; ?>" required>
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Adresse</label>
-                        <input type="text" autocomplete="off" name="adresse" required>
+                        <input type="text" autocomplete="off" name="adresse" value="<?php echo $intervention["Adresse"]; ?>" required>
                         <div class="barre"></div>
                     </div>
                 </div>
@@ -28,16 +28,14 @@
                         <?php
                         while ($donnees = $typeList->fetch()) {
                         ?>
-                        <option value="
-            <?php
+                        <option value="<?php
 
                             $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                             if ($output == "") {
                                 $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>
-                    ">
+            ?>" <?php if ($output == $intervention["TypeIntervention"]) echo "selected";?>>
                             <?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
@@ -55,42 +53,42 @@
                     <div class="champ">
                         <label for="">Réquerant</label>
                         <select name="requerant" id="requerant" class="form-control">
-                            <option value="">CODIS</option>
-                            <option value="">Alerte locale</option>
+                            <option value="CODIS" <?php if ("CODIS" == $intervention["Requerant"]) echo "selected"?>>CODIS</option>
+                            <option value="Alerte locale" <?php if ("Alerte locale" == $intervention["Requerant"]) echo "selected";?>>Alerte locale</option>
                         </select>
                     </div>
                     <div class="group-champ col2">
                         <div class="champ mycheckbox">
                             <label for="">OPM</label>
-                            <input type="checkbox" name="opm" id="opm">
+                            <input type="checkbox" name="opm" id="opm" <?php if ($intervention["OPM"]) echo "checked";?>>
                         </div>
                         <div class="champ mycheckbox">
                             <label for="">Important</label>
-                            <input type="checkbox" name="important" id="important">
+                            <input type="checkbox" name="important" id="important" <?php if ($intervention["Important"]) echo "checked";?>>
                         </div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date déclenchement</label>
-                        <input type="date" autocomplete="off" name="dateDeclenchement" value= "<?php echo date('Y-m-d'); ?>">
+                        <input type="date" autocomplete="off" name="dateDeclenchement" value= "<?php echo date('Y-m-d', strtotime($intervention["DateDeclenchement"])); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure déclenchement</label>
-                        <input type="time" autocomplete="off" name="heureDeclenchement" value= "<?php echo  date('H:i'); ?>">
+                        <input type="time" autocomplete="off" name="heureDeclenchement" value= "<?php echo  date('H:i', strtotime($intervention["DateDeclenchement"])); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date de fin</label>
-                        <input type="date" autocomplete="off" name="dateFin" value= "<?php echo date('Y-m-d'); ?>">
+                        <input type="date" autocomplete="off" name="dateFin" value= "<?php echo date('Y-m-d', strtotime($intervention["DateFin"])); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure de fin</label>
-                        <input type="time" autocomplete="off" name="heureFin" value= "<?php echo  date('H:i'); ?>">
+                        <input type="time" autocomplete="off" name="heureFin" value= "<?php echo  date('H:i', strtotime($intervention["DateFin"])); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>

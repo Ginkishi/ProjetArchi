@@ -28,16 +28,14 @@
                         <?php
                         while ($donnees = $typeList->fetch()) {
                         ?>
-                        <option value="
-            <?php
+                        <option value="<?php
 
                             $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                             if ($output == "") {
                                 $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>
-                    ">
+            ?>">
                             <?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
@@ -55,8 +53,8 @@
                     <div class="champ">
                         <label for="">Réquerant</label>
                         <select name="requerant" id="requerant" class="form-control">
-                            <option value="">CODIS</option>
-                            <option value="">Alerte locale</option>
+                            <option value="CODIS">CODIS</option>
+                            <option value="Alerte locale">Alerte locale</option>
                         </select>
                     </div>
                     <div class="group-champ col2">
