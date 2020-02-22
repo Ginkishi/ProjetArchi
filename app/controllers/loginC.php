@@ -19,6 +19,7 @@ class LoginController
 		// Si deja connecter -> redirection vers la home page
 		$v = new View();
 		if (GestionnaireSession::is_set()) {
+			$v->ajouterLink("personal", "home");
 			$v->afficher("home_index");
 		} else {
 			$v->afficherLogin();

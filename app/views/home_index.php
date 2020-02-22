@@ -1,20 +1,10 @@
 <?php
+require_once(CONTROLLERS . DS . "sessionHandler.php");
+GestionnaireSession::ouvreSession();
 setlocale(LC_TIME, "fr_FR");
-
-if (version_compare(phpversion(), '5.4.0', '<')) {
-    if (session_id() == '') {
-        session_start();
-    }
-} else {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-}
-if (isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['grade'])) {
-
 ?>
 <div class="home-container">
-    <h2 class="home-title"><img class="home-logo" src="../vendors/personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
+    <h2 class="home-title"><img class="home-logo" src="<?= LOCAL_VENDORS . DS ?>personal/img/CH-ENF-192_white.png" alt=""> eIntervention</h2>
     <h3 class="datenow"> Aujourd'hui, nous sommes le <?= utf8_encode(strftime(" %A %e %B %Y")); ?></h3>
     <?= "<p class='lead'>Bonjour " . $_SESSION["grade"] . " " . $_SESSION['nom'] . " " . $_SESSION['prenom'] . "</p>";  ?>
     <div class="intervention-container">
@@ -49,12 +39,3 @@ if (isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['gr
         </div>
     </div>
 </div>
-<?php
-} else {
-    $host = $_SERVER['HTTP_HOST'] . DS;
-    $uri = "projetarchi" . DS . ROOT_DIR . "/login";
-    $extra = "/disconnect";
-
-    header("Location: http://$host$uri$extra");
-}
-?>

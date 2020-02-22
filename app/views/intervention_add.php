@@ -1,91 +1,52 @@
-<!--version 1 -->
 <?php
-	include ".." . "/" . API_DIRNAME . "/API.php";
-	$typeList = API::getTypeInterventionList();
-	$typeVehicule = API::getAllVehiculesIndicatif();
+require_once(".." . DS . API_DIRNAME . DS . "API.php");
+$typeList = API::getTypeInterventionList();
+$typeVehicule = API::getAllVehiculesIndicatif();
 ?>
 <div class="form-container">
-    <div class="formulaire">
-        <h2>Compte-rendu d'intervention</h2>
-        <form action="../intervention/addinterventiontobdd" method="post">
-            <div class="section">
-                <h3>INTERVENTION</h3>
-                <div class="txtb"><input type="text" required name="numIntervention" placeholder="Numéro d'intervention"><span></span></div>
-                <div class="check"><input type="checkbox" id="opm" name="opm"><label for="opm">OPM</label></div>
-                <div class="txtb"><input type="text"  required name="adresse" placeholder="Adresse"><span></span></div>
-                <div class="txtb"><input type="text"  required  name="commune" placeholder="Commune"><span></span></div>
-                <div class="select"> <label for="">Type d'intervention <span class="important">*</span>: </label>
-                <select name="typeIntervention" id="typeIntervention">
-                <option value="">Selectionner un type d'intervention</option>
-                <?php
-                        while ($donnees = $typeList->fetch()) {
-                ?>
-                        <option value="
-                        
-                <?php
-
-                         $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
-                         if ($output == "") 
-                         {
-                              $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
-                         }
-                              echo $output;
-                ?>
-                            ">
-                <?php
-                        $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
-                        if ($output == "") 
-                        {
-                            $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
-                        }
-                             echo $output;
-                ?>
-                        </option>
-                <?php
-                        }
-                ?>
-                    </select>
+    <h1 class="header">Compte-rendu d'intervention</h1>
+    <form action="../intervention/addinterventiontobdd" method="post">
+        <div class="section">
+            <h2 class="title">Intervention</h2>
+            <div class="body">
+                <div class="group-champ col3">
+                    <div class="champ">
+                        <label for="">Numéro d'intervention</label>
+                        <input type="text" autocomplete="off" name="numIntervention" required>
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Commune</label>
+                        <input type="text" autocomplete="off" name="commune" required>
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Adresse</label>
+                        <input type="text" autocomplete="off" name="adresse" required>
+                        <div class="barre"></div>
+                    </div>
                 </div>
-                <div class="check"><input type="checkbox" id="important" name="important"><label for="important">Important</label></div>
-                <div class="select"> <label for="">Requ&eacute;rant <span class="important">*</span>: </label><select name="requerant" id="requerant">
-                        <option value="codis">CODIS</option>
-                        <option value="Alerte Locale">Alerte locale</option>
-                    </select>
-                </div>
-                <!-- <label for="">Important : <input type="checkbox" name="important"></label>
-                <label for="">Requ&eacute;rant <span class="important">*</span>: <select name="requerant" id="requerant">
-                        <option value="CODIS">CODIS</option>
-                        <option value="Alerte Locale">Alerte locale</option>
-                    </select></label> -->
-                <div class="txtb"><label for="">Date de déclenchement <span class="important">*</span>: </label><input type="date" name="dateDeclenchement"
-                        placeholder="Date de déclenchement" value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de déclenchement <span class="important">*</span>: </label><input type="time" name="heureDeclenchement"
-                        placeholder="Heure de déclenchement" value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date de fin <span class="important">*</span>: </label><input type="date" name="dateFin" placeholder="Date de fin"
-                        value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de fin <span class="important">*</span>: </label><input type="time" name="heureFin" placeholder="Heure de fin"
-                        value="<?php echo  date('H:i'); ?>"><span></span></div>
-            </div>
-            <div class="section" id="sectionaEngin">
-                <h3>ENGINS ET PERSONNEL</h3>
-                <label for="">Nom de l'engin : 
-                <select name="typeEngin[]" id="nomEngin%0" onChange="javascript:addTeam(this.id);">
-                        <option value="none">Selectionner un v&eacute;hicule</option>
+                <div class="champ">
+                    <label for="">Type d'intervention</label>
+                    <select name="typeIntervention" id="typeIntervention" class="form-control">
+                        <option value="">Selectionnez un type d'intervention</option>
                         <?php
-                        while ($vehicule = $typeVehicule->fetch()) {
+                        while ($donnees = $typeList->fetch()) {
                         ?>
-                        <option value="<?php
+                        <option value="
+            <?php
 
-                                            $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
-                                            if ($output == "") {
-                                                $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8");
-                                            }
-                                            echo $output;
-                                            ?>">
+                            $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                            if ($output == "") {
+                                $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                            }
+                            echo $output;
+            ?>
+                    ">
                             <?php
-                                $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+                                $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
-                                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
                                 }
                                 echo $output;
                                 ?>
@@ -93,344 +54,401 @@
                         <?php
                         }
                         ?>
-                    </select></label>
-                <div class="check"><input type="checkbox" id="ronde" name="ronde[]"><label for="ronde">Ronde</label></div>
-                <div class="txtb"><label for="">Date de départ <span class="important">*</span>: </label><input type="date" name="dateDepart[]" placeholder="Date de départ"
-                        value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de départ <span class="important">*</span>: </label><input type="time" name="heureDepart[]" placeholder="Heure de départ"
-                        value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="date" name="dateArrivee[]"
-                        placeholder="Date d'arriv&eacute;e sur le lieux : " value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure d'arriv&eacute;e sur le lieux <span class="important">*</span>: </label><input type="time" name="heureArrivee[]"
-                        placeholder="Heure d'arriv&eacute;e sur le lieux : " value="<?php echo  date('H:i'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Date de retour <span class="important">*</span>: </label><input type="date" name="dateRetour[]" placeholder="Date de retour"
-                        value="<?php echo date('Y-m-d'); ?>"><span></span></div>
-                <div class="txtb"><label for="">Heure de retour <span class="important">*</span>: </label><input type="time" name="heureRetour[]" placeholder="Heure de retour"
-                        value="<?php echo  date('H:i'); ?>"><span></span></div>
-                
-            </div>
-                <div class="section" id="buttonadd">
-                <button type="button" onClick="javascript:AddEngin();" class="btn btn-secondary btn-lg" id="addEngin" >Ajouter un véhicule</button>
+                    </select>
                 </div>
-            <div class="section">
-                <h3>RESPONSABLE</h3>
-                <div class="txtb"><input type="text" name="responsable" placeholder="Nom du responsable" required><span></span></div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Réquerant</label>
+                        <select name="requerant" id="requerant" class="form-control">
+                            <option value="">CODIS</option>
+                            <option value="">Alerte locale</option>
+                        </select>
+                    </div>
+                    <div class="group-champ col2">
+                        <div class="champ mycheckbox">
+                            <label for="">OPM</label>
+                            <input type="checkbox" name="opm" id="opm">
+                        </div>
+                        <div class="champ mycheckbox">
+                            <label for="">Important</label>
+                            <input type="checkbox" name="important" id="important">
+                        </div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date déclenchement</label>
+                        <input type="date" autocomplete="off" name="dateDeclenchement" value= "<?php echo date('Y-m-d'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure déclenchement</label>
+                        <input type="time" autocomplete="off" name="heureDeclenchement" value= "<?php echo  date('H:i'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date de fin</label>
+                        <input type="date" autocomplete="off" name="dateFin" value= "<?php echo date('Y-m-d'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure de fin</label>
+                        <input type="time" autocomplete="off" name="heureFin" value= "<?php echo  date('H:i'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
             </div>
-            <input type="submit" value="Sauver" class="btn btn-primary btn-lg">
-        </form>
-    </div>
+        </div>
+        <div class="section engin">
+            <h2 class="title">Engins et Personnels</h2>
+            <div class="body" >
+            	 <div class="group-champ col2">
+	                <div class="champ">
+	                    <label for="">Nom du v&eacute;hicule</label>
+	                    <select name="typeEngin[]" id="nomEngin%0" class="form-control" onChange="javascript:addTeam(this.id);">
+	                        <option value="">Selectionnez un véhicule</option>
+	                        
+	                        <?php
+	                while ($vehicule = $typeVehicule->fetch())
+	                {
+	                ?>
+	               <option value="<?php
+	                    
+	                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
+	                    if ($output == "") 
+	                    {
+	                     $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8"); 
+	                    }
+	                    echo $output;
+	                 ?>"> 
+	                  <?php 
+	                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+	                    if ($output == "")
+	                     {
+	                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                     }
+	                     echo $output;
+	                     ?> 
+	                 </option>
+	                    <?php
+	                    }
+	                    ?> 
+	                
+	                    </select>
+	                </div>
+                    <div class="champ mycheckbox">
+                        <label for="">Ronde</label>
+                        <input type="checkbox" name="ronde[]" id="ronde">
+                    </div>
+	             </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date de départ</label>
+                        <input type="date" autocomplete="off" name="dateDepart[]" value= "<?php echo date('Y-m-d'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure de départ</label>
+                        <input type="time" autocomplete="off" name="heureDepart[]" value= "<?php echo  date('H:i'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date d'arrivée sur les lieux</label>
+                        <input type="date" autocomplete="off" name="dateArrivee[]" value= "<?php echo date('Y-m-d'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure d'arrivée sur les lieux</label>
+                        <input type="time" autocomplete="off" name="heureArrivee[]" value= "<?php echo  date('H:i'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date de retour</label>
+                        <input type="date" autocomplete="off" name="dateRetour[]" value= "<?php echo date('Y-m-d'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure de retour</label>
+                        <input type="time" autocomplete="off" name="heureRetour[]" value= "<?php echo  date('H:i'); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
+        </div>
+        <div class="section resp">
+            <h2 class="title">Responsable</h2>
+            <div class="body">
+                <div class="champ">
+                    <label for="">Nom du responsable</label>
+                    <input type="text" autocomplete="off" name="responsable">
+                    <div class="barre"></div>
+                </div>
+            </div>
+        </div>
+        <div class="champ">
+            <input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg">
+        </div>
+    </form>
 </div>
 <script type='text/javascript'>
-var nbvehicule=0;
-function getXMLHttpRequest() 
-{
-        var xhr = null;
+var nbvehicule = 0;
 
-        if (window.XMLHttpRequest || window.ActiveXObject) 
-        {
-                if (window.ActiveXObject) {
-                try {
+function getXMLHttpRequest() {
+    var xhr = null;
+
+    if (window.XMLHttpRequest || window.ActiveXObject) {
+        if (window.ActiveXObject) {
+            try {
                 xhr = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch(e) 
-                    {
-                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                } 
-                else
-                {
-                    xhr = new XMLHttpRequest(); 
-                }
+            } catch (e) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        } else {
+            xhr = new XMLHttpRequest();
         }
-        else 
-        {
-                alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
-                return null;
-        }
+    } else {
+        alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+        return null;
+    }
 
-        return xhr;
+    return xhr;
 }
 
-
-function addTeam(p) 
-{       
+function addTeam(p) {
     var sel = document.getElementById(p);
-    var opt=sel.options[sel.selectedIndex].text;
-    var val=sel.options[sel.selectedIndex].value;
-    
- 
-     ///---------------- partie ajax
-     var xhr = getXMLHttpRequest();
-     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
-        {
-                selection(xhr.responseText,sel,p,val);
+    var opt = sel.options[sel.selectedIndex].text;
+    var val = sel.options[sel.selectedIndex].value;
+
+
+    ///---------------- partie ajax
+    var xhr = getXMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            selection(xhr.responseText, sel, p, val);
         }
-      };
- 
-        var sVar = encodeURIComponent(opt);
- 
-        xhr.open("GET", "../views/team.php?variable=" + sVar, true);
-        xhr.send(null);
-  
-} 
+    };
+
+    var sVar = encodeURIComponent(opt);
+
+    xhr.open("GET", "../views/team.php?variable=" + sVar, true);
+    xhr.send(null);
+
+}
 
 // solution pour le probleme d'encodage 
-function html_entity_decode(str) 
-{
-  var ta = document.createElement("textarea");
-  ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  toReturn = ta.value;
-  ta = null;
-  return toReturn
-} 
- //ajout des champs pour l'equipe
-function selection(xml,sel,p,val)
-{        var nb=p.split("%");
-        console.log(val);
-        while(document.contains(document.getElementById("team"+nb[1])))
-          {
-                 document.getElementById("team"+nb[1]).remove();
-        }   
-          liste=xml.split("%");
-          
-        for ( let i =1 ;  i < liste.length ; i++)
-        {
-                 liste[i]=html_entity_decode(liste[i]);
-        }
-        for ( let i =1 ;  i < liste.length ; i++)
-        {      
-                var div=document.createElement("div");
-                div.setAttribute("id","team"+nb[1]);
-                div.setAttribute("class","txtb");
-                var label=document.createElement("label");
-                label.setAttribute("for","")
-                var text=document.createTextNode(liste[i]);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                label.appendChild(text);
-                label.appendChild(span);
-                var deuxpoints=document.createTextNode(":");
-                label.appendChild(deuxpoints);
-                var input=document.createElement("input");
-                input.setAttribute("type","text");
-                input.required= true;
-                input.setAttribute("name",liste[i]+"[]");
-                input.setAttribute("placeholder",liste[i]);
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-                div.appendChild(span2);
-                sel.parentNode.insertBefore(div,sel.nextSibling);
-        }
-      console.log(liste);
+function html_entity_decode(str) {
+    var ta = document.createElement("textarea");
+    ta.innerHTML = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    toReturn = ta.value;
+    ta = null;
+    return toReturn
+}
+//ajout des champs pour l'equipe
+function selection(xml, sel, p, val) {
+    var nb = p.split("%");
+    console.log(val);
+    while (document.contains(document.getElementById("team" + nb[1]))) {
+        document.getElementById("team" + nb[1]).remove();
+    }
+    liste = xml.split("%");
+
+    for (let i = 1; i < liste.length; i++) {
+        liste[i] = html_entity_decode(liste[i]);
+    }
+    for (let i = 1; i < liste.length; i++) {
+        var div = document.createElement("div");
+        div.setAttribute("id", "team" + nb[1]);
+        div.setAttribute("class", "champ");
+        var label = document.createElement("label");
+        label.setAttribute("for", "")
+        var text = document.createTextNode(liste[i]);
+        var span = document.createElement("span");
+        span.setAttribute("class", "important");
+        var etoile = document.createTextNode("*");
+        span.appendChild(etoile);
+        label.appendChild(text);
+        label.appendChild(span);
+        var deuxpoints = document.createTextNode(":");
+        label.appendChild(deuxpoints);
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.required = true;
+        input.setAttribute("name", liste[i] + "[]");
+        input.setAttribute("placeholder", liste[i]);
+        var span2 = document.createElement("span");
+        div.appendChild(label);
+        div.appendChild(input);
+        div.appendChild(span2);
+        sel.parentNode.insertBefore(div, sel.nextSibling);
+    }
+    console.log(liste);
 }
 
-// creation de plusieurs engins 
-function AddEngin(){
-        nbvehicule++;
-        console.log(nbvehicule);
-        var xhr = getXMLHttpRequest();
-     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
-        {
-                 addtoform(xhr.responseText);
+function AddEngin() {
+    nbvehicule++;
+    console.log(nbvehicule);
+    var xhr = getXMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            addtoform(xhr.responseText);
         }
-      };
- 
-        xhr.open("GET", "../views/vehicule.php?", true);
-        xhr.send(null);
-}
-function addtoform(types)
-{      liste=types.split("%");
-     
-               var section=document.getElementById("buttonadd");
-                var sectionEngin=document.createElement("div");
-                 sectionEngin.setAttribute("class","section");
-                 section.insertAdjacentElement('beforebegin',sectionEngin);
-                var label=document.createElement("label");
-                label.setAttribute("for","");
-                var nom=document.createTextNode("Nom de L'engin");
-                label.appendChild(nom);
-                var select=document.createElement("select");
-                select.setAttribute("name","typeEngin[]");
-                select.setAttribute("id","nomEngin%"+nbvehicule);
-                select.setAttribute("onChange","javascript:addTeam(this.id);");
-                var option=document.createElement("option");
-                option.setAttribute("value","");
-                var text=document.createTextNode("Selection un véhicule");
-                option.appendChild(text);
-                select.appendChild(option);
-                for ( let i =1 ;  i < liste.length ; i=i+2)
-                { 
-                        var option=document.createElement("option");
-                        option.setAttribute("value",liste[i]);
-                        var text=document.createTextNode(liste[i+1]);
-                        option.appendChild(text);
-                        select.appendChild(option);
-                }
-                label.appendChild(select);
-                var s=document.getElementById("addEngin");
-                var p=s.parentNode;
-        sectionEngin.appendChild(label);
-                var div=document.createElement("div");
-                div.setAttribute("class","check");
-                var input=document.createElement("input");
-                input.setAttribute("type","checkbox");
-                input.setAttribute("id","ronde"+nbvehicule);
-                input.setAttribute("name","ronde[]");
-                var label=document.createElement("label");
-                label.setAttribute("for","ronde"+nbvehicule);
-                var text=document.createTextNode("Ronde");
-                label.appendChild(text);
-                div.appendChild(input);
-                div.appendChild(label);
-        sectionEngin.appendChild(div);
+    };
 
-                div=document.createElement("div");
-                div.setAttribute("class","txtb");
-                label=document.createElement("label");
-                label.setAttribute("for","");
-                text=document.createTextNode("Date de départ");
-                label.append(text);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                deuxpoint=document.createTextNode(":");
-                label.appendChild(span);
-                input=document.createElement("input");
-                input.setAttribute("type","date");
-                input.setAttribute("name","dateDepart[]");
-                input.setAttribute("placeholder","Date de départ");
-                input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-        sectionEngin.appendChild(div);
-                div=document.createElement("div");
-                div.setAttribute("class","txtb");
-                label=document.createElement("label");
-                label.setAttribute("for","");
-                text=document.createTextNode("Heure de départ");
-                label.append(text);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                deuxpoint=document.createTextNode(":");
-                label.appendChild(span);
-                input=document.createElement("input");
-                input.setAttribute("type","time");
-                input.setAttribute("name","heureDepart[]");
-                input.setAttribute("placeholder","Heure de départ");
-                input.setAttribute("value","<?php echo  date('H:i'); ?>");
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-        sectionEngin.appendChild(div);
-                div=document.createElement("div");
-                div.setAttribute("class","txtb");
-                label=document.createElement("label");
-                label.setAttribute("for","");
-                text=document.createTextNode("Date d'arrivée sur le lieux");
-                label.append(text);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                deuxpoint=document.createTextNode(":");
-                label.appendChild(span);
-                input=document.createElement("input");
-                input.setAttribute("type","date");
-                input.setAttribute("name","dateArrivee[]");
-                input.setAttribute("placeholder","Date d'arrivée sur le lieux");
-                input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-        sectionEngin.appendChild(div);
-                div=document.createElement("div");
-                div.setAttribute("class","txtb");
-                label=document.createElement("label");
-                label.setAttribute("for","");
-                text=document.createTextNode("Heure d'arrivée sur le lieux");
-                label.append(text);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                deuxpoint=document.createTextNode(":");
-                label.appendChild(span);
-                input=document.createElement("input");
-                input.setAttribute("type","time");
-                input.setAttribute("name","heureArrivee[]");
-                input.setAttribute("placeholder","Heure d'arrivée");
-                input.setAttribute("value","<?php echo  date('H:i'); ?>");
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-        sectionEngin.appendChild(div);
-                div=document.createElement("div");
-                div.setAttribute("class","txtb");
-                label=document.createElement("label");
-                label.setAttribute("for","");
-                text=document.createTextNode("Date de retour");
-                label.append(text);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                deuxpoint=document.createTextNode(":");
-                label.appendChild(span);
-                input=document.createElement("input");
-                input.setAttribute("type","date");
-                input.setAttribute("name","dateRetour[]");
-                input.setAttribute("placeholder","Date de retour");
-                input.setAttribute("value","<?php echo date('Y-m-d'); ?>");
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-        sectionEngin.appendChild(div);
-                div=document.createElement("div");
-                div.setAttribute("class","txtb");
-                label=document.createElement("label");
-                label.setAttribute("for","");
-                text=document.createTextNode("Heure de retour");
-                label.append(text);
-                var span=document.createElement("span");
-                span.setAttribute("class","important");
-                var etoile=document.createTextNode("*");
-                span.appendChild(etoile);
-                deuxpoint=document.createTextNode(":");
-                label.appendChild(span);
-                input=document.createElement("input");
-                input.setAttribute("type","time");
-                input.setAttribute("name","heureRetour[]");
-                input.setAttribute("placeholder","Heure de retour");
-                input.setAttribute("value","<?php echo  date('H:i'); ?>");
-                var span2=document.createElement("span");
-                div.appendChild(label);
-                div.appendChild(input);
-        sectionEngin.appendChild(div);
-      
-        console.log(types);
+    xhr.open("GET", "../views/vehicule.php?", true);
+    xhr.send(null);
+}
+
+function addtoform(types) {
+    liste = types.split("%");
+
+    var section = document.getElementById("addVehicule");
+    var body = document.createElement("div");
+    body.setAttribute("class", "body");
+    section.insertAdjacentElement('beforebegin', body);
+    var champ2 = document.createElement("div");
+    champ2.setAttribute("class", "group-champ col2");
+        var champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        var label = document.createElement("label");
+        label.setAttribute("for", "");
+        var nom = document.createTextNode("Nom de véhicule");
+        label.appendChild(nom);
+        champ.appendChild(label);
+        var select = document.createElement("select");
+        select.setAttribute("class", "form-control");
+        select.setAttribute("name", "typeEngin[]");
+        select.setAttribute("id", "nomEngin%" + nbvehicule);
+        select.setAttribute("onChange", "javascript:addTeam(this.id);");
+        var option = document.createElement("option");
+        option.setAttribute("value", "");
+        var text = document.createTextNode("Selection un véhicule");
+        option.appendChild(text);
+        select.appendChild(option);
+        for (let i = 1; i < liste.length; i = i + 2) {
+            var option = document.createElement("option");
+            option.setAttribute("value", liste[i]);
+            var text = document.createTextNode(liste[i + 1]);
+            option.appendChild(text);
+            select.appendChild(option);
+        }
+        champ.appendChild(select);
+        champ2.appendChild(champ);
+        var champ = document.createElement("div");
+        champ.setAttribute("class", "champ mycheckbox");
+        var label = document.createElement("label");
+        label.setAttribute("for", "ronde" + nbvehicule);
+        var text = document.createTextNode("Ronde");
+        label.appendChild(text);
+        champ.appendChild(label);
+        var input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("id", "ronde" + nbvehicule);
+        input.setAttribute("name", "ronde[]");
+        champ.appendChild(input);
+        champ2.appendChild(champ);
+    body.appendChild(champ2);
+        var champ2 = document.createElement("div");
+        champ2.setAttribute("class", "group-champ col2");
+        champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        label = document.createElement("label");
+        label.setAttribute("for", "");
+        text = document.createTextNode("Date de départ");
+        label.append(text);
+        input = document.createElement("input");
+        input.setAttribute("type", "date");
+        input.setAttribute("name", "dateDepart[]");
+        input.setAttribute("value", "<?php echo date('Y-m-d'); ?>");
+        champ.appendChild(label);
+        champ.appendChild(input);
+        champ2.appendChild(champ);
+
+        champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        label = document.createElement("label");
+        label.setAttribute("for", "");
+        text = document.createTextNode("Heure de départ");
+        label.append(text);
+        input = document.createElement("input");
+        input.setAttribute("type", "time");
+        input.setAttribute("name", "heureDepart[]");
+        input.setAttribute("placeholder", "Heure de départ");
+        input.setAttribute("value", "<?php echo  date('H:i'); ?>");
+        var span2 = document.createElement("span");
+        champ.appendChild(label);
+        champ.appendChild(input);
+        champ2.appendChild(champ);
+    body.appendChild(champ2);
+    var champ2 = document.createElement("div");
+        champ2.setAttribute("class", "group-champ col2");
+        champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        label = document.createElement("label");
+        label.setAttribute("for", "");
+        text = document.createTextNode("Date d'arrivée sur le lieux");
+        label.append(text);
+        input = document.createElement("input");
+        input.setAttribute("type", "date");
+        input.setAttribute("name", "dateArrivee[]");
+        input.setAttribute("value", "<?php echo date('Y-m-d'); ?>");
+        var span2 = document.createElement("span");
+        champ.appendChild(label);
+        champ.appendChild(input);
+    champ2.appendChild(champ);
+        champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        label = document.createElement("label");
+        label.setAttribute("for", "");
+        text = document.createTextNode("Heure d'arrivée sur le lieux");
+        label.append(text);
+        input = document.createElement("input");
+        input.setAttribute("type", "time");
+        input.setAttribute("name", "heureArrivee[]");
+        input.setAttribute("value", "<?php echo  date('H:i'); ?>");
+        var span2 = document.createElement("span");
+        champ.appendChild(label);
+        champ.appendChild(input);
+        champ2.appendChild(champ);
+    body.appendChild(champ2);
+    var champ2 = document.createElement("div");
+        champ2.setAttribute("class", "group-champ col2");
+        champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        label = document.createElement("label");
+        label.setAttribute("for", "");
+        text = document.createTextNode("Date de retour");
+        label.append(text);
+        input = document.createElement("input");
+        input.setAttribute("type", "date");
+        input.setAttribute("name", "dateRetour[]");
+        input.setAttribute("value", "<?php echo date('Y-m-d'); ?>");
+        champ.appendChild(label);
+        champ.appendChild(input);
+    champ2.appendChild(champ);
+        champ = document.createElement("div");
+        champ.setAttribute("class", "champ");
+        label = document.createElement("label");
+        label.setAttribute("for", "");
+        text = document.createTextNode("Heure de retour");
+        label.append(text);
+        input = document.createElement("input");
+        input.setAttribute("type", "time");
+        input.setAttribute("name", "heureRetour[]");
+        input.setAttribute("placeholder", "Heure de retour");
+        input.setAttribute("value", "<?php echo  date('H:i'); ?>");
+        var span2 = document.createElement("span");
+        champ.appendChild(label);
+        champ.appendChild(input);
+    champ2.appendChild(champ);
+    body.appendChild(champ2);
+
 
 }
-</script>
-
-<script>
-var label = document.querySelectorAll(".txtb input");
-label.forEach(element => {
-    element.addEventListener("focus", (e) => {
-        e.target.classList.add("focus");
-    });
-    element.addEventListener("blur", (e) => {
-        // if (e.target.value === "") {
-        e.target.classList.remove("focus");
-        // }
-    });
-
-});
 </script>

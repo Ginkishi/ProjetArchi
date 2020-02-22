@@ -16,14 +16,14 @@
     <div class="sidebar-container">
         <a href="<?= LOCAL_DIR ?>home/index" class="sidebar-item"><span class="title-item"><i class="fa fa-home fa-2x"></i>Accueil</span></a>
         <div class="sidebar-item drop">
-            <span class="title-item"><i class="fa fa-map-marker fa-2x"></i>Intervention</span>
+            <span class="title-item"><i class="fa fa-map-marked-alt fa-2x"></i>Intervention</span>
             <div class="submenu">
                 <a href="<?= LOCAL_DIR ?>intervention/list" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Liste</span></a>
                 <a href="<?= LOCAL_DIR ?>intervention/add" class="submenu-item"><span class="title-item"><i class="fa fa-plus-circle fa-2x"></i>Ajouter</span></a>
             </div>
         </div>
-        <a href="#" class="sidebar-item"><span class="title-item"><i class="fa fa-user fa-2x"></i>Pompier</span></a>
+        <a href="#" class="sidebar-item"><span class="title-item"><i class="fa fa-user-tie fa-2x"></i>Pompier</span></a>
         <a href="<?= LOCAL_DIR ?>vehicule/index" class="sidebar-item"><span class="title-item"><i class="fa fa-car fa-2x"></i>Véhicules</span></a>
-        <div class="sidebar-item"><span class="title-item"><i class="fa fa-id-badge fa-2x"></i>Roles</span></div>
+        <div class="sidebar-item"><span class="title-item"><i class="far fa-id-badge fa-2x"></i>Roles</span></div>
     </div>
 </div>
