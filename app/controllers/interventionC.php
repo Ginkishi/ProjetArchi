@@ -20,17 +20,21 @@ class InterventionController
 	
 	public function add()
 	{
-		$v = new View();
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_add");
-	}
-	
-	
-	public function modification($id)
-	{
-		$v = new View();
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_modification");
+		echo '<!doctype html>';
+		echo '<html lang="fr">';
+		echo '<head>';
+		include VIEWS . DS . 'common' . DS . 'head.php';
+		echo '<link href="' . LOCAL_VENDORS . DS . "personal" . DS . "css" . DS . "intervention" . '.css" rel="stylesheet">';
+		echo '</head>';
+		echo '<body>';
+		echo '<div class="contain shadow">';
+		include VIEWS . DS . 'common' . DS . 'nav.php';
+		echo '<div class="main">';
+		include VIEWS . DS . "intervention_add.php";
+		echo '</div>';
+		echo '</div>';
+		include VIEWS . DS . 'common' . DS . 'bs_js.php';
+		echo '</body></html>';
 	}
 	
 	
@@ -108,8 +112,8 @@ class InterventionController
 
 			/// le format de la date yyyy-mm-dd 
 			/// le format de l'heure hh:mm:ss
-
-			$IDintervention = $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable);
+                $status=1;
+			$IDintervention = $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable,$_SESSION['id'],$status);
 			//  echo "id".$IDintervention."<br>";
 			//3- partie ajout vehicule et equipe
 			$n = $_POST["dateDepart"];
@@ -157,7 +161,7 @@ class InterventionController
 				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend);
 			}
 		}
-		/// un traiment d'erreur a effectuer apres eg: champ non rempli
+		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		//  $Intervention = new InterventionController();
 		// $Intervention->index();
 	}

@@ -1,5 +1,6 @@
 <?php
 require_once("config.php");
+require_once(CONTROLLERS . DS . "sessionHandler.php");
 
 error_reporting(E_STRICT | E_ALL);
 date_default_timezone_set('Europe/Paris');
@@ -29,6 +30,23 @@ if (isset($_GET['m']) && !empty($_GET['m'])) {
 } else {
 	//Pas de paramètre => la méthode par défaut est la méthode INDEX
 	$method = 'index';
+}
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+	//Il y a un paramètre de précisé: c'est le nom de la méthode demandée.
+	$id = strtolower(trim($_GET['id']));
+	echo "test";
+} else {
+	//Pas de paramètre => la méthode par défaut est la méthode INDEX
+	$id = '';
+}
+
+
+if ($controller != "login") {
+	GestionnaireSession::ouvreSession();
+	if (!GestionnaireSession::is_set()) {
+		$controller = "login";
+		$method = "index";
+	}
 }
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {

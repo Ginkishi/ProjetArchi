@@ -1,10 +1,20 @@
 /* body {
   background: #232526;
 } */
-@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+* {
+  box-sizing: border-box !important;
+}
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Ubuntu&display=swap");
 html {
   min-height: 95vh;
   max-height: auto;
+}
+body {
+  display: flex;
+  min-height: 95vh;
+  max-height: auto;
+  min-width: 95vw;
+  justify-items: center;
 }
 
 .contain {
@@ -14,15 +24,16 @@ html {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
   transition: background-color 0.5s linear;
+  flex: 1 0 0;
 }
 .contain.shadow {
   background: #232526;
   transition: background-color 0.5s linear;
 }
 /* Menu */
-.menu {
+.contain.shadow .menu {
   position: absolute;
-  background: #232526;
+  background-color: #232526;
   /* background: #1e3c72; */
   padding: 5px;
   position: fixed;
@@ -34,6 +45,24 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.5s linear;
+}
+.menu {
+  position: absolute;
+  background-color: #ac1728; /* fallback for old browsers */
+
+  /* background: #1e3c72; */
+  padding: 5px;
+  position: fixed;
+  min-width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 5px 3px black;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.5s linear;
 }
 /* Bouton Hamburger */
 .toggleBtn {
@@ -47,6 +76,10 @@ html {
   cursor: pointer;
 }
 /* Logo bouton Hamburger */
+.contain.shadow .toggleBtn i {
+  color: white;
+  transition: color 500ms;
+}
 .toggleBtn i {
   color: white;
   transition: color 500ms;
@@ -55,7 +88,7 @@ html {
 .main {
   padding-top: 60px;
   transition: padding-left 0.15s linear;
-  min-height: 95vh;
+  min-height: 100%;
 }
 .sidebar {
   position: fixed;
@@ -89,7 +122,6 @@ html {
 
   padding-left: 300px;
   transition: padding-left 0.15s linear;
-  max-height: 95vh;
 }
 .photo {
   height: 150px;
@@ -119,7 +151,7 @@ html {
 .sidebar-item {
   background-color: #202020;
 
-  height: 60px;
+  height: 55px;
 
   overflow: hidden;
   width: 100%;
@@ -177,7 +209,7 @@ html {
   height: 50px;
   padding-left: 25px;
   width: 100%;
-  box-shadow: 0 0 10px 1px #0f0f0f;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.795);
   margin-bottom: 8px;
 }
 .submenu .submenu-item .title-item {
@@ -191,7 +223,7 @@ html {
   padding-left: 25px;
   width: 100%;
   box-shadow: none;
-  box-shadow: 0 0 5px 1px #0f0f0f;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.795);
   background: #212529;
 }
 /* .submenu .submenu-item:last-child .title-item {
@@ -254,7 +286,7 @@ a.sidebar-item:hover {
   background-color: #b11123;
   color: white;
   font-size: 1.2em;
-  box-shadow: 0 0 10px 1px #0f0f0f;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.795);
   padding: 5px;
   margin-bottom: 5px;
 }
@@ -272,7 +304,7 @@ a.sidebar-item:hover {
   background-color: #93291e;
   cursor: pointer;
   color: white;
-  box-shadow: 0 0 5px 1px #0f0f0f;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.795);
 }
 
 /*------scroll bar---------------------*/
@@ -331,9 +363,10 @@ input[type="checkbox"]#darkbtn {
 .check {
   position: relative;
   display: block;
-  width: 40px;
-  height: 20px;
-  background: #092c3e;
+  width: 60px;
+  height: 32px;
+
+  background: #ffffff;
   cursor: pointer;
   border-radius: 20px;
   overflow: hidden;
@@ -343,22 +376,25 @@ input[type="checkbox"]#darkbtn {
 }
 
 input[type="checkbox"]#darkbtn:checked ~ span.check {
-  background: #ffffff;
+  background: #092c3e;
+
   /* box-shadow: 0 0 0 4000px #092c3e4f; */
 }
 .check::before {
   content: "";
   position: absolute;
-  top: 2px;
+  top: 3px;
   left: 2px;
-  background: #ffffff;
-  width: 16px;
-  height: 16px;
+  background: #092c3e;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   transition: ease-in 0.5s;
+  box-shadow: 2px 0px 2px 2px #202020;
 }
 
 input[type="checkbox"]#darkbtn:checked ~ span.check::before {
-  transform: translateX(20px);
-  background: #092c3e;
+  transform: translateX(28px);
+  box-shadow: 0px 0px 5px 2px #202020;
+  background: #ffffff;
 }
