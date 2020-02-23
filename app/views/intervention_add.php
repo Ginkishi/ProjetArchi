@@ -171,7 +171,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
+            <button type="button" class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
         <div class="section resp">
             <h2 class="title">Responsable</h2>
