@@ -226,6 +226,11 @@ input[type="text"]:focus {
 .contain .main .table-responsive .table td {
   vertical-align: middle;
 }
+.table-responsive {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
 
 @media screen and (max-width: 700px) {
   .form-container {
