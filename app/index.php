@@ -32,6 +32,16 @@ if (isset($_GET['m']) && !empty($_GET['m'])) {
 	$method = 'index';
 }
 
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+	//Il y a un paramètre de précisé: c'est le nom de la méthode demandée.
+	$id = strtolower(trim($_GET['id']));
+} else {
+	//Pas de paramètre => la méthode par défaut est la méthode INDEX
+	$id = null;
+}
+
+
 if ($controller != "login") {
 	GestionnaireSession::ouvreSession();
 	if (!GestionnaireSession::is_set()) {
@@ -50,4 +60,4 @@ $controllerclassname = ucfirst($controller) . 'Controller';
 //On instancie cette classe
 $c = new $controllerclassname();
 //On appelle la méthode demandée (ou la méthode par défaut)
-$c->$method();
+$c->$method($id);

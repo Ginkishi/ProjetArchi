@@ -1,23 +1,23 @@
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
-    <form action="../intervention/addinterventiontobdd" method="post">
+    <form action="../../intervention/editinterventiontobdd/<?php echo $intervention["IDIntervention"] ?>" method="post">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
                 <div class="group-champ col3">
                     <div class="champ">
                         <label for="">Numéro d'intervention</label>
-                        <input type="text" autocomplete="off" name="numIntervention" required>
+                        <input type="text" autocomplete="off" name="numIntervention" value=<?php echo utf8_encode($intervention["NIntervention"]); ?> required>
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Commune</label>
-                        <input type="text" autocomplete="off" name="commune" required>
+                        <input type="text" autocomplete="off" name="commune" value="<?php echo utf8_encode($intervention["Commune"]); ?>" required>
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Adresse</label>
-                        <input type="text" autocomplete="off" name="adresse" required>
+                        <input type="text" autocomplete="off" name="adresse" value="<?php echo utf8_encode($intervention["Adresse"]); ?>" required>
                         <div class="barre"></div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                                 $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>"><?php
+            ?>" <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
                                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
@@ -51,42 +51,42 @@
                     <div class="champ">
                         <label for="">Réquerant</label>
                         <select name="requerant" id="requerant" class="form-control">
-                            <option value="CODIS">CODIS</option>
-                            <option value="Alerte locale">Alerte locale</option>
+                            <option value="CODIS" <?php if ("CODIS" == $intervention["Requerant"]) echo "selected"?>>CODIS</option>
+                            <option value="Alerte locale" <?php if ("Alerte locale" == $intervention["Requerant"]) echo "selected";?>>Alerte locale</option>
                         </select>
                     </div>
                     <div class="group-champ col2">
                         <div class="champ mycheckbox">
                             <label for="">OPM</label>
-                            <input type="checkbox" name="opm" id="opm">
+                            <input type="checkbox" name="opm" id="opm" <?php if ($intervention["OPM"]) echo "checked";?>>
                         </div>
                         <div class="champ mycheckbox">
                             <label for="">Important</label>
-                            <input type="checkbox" name="important" id="important">
+                            <input type="checkbox" name="important" id="important" <?php if ($intervention["Important"]) echo "checked";?>>
                         </div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date déclenchement</label>
-                        <input type="date" autocomplete="off" name="dateDeclenchement" value= "<?php echo date('Y-m-d'); ?>">
+                        <input type="date" autocomplete="off" name="dateDeclenchement" value= "<?php echo date('Y-m-d', strtotime($intervention["DateDeclenchement"])); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure déclenchement</label>
-                        <input type="time" autocomplete="off" name="heureDeclenchement" value= "<?php echo  date('H:i'); ?>">
+                        <input type="time" autocomplete="off" name="heureDeclenchement" value= "<?php echo  date('H:i', strtotime($intervention["DateDeclenchement"])); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
                 <div class="group-champ col2">
                     <div class="champ">
                         <label for="">Date de fin</label>
-                        <input type="date" autocomplete="off" name="dateFin" value= "<?php echo date('Y-m-d'); ?>">
+                        <input type="date" autocomplete="off" name="dateFin" value= "<?php echo date('Y-m-d', strtotime($intervention["DateFin"])); ?>">
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Heure de fin</label>
-                        <input type="time" autocomplete="off" name="heureFin" value= "<?php echo  date('H:i'); ?>">
+                        <input type="time" autocomplete="off" name="heureFin" value= "<?php echo  date('H:i', strtotime($intervention["DateFin"])); ?>">
                         <div class="barre"></div>
                     </div>
                 </div>
@@ -94,6 +94,10 @@
         </div>
         <div class="section engin">
             <h2 class="title">Engins et Personnels</h2>
+            <?php
+                if (sizeof($tousLesVehiculeIntervention) == 0 )
+                {
+            ?>
             <div class="body" >
             	 <div class="group-champ col2">
 	                <div class="champ">
@@ -171,6 +175,107 @@
                     </div>
                 </div>
             </div>
+            <?php
+                }
+                else
+                {
+                    $tv = $typeVehicule->fetchAll();
+                    for($i = 0 ; $i< sizeof($tousLesVehiculeIntervention); $i++)
+                    {
+                        $v = $tousLesVehiculeIntervention[$i];
+            ?>
+            <div class="body" >
+            	 <div class="group-champ col2">
+	                <div class="champ">
+	                    <label for="">Nom du v&eacute;hicule</label>
+	                    <select name="typeEngin[]" id="nomEngin%<?php echo $i; ?>" class="form-control" onChange="javascript:addTeam(this.id);">
+	                        <option value="">Selectionnez un véhicule</option>
+	                        
+	                        <?php
+	                foreach ($tv as $vehicule)
+	                {
+	                ?>
+	               <option value="<?php
+	                    
+	                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
+	                    if ($output == "") 
+	                    {
+	                     $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8"); 
+	                    }
+	                    echo $output;
+	                 ?>" <?php if ($output == utf8_encode($v["IDVehicule"])) echo "selected";?>> 
+	                  <?php 
+	                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
+	                    if ($output == "")
+	                     {
+	                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                     }
+	                     echo $output;
+	                     ?> 
+	                 </option>
+	                    <?php
+	                    }
+	                    ?> 
+	                
+	                    </select>
+                        <?php
+                            for($j=sizeof($v["vehicule"])-1;$j>=0;$j--)
+                            {
+                        ?>
+                                <div id="team<?php echo $i ?>" class="champs">
+                                    <label for=""><?php echo utf8_encode($v["vehicule"][$j]["ROLE_NAME"]);?><span class="important">*</span>:</label>
+                                    <input type="text" required name="<?php echo utf8_encode($v["vehicule"][$j]["ROLE_NAME"]);?>[]" value="<?php echo utf8_encode($v["vehicule"][$j]["pompier"]);?>">
+                                </div>
+                        <?php 
+                            }
+                        ?>
+	                </div>
+                    <div class="champ mycheckbox">
+                        <label for="">Ronde</label>
+                        <input type="checkbox" name="ronde[]" id="ronde<?php echo $i; ?>" <?php if ($v["Ronde"]) echo "checked";?>>
+                    </div>
+	             </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date de départ</label>
+                        <input type="date" autocomplete="off" name="dateDepart[]" value= "<?php echo date('Y-m-d', strtotime($v["DateDepart"])); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure de départ</label>
+                        <input type="time" autocomplete="off" name="heureDepart[]" value= "<?php echo  date('H:i', strtotime($v["DateDepart"])); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date d'arrivée sur les lieux</label>
+                        <input type="date" autocomplete="off" name="dateArrivee[]" value= "<?php echo date('Y-m-d', strtotime($v["DateArrive"])); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure d'arrivée sur les lieux</label>
+                        <input type="time" autocomplete="off" name="heureArrivee[]" value= "<?php echo  date('H:i', strtotime($v["DateArrive"])); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+                <div class="group-champ col2">
+                    <div class="champ">
+                        <label for="">Date de retour</label>
+                        <input type="date" autocomplete="off" name="dateRetour[]" value= "<?php echo date('Y-m-d', strtotime($v["DateRetour"])); ?>">
+                        <div class="barre"></div>
+                    </div>
+                    <div class="champ">
+                        <label for="">Heure de retour</label>
+                        <input type="time" autocomplete="off" name="heureRetour[]" value= "<?php echo  date('H:i', strtotime($v["DateRetour"])); ?>">
+                        <div class="barre"></div>
+                    </div>
+                </div>
+            </div>
+            <?php 
+                    }
+                }
+            ?>
             <button class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
         <div class="section resp">
@@ -178,7 +283,7 @@
             <div class="body">
                 <div class="champ">
                     <label for="">Nom du responsable</label>
-                    <input type="text" autocomplete="off" name="responsable">
+                    <input type="text" autocomplete="off" name="responsable" value="<?php echo utf8_encode($intervention["IDResponsable"]);?>">
                     <div class="barre"></div>
                 </div>
             </div>
@@ -189,7 +294,7 @@
     </form>
 </div>
 <script type='text/javascript'>
-var nbvehicule = 0;
+var nbvehicule = <?php echo sizeof($tousLesVehiculeIntervention); ?>;
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -228,7 +333,7 @@ function addTeam(p) {
 
     var sVar = encodeURIComponent(opt);
 
-    xhr.open("GET", "../views/team.php?variable=" + sVar, true);
+    xhr.open("GET", "../../views/team.php?variable=" + sVar, true);
     xhr.send(null);
 
 }
@@ -292,7 +397,7 @@ function AddEngin() {
         }
     };
 
-    xhr.open("GET", "../views/vehicule.php?", true);
+    xhr.open("GET", "../../views/vehicule.php?", true);
     xhr.send(null);
 }
 
