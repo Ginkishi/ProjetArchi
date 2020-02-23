@@ -30,20 +30,18 @@
                         ?>
                         <option value="<?php
 
-                            $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                            $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                             if ($output == "") {
-                                $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                                $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>">
-                            <?php
+            ?>"><?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
                                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
                                 }
                                 echo $output;
-                                ?>
-                        </option>
+                                ?></option>
                         <?php
                         }
                         ?>

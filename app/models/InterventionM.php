@@ -28,12 +28,11 @@
 			$datedec=$dateDeclenchement." ".$heureDeclenchement;
 			$datef=$dateFin." ".$heureFin;
 			//2012-12-02 00:00:00
-		  $type = API::getCodeTypeIntervention($typeIntervention);
 		  $idresp = API::getPompierID($prenom,$nom);
 		  /* echo $idresp;
 		   echo $type;
 		   echo "fin";*/ 
-	      $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES($numIntervention,$opm,'$commune','$adresse', '$type',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur, $status);");
+	      $this->con->query("INSERT INTO  interventions (NIntervention, OPM, Commune, Adresse, TypeIntervention, Important, Requerant, DateDeclenchement, DateFin, IDResponsable, IDCreateur,IDstatus) VALUES($numIntervention,$opm,'$commune','$adresse', '$typeIntervention',$important,'$requerant','$datedec','$datef',$idresp,$idcreateur, $status);");
 			//echo
 			$query=$this->con->query("SELECT IDIntervention FROM  interventions where NIntervention=$numIntervention AND DateDeclenchement='$datedec'");
 			$ID = $query->fetch();
@@ -41,6 +40,47 @@
           
 		}
 
+		public function EditIntervention($id,$numIntervention, $adresse, $commune,$opm,$typeIntervention,$important,$requerant,$dateDeclenchement,$heureDeclenchement,$dateFin,$heureFin,$responsable, $status)
+		{  
+
+		 //  echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
+		 
+		//	echo $dateFin."<br>";
+		//	echo $heureFin."<br>";
+		 //  echo $responsable."<br>"; 
+		//   echo $typeIntervention."<br>";
+			$res=explode(" ", $responsable);
+		  
+			$prenom=$res[0];
+			$nom=$res[1];
+			$datedec=$dateDeclenchement." ".$heureDeclenchement;
+			$datef=$dateFin." ".$heureFin;
+			//2012-12-02 00:00:00
+		  $idresp = API::getPompierID($prenom,$nom);
+		  /* echo $idresp;
+		   echo $type;
+		   echo "fin";*/ 
+	      $this->con->query("UPDATE interventions 
+		  SET NIntervention = $numIntervention,
+		   OPM = $opm,
+		   Commune = '$commune',
+		   Adresse = '$adresse',
+		   TypeIntervention = '$typeIntervention',
+		   Important = $important,
+		   Requerant = '$requerant',
+		   DateDeclenchement = '$datedec',
+		   DateFin = '$datef',
+		   IDResponsable = $idresp,
+		   IDstatus = $status
+		   WHERE IDIntervention = $id");
+		    return $id;
+		}
+
+
+		public function EraseVehiculeIntervention($id)
+		{
+			$this->con->query("DELETE v,p FROM `vehiculeutilise` as v INNER JOIN `personnelduvehicule` as p on v.IDIntervention = p.IDIntervention WHERE v.IDIntervention = $id");
+		}
 
 		public function getInterventionById($id)
 		{  
@@ -58,7 +98,15 @@
 			for($i=0; $i<sizeof($record);$i++)
 			{
 				$record[$i]["vehicule"] = API::getVehiculeById($record[$i]["IDVehicule"]);
-			}
+				for($j=0; $j<sizeof($record[$i]["vehicule"]);$j++)
+				{
+					$query=$this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole=" . (int)$record[$i]["vehicule"][$j]["ROLE_ID"]);
+					$record2 = $query->fetch(PDO::FETCH_ASSOC);
+					$np = API::getPompierById($record2["IDPersonne"]);
+					$record[$i]["vehicule"][$j]["pompier"] = $np["P_PRENOM"] . " " . $np["P_NOM"];
+				}
+			}			
+			
 		    return $record;
 		}
 		

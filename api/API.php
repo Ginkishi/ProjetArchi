@@ -49,7 +49,7 @@ class API
 	{
 		self::checkBDD();
 		$id = self::cleanUserInput($id);
-		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
+		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME,ROLE_ID FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
@@ -79,7 +79,7 @@ class API
 	public static function getTypeInterventionList()
 	{
 		self::checkBDD();
-		$query = self::$bdd->query("SELECT TI_DESCRIPTION FROM `type_intervention`;");
+		$query = self::$bdd->query("SELECT TI_DESCRIPTION, TI_CODE FROM `type_intervention`;");
 		return	$query;
 	}
 

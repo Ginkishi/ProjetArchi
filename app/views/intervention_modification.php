@@ -1,23 +1,23 @@
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
-    <form action="../intervention/addinterventiontobdd" method="post">
+    <form action="../../intervention/editinterventiontobdd/<?php echo $intervention["IDIntervention"] ?>" method="post">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
                 <div class="group-champ col3">
                     <div class="champ">
                         <label for="">Numéro d'intervention</label>
-                        <input type="text" autocomplete="off" name="numIntervention" value=<?php echo $intervention["NIntervention"]; ?> required>
+                        <input type="text" autocomplete="off" name="numIntervention" value=<?php echo utf8_encode($intervention["NIntervention"]); ?> required>
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Commune</label>
-                        <input type="text" autocomplete="off" name="commune" value="<?php echo $intervention["Commune"]; ?>" required>
+                        <input type="text" autocomplete="off" name="commune" value="<?php echo utf8_encode($intervention["Commune"]); ?>" required>
                         <div class="barre"></div>
                     </div>
                     <div class="champ">
                         <label for="">Adresse</label>
-                        <input type="text" autocomplete="off" name="adresse" value="<?php echo $intervention["Adresse"]; ?>" required>
+                        <input type="text" autocomplete="off" name="adresse" value="<?php echo utf8_encode($intervention["Adresse"]); ?>" required>
                         <div class="barre"></div>
                     </div>
                 </div>
@@ -30,20 +30,18 @@
                         ?>
                         <option value="<?php
 
-                            $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
+                            $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                             if ($output == "") {
-                                $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                                $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>" <?php if ($output == $intervention["TypeIntervention"]) echo "selected";?>>
-                            <?php
+            ?>" <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
                                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
                                 }
                                 echo $output;
-                                ?>
-                        </option>
+                                ?></option>
                         <?php
                         }
                         ?>
@@ -205,7 +203,7 @@
 	                     $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8"); 
 	                    }
 	                    echo $output;
-	                 ?>" <?php if ($output == $v["IDVehicule"]) echo "selected";?>> 
+	                 ?>" <?php if ($output == utf8_encode($v["IDVehicule"])) echo "selected";?>> 
 	                  <?php 
 	                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
 	                    if ($output == "")
@@ -220,10 +218,21 @@
 	                    ?> 
 	                
 	                    </select>
+                        <?php
+                            for($j=sizeof($v["vehicule"])-1;$j>=0;$j--)
+                            {
+                        ?>
+                                <div id="team<?php echo $i ?>" class="champs">
+                                    <label for=""><?php echo utf8_encode($v["vehicule"][$j]["ROLE_NAME"]);?><span class="important">*</span>:</label>
+                                    <input type="text" required name="<?php echo utf8_encode($v["vehicule"][$j]["ROLE_NAME"]);?>[]" value="<?php echo utf8_encode($v["vehicule"][$j]["pompier"]);?>">
+                                </div>
+                        <?php 
+                            }
+                        ?>
 	                </div>
                     <div class="champ mycheckbox">
                         <label for="">Ronde</label>
-                        <input type="checkbox" name="ronde[]" id="ronde" <?php if ($v["Ronde"]) echo "checked";?>>
+                        <input type="checkbox" name="ronde[]" id="ronde<?php echo $i; ?>" <?php if ($v["Ronde"]) echo "checked";?>>
                     </div>
 	             </div>
                 <div class="group-champ col2">
@@ -274,7 +283,7 @@
             <div class="body">
                 <div class="champ">
                     <label for="">Nom du responsable</label>
-                    <input type="text" autocomplete="off" name="responsable" value="<?php echo $intervention["IDResponsable"];?>">
+                    <input type="text" autocomplete="off" name="responsable" value="<?php echo utf8_encode($intervention["IDResponsable"]);?>">
                     <div class="barre"></div>
                 </div>
             </div>
