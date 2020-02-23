@@ -213,6 +213,19 @@ input[type="text"]:focus {
   background-color: gray;
   color: black;
 }
+.contain .main .table-responsive .table td {
+  color: black;
+}
+.contain .main .table-responsive .table th {
+  color: white;
+}
+.contain.shadow .main .table-responsive .table td {
+  color: white;
+}
+
+.contain .main .table-responsive .table td {
+  vertical-align: middle;
+}
 
 @media screen and (max-width: 700px) {
   .form-container {

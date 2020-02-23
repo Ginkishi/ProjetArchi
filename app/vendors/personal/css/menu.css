@@ -29,6 +29,7 @@ body {
 .contain.shadow {
   background: #232526;
   transition: background-color 0.5s linear;
+  color: white;
 }
 /* Menu */
 .contain.shadow .menu {
@@ -86,7 +87,8 @@ body {
 }
 
 .main {
-  padding-top: 60px;
+  padding-top: 80px;
+  padding-left: 20px;
   transition: padding-left 0.15s linear;
   min-height: 100%;
 }
@@ -120,7 +122,8 @@ body {
 .sidebar.show + .main {
   min-height: 95vh;
 
-  padding-left: 300px;
+  padding-left: 320px;
+  padding-top: 80px;
   transition: padding-left 0.15s linear;
 }
 .photo {
