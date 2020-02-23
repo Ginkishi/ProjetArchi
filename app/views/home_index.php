@@ -40,45 +40,5 @@ setlocale(LC_TIME, "fr_FR");
             <div class="number"><?= $numberOfIntervention[3]["nbIntervention"] ?> </div>
             <div class="see-more"><a href="<?= LOCAL_DIR ?>intervention/listAll">Voir plus</a></div>
         </div>
-        <div class="public-intervention">
-            <div class="intervention-title">Les 10 Dernières interventions</div>
-            <?php if ($interventions != null) { ?>
-            <div class="table-responsive">
-                <table class="table text-center table-bordered">
-                    <thead>
-                        <tr class="bg-dark">
-                            <th scope="col">Numéro</th>
-                            <th scope="col">Date de déclenchement</th>
-                            <th scope="col">Date de fin</th>
-                            <th scope="col">Adresse</th>
-                            <th scope="col">Commune</th>
-                            <th scope="col">Type d'intervention</th>
-                            <th scope="col">Statut</th>
-                            <th scope="col"><i class="fas fa-eye"></i></th>
-                            <th scope="col"><i class="fas fa-edit"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($interventions as $i) : ?>
-                        <tr>
-                            <td><?= $i["NIntervention"]; ?></td>
-                            <td><?= $i["datedec"]; ?></td>
-                            <td><?= $i["datefin"]; ?></td>
-                            <td><?= $i["Adresse"]; ?></td>
-                            <td><?= $i["Commune"]; ?></td>
-                            <td><?= $i["TypeIntervention"]; ?></td>
-                            <td><?= utf8_encode($i["statut"]); ?></td>
-                            <td><a href="<?= LOCAL_DIR ?>intervention/view/<?= $i["IDIntervention"]; ?>" class="btn btn-info btn-lg">Voir</a></td>
-                            <td><a href="<?= LOCAL_DIR ?>intervention/modification/<?= $i["IDIntervention"]; ?>" class="btn btn-primary btn-lg">Editer</a></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <?php } else { ?>
-            <div class="error_msg">Aucune intervention trouvée</div>
-            <?php } ?>
-            <div class="see-more"><a href="<?= LOCAL_DIR ?>intervention/listAll">Voir plus</a></div>
-        </div>
     </div>
 </div>
