@@ -3,6 +3,7 @@ require_once(VIEWS . DS . "view.php");
 require_once(MODELS . DS . "loginM.php");
 require_once("./controllers/homeC.php");
 require_once("./controllers/sessionHandler.php");
+require_once(MODELS . DS . "InterventionM.php");
 
 class LoginController
 {
@@ -19,6 +20,12 @@ class LoginController
 		// Si deja connecter -> redirection vers la home page
 		$v = new View();
 		if (GestionnaireSession::is_set()) {
+
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAll();
+			$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 			$v->ajouterLink("personal", "home");
 			$v->afficher("home_index");
 		} else {
@@ -50,6 +57,11 @@ class LoginController
 				$_SESSION["grade"] = $record[0]['P_GRADE'];*/
 			// var_dump($record);
 			$v = new View();
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAll();
+			$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 			$v->ajouterLink("personal", "home");
 			$v->afficher("home_index");
 		} else {
