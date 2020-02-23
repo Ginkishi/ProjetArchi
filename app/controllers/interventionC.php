@@ -191,15 +191,7 @@ class InterventionController
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		//  $Intervention = new InterventionController();
 		// $Intervention->index();
-		$v = new View();
-
-		$InterventionModel = new InterventionM();
-		$interventions = $InterventionModel->getAll();
-		$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
-		$v->ajouterVariable("interventions", $interventions);
-		$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
-		$v->ajouterLink("personal", "home");
-		$v->afficher("home_index");
+		header('Location: ' . LOCAL_DIR . DS . 'home/index');
 	}
 
 
