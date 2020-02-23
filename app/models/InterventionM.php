@@ -17,6 +17,13 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 		return $record;
 	}
+	public function getNumberOfInterventionType()
+	{
+		$query = $this->con->query("SELECT s.IDstatus ID,label,count(i.IDstatus) nbIntervention FROM status s left join interventions i on i.IDstatus = s.IDstatus group by label ORDER by s.IDstatus");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+
 
 	public function AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
 	{

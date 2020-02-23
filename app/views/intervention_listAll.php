@@ -1,3 +1,5 @@
+<div class="error_info"> (EN CONSTRUCTION) </div>
+<?php if ($interventions != null) { ?>
 <div class="table-responsive">
     <table class="table text-center">
         <thead>
@@ -30,3 +32,6 @@
         </tbody>
     </table>
 </div>
+<?php } else { ?>
+<div class="error_msg">Aucune intervention trouvée</div>
+<?php } ?>
