@@ -16,6 +16,17 @@ class InterventionController
 		$v->ajouterLink("personal", "intervention");
 		$v->afficher("intervention_ajoute");
 	}
+	public function view($id)
+	{
+		$v = new View();
+		$InterventionModel = new InterventionM();
+		$intervention = $InterventionModel->getInterventionById($id);
+		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
+		$v->ajouterVariable("intervention", $intervention);
+		$v->ajouterVariable("vehicules", $tousLesVehiculeIntervention);
+		$v->ajouterLink("personal", "intervention");
+		$v->afficher("intervention_view");
+	}
 
 
 	public function add()
@@ -24,10 +35,21 @@ class InterventionController
 		$typeList = $InterventionModel->getTypeInterventionList();
 		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
 		$v = new View();
-		$v->ajouterVariable("typeList",$typeList);
-		$v->ajouterVariable("typeVehicule",$typeVehicule);
+		$v->ajouterVariable("typeList", $typeList);
+		$v->ajouterVariable("typeVehicule", $typeVehicule);
 		$v->ajouterLink("personal", "intervention");
 		$v->afficher("intervention_add");
+	}
+	public function listAll()
+	{
+		$InterventionModel = new InterventionM();
+		$interventions = $InterventionModel->getAll();
+
+		$v = new View();
+		$v->ajouterVariable("interventions", $interventions);
+		$v->ajouterLink("personal", "intervention");
+
+		$v->afficher("intervention_listAll");
 	}
 
 
@@ -39,10 +61,10 @@ class InterventionController
 		$intervention = $InterventionModel->getInterventionById($id);
 		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
 		$v = new View();
-		$v->ajouterVariable("typeList",$typeList);
-		$v->ajouterVariable("typeVehicule",$typeVehicule);
-		$v->ajouterVariable("intervention",$intervention);
-		$v->ajouterVariable("tousLesVehiculeIntervention",$tousLesVehiculeIntervention);
+		$v->ajouterVariable("typeList", $typeList);
+		$v->ajouterVariable("typeVehicule", $typeVehicule);
+		$v->ajouterVariable("intervention", $intervention);
+		$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
 		$v->ajouterLink("personal", "intervention");
 		$v->afficher("intervention_modification");
 	}
@@ -52,10 +74,7 @@ class InterventionController
 
 		$array = array_keys($_POST);
 
-		foreach ($array as $value) {
-			echo $value;
-			echo '<br />';
-		}
+
 
 
 		include_once dirname(__FILE__) . "\..\models\InterventionM.php";
@@ -120,8 +139,8 @@ class InterventionController
 
 			/// le format de la date yyyy-mm-dd 
 			/// le format de l'heure hh:mm:ss
-				$status=1;
-			$IDintervention = $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable,$_SESSION['id'],$status);
+			$status = 1;
+			$IDintervention = $InterventionModel->AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $_SESSION['id'], $status);
 			//  echo "id".$IDintervention."<br>";
 			//3- partie ajout vehicule et equipe
 			$n = $_POST["dateDepart"];
@@ -172,6 +191,15 @@ class InterventionController
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		//  $Intervention = new InterventionController();
 		// $Intervention->index();
+		$v = new View();
+
+		$InterventionModel = new InterventionM();
+		$interventions = $InterventionModel->getAll();
+		$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
+		$v->ajouterVariable("interventions", $interventions);
+		$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
+		$v->ajouterLink("personal", "home");
+		$v->afficher("home_index");
 	}
 
 
@@ -248,8 +276,8 @@ class InterventionController
 
 			/// le format de la date yyyy-mm-dd 
 			/// le format de l'heure hh:mm:ss
-                $status=1;
-			$IDintervention = $InterventionModel->EditIntervention($id,$numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable,$status);
+			$status = 1;
+			$IDintervention = $InterventionModel->EditIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $status);
 			$InterventionModel->EraseVehiculeIntervention($id);
 			//  echo "id".$IDintervention."<br>";
 			//3- partie ajout vehicule et equipe

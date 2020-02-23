@@ -11,23 +11,23 @@ class InterventionM
 		$this->con = $dbconnect->connect();
 	}
 
+	public function getAll()
+	{
+		$query = $this->con->query("SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement datedec,DateFin datefin, s.label statut FROM interventions i JOIN status s on i.IDstatus = s.IDstatus");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+	public function getNumberOfInterventionType()
+	{
+		$query = $this->con->query("SELECT s.IDstatus ID,label,count(i.IDstatus) nbIntervention FROM status s left join interventions i on i.IDstatus = s.IDstatus group by label ORDER by s.IDstatus");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+
 
 	public function AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
 	{
-		// echo $numIntervention . "<br>";
-		// echo $adresse . "<br>";
-		// echo $commune . "<br>";
-		// echo $opm . "<br>";
-		// echo $typeIntervention . "<br>";
-		// echo $important . "<br>";
-		// echo $requerant . "<br>";
-		// echo $dateDeclenchement . "<br>";
-		// echo $heureDeclenchement . "<br>";
-		// echo $dateFin . "<br>";
-		// echo $heureFin . "<br>";
-		// echo $responsable . "<br>";
-		// echo $idcreateur . "<br>";
-		// echo $status . "<br>";
+
 
 		//  echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
 
