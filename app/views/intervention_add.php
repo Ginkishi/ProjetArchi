@@ -94,7 +94,7 @@
         </div>
         <div class="section engin">
             <h2 class="title">Engins et Personnels</h2>
-            <div class="body" >
+            <div class="body"  id="vehicule0" >
             	 <div class="group-champ col2">
 	                <div class="champ">
 	                    <label for="">Nom du v&eacute;hicule</label>
@@ -302,7 +302,8 @@ function addtoform(types) {
 
     var section = document.getElementById("addVehicule");
     var body = document.createElement("div");
-    body.setAttribute("class", "body");
+    body.setAttribute("class","body");
+    body.setAttribute("id","vehicule"+nbvehicule);
     section.insertAdjacentElement('beforebegin', body);
     var champ2 = document.createElement("div");
     champ2.setAttribute("class", "group-champ col2");
@@ -440,6 +441,14 @@ function addtoform(types) {
         champ.appendChild(input);
     champ2.appendChild(champ);
     body.appendChild(champ2);
+    var button =document.createElement("button");
+     button.setAttribute("type","button");
+     button.setAttribute("class","btn btn-primary btn-lg");
+     button.setAttribute("onClick","javascript:deleteEngin();");
+     button.setAttribute("id","vehicule"+nbvehicule);
+     var sup =document.createTextNode("supprimer ce véhicule");
+     button.appendChild(sup);
+     body.appendChild(button);
 
 
 }
