@@ -170,7 +170,7 @@
                         <div class="barre"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin();" id="vehicule0">Supprimer ce  véhicule</button>
+                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="vehicule0">Supprimer ce  véhicule</button>
             </div>
             <button type="button" class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
@@ -444,12 +444,20 @@ function addtoform(types) {
     var button =document.createElement("button");
      button.setAttribute("type","button");
      button.setAttribute("class","btn btn-primary btn-lg");
-     button.setAttribute("onClick","javascript:deleteEngin();");
+     button.setAttribute("onClick","javascript:deleteEngin(this.id);");
      button.setAttribute("id","vehicule"+nbvehicule);
      var sup =document.createTextNode("supprimer ce véhicule");
      button.appendChild(sup);
      body.appendChild(button);
 
+
+}
+
+function deleteEngin(id){
+    if (document.contains(document.getElementById(id))) 
+    {
+        document.getElementById(id).remove();
+    }
 
 }
 </script>
