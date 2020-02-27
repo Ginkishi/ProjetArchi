@@ -1,5 +1,5 @@
 <div class="form-container">
-    <h1 class="header">Compte-rendu d'intervention</h1>
+    <h1 class="header"> Modification de compte-rendu d'intervention</h1>
     <form action="../../intervention/editinterventiontobdd/<?php echo $intervention["IDIntervention"] ?>" method="post">
         <div class="section">
             <h2 class="title">Intervention</h2>
@@ -548,7 +548,24 @@ function addtoform(types) {
         champ.appendChild(input);
     champ2.appendChild(champ);
     body.appendChild(champ2);
+        var button =document.createElement("button");
+        button.setAttribute("type","button");
+        button.setAttribute("class","btn btn-primary btn-lg");
+        button.setAttribute("onClick","javascript:deleteEngin(this.id);");
+        button.setAttribute("id","vehicule"+nbvehicule);
+        var sup =document.createTextNode("supprimer ce véhicule");
+        button.appendChild(sup);
+    body.appendChild(button);
 
+
+}
+function deleteEngin(id)
+{
+
+    if (document.contains(document.getElementById(id))) 
+    {
+        document.getElementById(id).remove();
+    }
 
 }
 </script>
