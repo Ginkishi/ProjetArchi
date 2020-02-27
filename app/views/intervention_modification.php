@@ -28,14 +28,17 @@
                         <?php
                         while ($donnees = $typeList->fetch()) {
                         ?>
-                        <option value="<?php
+                        <option value="
+                        <?php
 
                             $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                             if ($output == "") {
                                 $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>" <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
+                        ?>
+                           " 
+                        <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
                                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
@@ -184,7 +187,7 @@
                     {
                         $v = $tousLesVehiculeIntervention[$i];
             ?>
-            <div class="body" >
+            <div class="body" id="vehicule0" >
             	 <div class="group-champ col2">
 	                <div class="champ">
 	                    <label for="">Nom du v&eacute;hicule</label>
@@ -271,6 +274,7 @@
                         <div class="barre"></div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="vehicule0">Supprimer ce  véhicule</button>
             </div>
             <?php 
                     }
