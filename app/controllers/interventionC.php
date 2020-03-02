@@ -18,8 +18,12 @@ class InterventionController
 	public function doexport()
 	{
 		$m = new InterventionM();
-		$tableauIntervention = $m->getInterventions($_GET["date_debut"], $_GET["date_fin"]);
-		var_dump($tableauIntervention);
+		$tableauIntervention = $m->getInterventions($_POST["date_debut"], $_POST["date_fin"]);
+
+		foreach($tableauIntervention as $rec)
+		{
+			var_dump($rec);
+		}
 	}
 
 

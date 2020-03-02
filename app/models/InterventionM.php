@@ -24,6 +24,16 @@ class InterventionM
 		return $record;
 	}
 
+	public function getInterventions($dateDebut, $dateFin)
+	{
+		var_dump($dateDebut);
+		var_dump($dateFin);
+		$query = $this->con->query("SELECT * FROM interventions
+									WHERE (DateDeclenchement>='$dateDebut' AND DateFin<='$dateFin')");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+
 
 	public function AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
 	{
