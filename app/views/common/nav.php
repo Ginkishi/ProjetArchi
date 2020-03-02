@@ -20,6 +20,7 @@
             <div class="submenu">
                 <a href="<?= LOCAL_DIR ?>intervention/listAll" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Liste</span></a>
                 <a href="<?= LOCAL_DIR ?>intervention/add" class="submenu-item"><span class="title-item"><i class="fa fa-plus-circle fa-2x"></i>Ajouter</span></a>
+                <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Exportation</span></a>
             </div>
         </div>
         <a href="#" class="sidebar-item"><span class="title-item"><i class="fa fa-user-tie fa-2x"></i>Pompier</span></a>

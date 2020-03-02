@@ -24,6 +24,20 @@ class InterventionM
 		return $record;
 	}
 
+	public function getInterventions($dateDebut, $dateFin)
+	{
+		$query = $this->con->query("SELECT * FROM interventions
+									WHERE (DateDeclenchement>='$dateDebut' AND DateFin<='$dateFin')");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+
+	public function getPersonnesSurIntervention($id)
+	{
+		$query = $this->con->query("SELECT IDPersonne FROM personnelduvehicule WHERE (IDIntervention=$id)");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
 
 	public function AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
 	{
