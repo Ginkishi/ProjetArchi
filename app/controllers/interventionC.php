@@ -9,6 +9,19 @@ class InterventionController
 	{
 	}
 
+	public function export()
+	{
+		$v = new View();
+		$v->afficher("intervention_export");
+	}
+
+	public function doexport()
+	{
+		$m = new InterventionM();
+		$tableauIntervention = $m->getInterventions($_GET["date_debut"], $_GET["date_fin"]);
+		var_dump($tableauIntervention);
+	}
+
 
 	public function index()
 	{
