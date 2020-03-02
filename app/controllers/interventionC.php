@@ -15,17 +15,75 @@ class InterventionController
 		$v->afficher("intervention_export");
 	}
 
+	
+	public function array2csv($array, $datedebut, $datefin)
+	{
+		$fd = fopen("$datedebut$datefin.csv", "w");
+		echo "Numero Intervention;Nom;Prenom;DateDebut;DateFin\n";
+
+		foreach($array as $v)
+		{
+			$nI = $v["NumeroIntervention"];
+			$n = $v["nom"];
+			$p = $v["prenom"];
+			$dd = $v["dateDebut"];
+			$df = $v["dateFin"];
+			echo "$nI;$n;$p;$dd;$df\n";
+		}
+
+		fclose($fd);
+	}
+
+	public function download_send_headers($filename) {
+		// disable caching
+		$now = gmdate("D, d M Y H:i:s");
+		header("Expires: Tue, 01 Jul 2050 06:00:00 GMT");
+		header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
+		header("Last-Modified: {$now} GMT");
+	
+		// force download  
+		header("Content-Type: application/force-download");
+		header("Content-Type: application/octet-stream");
+		header("Content-Type: application/download");
+	
+		// disposition / encoding on response body
+		header("Content-Disposition: attachment;filename={$filename}");
+		header("Content-Transfer-Encoding: binary");
+	}
+
+
 	public function doexport()
 	{
 		$m = new InterventionM();
-		$tableauIntervention = $m->getInterventions($_POST["date_debut"], $_POST["date_fin"]);
+		$dateDebut = $_POST["date_debut"];
+		$dateFin = $_POST["date_fin"];
 
+		$tableauIntervention = $m->getInterventions($dateDebut, $dateFin);
+		$array = [];
+		$i = 0;
 		foreach($tableauIntervention as $rec)
 		{
-			var_dump($rec);
+			$idInter = $rec["IDIntervention"];
+			$numInter = $rec["NIntervention"];
+			$IDPersonnesSurIntervention = $m->getPersonnesSurIntervention($idInter);
+			foreach($IDPersonnesSurIntervention	as $idPersonne)
+			{
+				$personne = API::getPompierById($idPersonne["IDPersonne"]);
+				$nom = $personne["P_NOM"];
+				$prenom = $personne["P_PRENOM"];
+				//echo "$nom $prenom est sur l'intervetion $idInter<br>";
+				$array[$i]["NumeroIntervention"] = $numInter;
+				$array[$i]["nom"] = $nom;
+				$array[$i]["prenom"] = $prenom;
+				$array[$i]["dateDebut"] = $dateDebut;
+				$array[$i]["dateFin"] = $dateFin;
+				$i = $i + 1;
+			}
 		}
+		$file = $this->array2csv($array, $_POST["date_debut"], $_POST["date_fin"]);
+		//echo $file;
+		$this->download_send_headers("$dateDebut$dateFin.csv");
 	}
-
 
 	public function index()
 	{
