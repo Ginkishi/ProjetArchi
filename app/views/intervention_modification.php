@@ -1,5 +1,5 @@
 <div class="form-container">
-    <h1 class="header">Compte-rendu d'intervention</h1>
+    <h1 class="header"> Modification de compte-rendu d'intervention</h1>
     <form action="../../intervention/editinterventiontobdd/<?php echo $intervention["IDIntervention"] ?>" method="post">
         <div class="section">
             <h2 class="title">Intervention</h2>
@@ -28,14 +28,17 @@
                         <?php
                         while ($donnees = $typeList->fetch()) {
                         ?>
-                        <option value="<?php
+                        <option value="
+                        <?php
 
                             $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                             if ($output == "") {
                                 $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
                             }
                             echo $output;
-            ?>" <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
+                        ?>
+                           " 
+                        <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
                                     $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
@@ -184,7 +187,7 @@
                     {
                         $v = $tousLesVehiculeIntervention[$i];
             ?>
-            <div class="body" >
+            <div class="body" id="vehicule0" >
             	 <div class="group-champ col2">
 	                <div class="champ">
 	                    <label for="">Nom du v&eacute;hicule</label>
@@ -271,6 +274,7 @@
                         <div class="barre"></div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="vehicule0">Supprimer ce  véhicule</button>
             </div>
             <?php 
                     }
@@ -544,7 +548,24 @@ function addtoform(types) {
         champ.appendChild(input);
     champ2.appendChild(champ);
     body.appendChild(champ2);
+        var button =document.createElement("button");
+        button.setAttribute("type","button");
+        button.setAttribute("class","btn btn-primary btn-lg");
+        button.setAttribute("onClick","javascript:deleteEngin(this.id);");
+        button.setAttribute("id","vehicule"+nbvehicule);
+        var sup =document.createTextNode("supprimer ce véhicule");
+        button.appendChild(sup);
+    body.appendChild(button);
 
+
+}
+function deleteEngin(id)
+{
+
+    if (document.contains(document.getElementById(id))) 
+    {
+        document.getElementById(id).remove();
+    }
 
 }
 </script>
