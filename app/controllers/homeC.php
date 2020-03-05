@@ -18,6 +18,7 @@ class HomeController
 		$v->ajouterVariable("interventions", $interventions);
 		$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 		$v->ajouterLink("personal", "home2");
+		$v->ajouterLink("personal", "intervention_card");
 		$v->afficher("home_index2");
 	}
 }
