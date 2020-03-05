@@ -13,21 +13,21 @@
         <div class="logo"><i class="far fa-pause-circle"></i></div>
         <div class="body">
             <div class="title">En attente :</div>
-            <div class="number">10</div>
+            <div class="number"><?= $numberOfIntervention[0]["nbIntervention"] ?> </div>
         </div>
     </div>
     <div class="cards danger">
         <div class="logo"><i class="far fa-times-circle"></i></div>
         <div class="body">
             <div class="title">Non Validé :</div>
-            <div class="number">10</div>
+            <div class="number"><?= $numberOfIntervention[3]["nbIntervention"] ?> </div>
         </div>
     </div>
     <div class="cards valid">
         <div class="logo"><i class="far fa-check-circle"></i></div>
         <div class="body">
             <div class="title">Validé :</div>
-            <div class="number">10</div>
+            <div class="number"><?= $numberOfIntervention[1]["nbIntervention"] + $numberOfIntervention[4]["nbIntervention"] ?> </div>
         </div>
     </div>
 </div>

@@ -170,7 +170,7 @@ body {
   cursor: pointer;
 }
 .sidebar-item.show {
-  height: 200px;
+  height: 250px;
   transition: height 0.15s linear;
 }
 .sidebar-item.drop:after {

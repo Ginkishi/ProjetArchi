@@ -67,6 +67,7 @@ class LoginController
 			$v->ajouterLink("personal", "home2");
 			$v->ajouterLink("personal", "intervention_card");
 			$v->ajouterScript("personal", "clock");
+			$v->afficher("home_index2");
 		} else {
 			$v = new View();
 			$v->ajouterVariable("error_message", "Impossible de se connecter!");
