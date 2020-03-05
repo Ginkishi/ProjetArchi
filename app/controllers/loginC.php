@@ -28,6 +28,7 @@ class LoginController
 			$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 			$v->ajouterLink("personal", "home2");
 			$v->ajouterLink("personal", "intervention_card");
+			$v->ajouterScript("personal", "clock");
 			$v->afficher("home_index2");
 		} else {
 			$v->afficherLogin();
@@ -65,6 +66,7 @@ class LoginController
 			$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 			$v->ajouterLink("personal", "home2");
 			$v->ajouterLink("personal", "intervention_card");
+			$v->ajouterScript("personal", "clock");
 		} else {
 			$v = new View();
 			$v->ajouterVariable("error_message", "Impossible de se connecter!");
