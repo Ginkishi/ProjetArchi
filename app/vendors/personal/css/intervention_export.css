@@ -13,6 +13,11 @@
 .export-container {
   min-width: 100%;
   /* background-color: rebeccapurple; */
+  text-align: center;
+  margin-top: 50px;
+}
+.sidebar.show + .main .export-container {
+  margin-top: 0px;
 }
 .bandeau {
   min-width: 100%;
@@ -89,6 +94,15 @@
   padding: 10px 25px;
   font-family: "Montserrat", sans-serif;
   border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  transition: 0.25s linear;
+}
+.contain.shadow .main .export-container .submit {
+  background-color: #212121;
+  color: #56ab2f;
+  border: 3px solid #56ab2f;
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
 }
 
 .contain.shadow .main .bandeau .bandeau-title {
@@ -126,6 +140,10 @@
   .bandeau-title {
     margin: 0;
   }
+  .bandeau-title .title {
+    font-size: 2.5em;
+  }
+
   .clocks {
     min-width: 100%;
     max-width: 100%;
@@ -156,17 +174,21 @@
 }
 @media screen and (max-width: 576px) {
   .bandeau .bandeau-title .title {
-    font-size: 3em;
+    font-size: 1.5em;
     transition: 0.25s linear;
+    margin: 0;
   }
   .bandeau .bandeau-title .logo {
-    font-size: 3em;
+    font-size: 5em;
     transition: 0.25s linear;
+    margin: 10px;
+    margin-right: 20px;
   }
   .sidebar.show + .main .bandeau .bandeau-title .title {
     font-size: 1.5em;
   }
   .sidebar.show + .main .bandeau .bandeau-title .logo {
-    font-size: 2em;
+    font-size: 4em;
+    margin: 10px;
   }
 }
