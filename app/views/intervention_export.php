@@ -11,6 +11,6 @@
             </div>
         </div>
         <p>Date de début: <input type="date" name="date_debut"></input><br>Date de fin:<input type="date" name="date_fin" /></p>
-        <input type="submit" />
+        <input class="submit" type="submit" value="Exporter">
     </form>
 </div>
