@@ -13,6 +13,7 @@ class InterventionController
 	{
 		$v = new View();
 		$v->ajouterLink("personal", "intervention_export");
+		$v->ajouterScript("personal", "clock");
 		$v->afficher("intervention_export");
 	}
 
