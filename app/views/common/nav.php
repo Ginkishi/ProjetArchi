@@ -6,7 +6,7 @@
     <div class="photo">
         <i class="fa fa-user-circle fa-4x"></i>
     </div>
-    <div class="info"><span class="nom">Victor MARFIL</span><span class="role">Administrator</span></div>
+    <div class="info"><span class="nom"><?= $_SESSION['nom'] . " " . $_SESSION['prenom'] ?></span><span class="role"><?= $_SESSION['grade'] ?></span></div>
     <div class="tool">
         <a href="#" class="notif"><i class="fa fa-bell "></i></a>
         <a href="#" class="msg"><i class="fa fa-envelope"></i></a>
