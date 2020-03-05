@@ -27,7 +27,7 @@ class LoginController
 			$v->ajouterVariable("interventions", $interventions);
 			$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 			$v->ajouterLink("personal", "home");
-			$v->afficher("home_index");
+			$v->afficher("home_index2");
 		} else {
 			$v->afficherLogin();
 		}
