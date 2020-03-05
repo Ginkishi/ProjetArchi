@@ -96,3 +96,25 @@
   background: rgb(8, 37, 51);
   transition: 0.25s linear;
 }
+.contain.shadow .main .last-intervention .grille .cards {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+}
+.contain.shadow .main .last-intervention .grille .cards .info {
+  background: #212121;
+  color: rgb(31, 82, 150);
+  border: 2px solid rgb(31, 82, 150);
+  transition: 0.25s linear;
+}
+.contain.shadow .main .last-intervention .grille .cards .number {
+  border: 2px solid rgb(31, 82, 150);
+  background: rgb(8, 37, 51);
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .last-intervention .grille .cards .see-more {
+  border: 2px solid rgb(31, 82, 150);
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+}
