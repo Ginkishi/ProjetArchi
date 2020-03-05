@@ -64,3 +64,88 @@
   max-width: 100%;
   max-height: 100%;
 }
+.cards-container {
+  /* background-color: red; */
+  max-width: 100%;
+  min-height: 175px;
+  max-height: 1175px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.cards-container .cards {
+  background: #212121;
+  min-width: 390px;
+  max-width: 390px;
+  min-height: 230px;
+  max-height: 230px;
+  margin: 10px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  border-radius: 8px;
+}
+.last-intervention {
+  /* background: orangered; */
+  /* border: 3px solid orangered; */
+  color: white;
+  max-width: 100%;
+  min-height: 150px;
+  margin: 20px;
+  margin-top: 0;
+
+  border-radius: 5px;
+}
+.last-intervention > .title {
+  text-align: center;
+  min-width: 100%;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px;
+  color: white;
+  background: orangered;
+  transition: 0.25 linear;
+  border-radius: 5px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  transition: 0.25s linear;
+}
+.cards > .logo {
+  text-align: center;
+  min-width: 100%;
+  font-size: 102px;
+  color: white;
+}
+.cards > .body {
+  display: flex;
+  padding: 0 10px;
+}
+.cards > .body .number {
+  text-align: center;
+  min-width: 25%;
+  max-width: 25%;
+  font-size: 52px;
+  color: white;
+}
+.cards > .body .title {
+  text-align: center;
+  min-width: 75%;
+  max-width: 75%;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.cards.warn {
+  background: #f7971e; /* fallback for old browsers */
+}
+.cards.danger {
+  background: #ed213a; /* fallback for old browsers */
+}
+.cards.valid {
+  background: #56ab2f; /* fallback for old browsers */
+}
