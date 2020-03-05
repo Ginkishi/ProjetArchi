@@ -12,7 +12,7 @@
 }
 .export-container {
   min-width: 100%;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
 }
 .bandeau {
   min-width: 100%;
@@ -79,4 +79,56 @@
 .bandeau-title .logo img {
   max-width: 100%;
   max-height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .bandeau {
+    grid-template-columns: 1fr;
+    transition: 0.25s linear;
+  }
+  .bandeau-title {
+    margin: 0;
+  }
+  .clocks {
+    min-width: 100%;
+    max-width: 100%;
+
+    min-height: 70px;
+    max-height: 70px;
+    margin: 0;
+    margin-top: 10px;
+  }
+  .time {
+    font-size: 24px;
+  }
+  .date {
+    margin: 0;
+    margin-left: 20px;
+  }
+  .sidebar.show + .main .bandeau .bandeau-title {
+    flex-direction: column;
+    min-height: 190px;
+    max-height: 190px;
+  }
+  .sidebar.show + .main .bandeau .bandeau-title .title {
+    font-size: 2em;
+  }
+  .sidebar.show + .main .bandeau .bandeau-title .logo {
+    font-size: 3em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .bandeau .bandeau-title .title {
+    font-size: 3em;
+    transition: 0.25s linear;
+  }
+  .bandeau .bandeau-title .logo {
+    font-size: 3em;
+    transition: 0.25s linear;
+  }
+  .sidebar.show + .main .bandeau .bandeau-title .title {
+    font-size: 1.5em;
+  }
+  .sidebar.show + .main .bandeau .bandeau-title .logo {
+    font-size: 2em;
+  }
 }
