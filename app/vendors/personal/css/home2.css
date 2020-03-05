@@ -149,6 +149,88 @@
 .cards.valid {
   background: #56ab2f; /* fallback for old browsers */
 }
+.contain.shadow .main .bandeau .bandeau-title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid rgb(31, 82, 150);
+}
+
+.contain.shadow .main .bandeau .bandeau-title .title {
+  color: rgb(31, 82, 150);
+  transition: 0.25s linear;
+}
+.contain.shadow .main .bandeau .bandeau-title .logo {
+  color: rgb(31, 82, 150);
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .bandeau .clocks {
+  background: #212121;
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  border: 3px solid white;
+}
+.contain.shadow .main .bandeau .clocks .time {
+  color: white;
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .cards-container .cards {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .last-intervention {
+  transition: 0.25s linear;
+  /* background: #212121; */
+
+  color: orangered;
+}
+.contain.shadow .main .last-intervention .title {
+  color: orangered;
+  border: 3px solid orangered;
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  background: #212121;
+
+  transition: 0.25s linear;
+}
+.contain.shadow .main .cards-container .cards.cards.warn,
+.contain.shadow .main .cards-container .cards.cards.cards.danger,
+.contain.shadow .main .cards-container .cards.cards.valid {
+  background: #212121;
+  transition: 0.25s linear;
+}
+.contain.shadow .main .cards-container .cards.cards.warn {
+  border: 3px solid #f7971e;
+}
+.contain.shadow .main .cards-container .cards.cards.danger {
+  border: 3px solid #ed213a;
+}
+.contain.shadow .main .cards-container .cards.cards.valid {
+  border: 3px solid #56ab2f;
+}
+
+.contain.shadow .main .cards-container .cards.cards.warn .title,
+.contain.shadow .main .cards-container .cards.cards.warn .logo,
+.contain.shadow .main .cards-container .cards.cards.warn .number {
+  color: #f7971e !important;
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .cards-container .cards.cards.danger .title,
+.contain.shadow .main .cards-container .cards.cards.danger .logo,
+.contain.shadow .main .cards-container .cards.cards.danger .number {
+  color: #ed213a !important;
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .cards-container .cards.cards.valid .title,
+.contain.shadow .main .cards-container .cards.cards.valid .logo,
+.contain.shadow .main .cards-container .cards.cards.valid .number {
+  color: #56ab2f !important;
+  transition: 0.25s linear;
+}
 @media screen and (max-width: 768px) {
   .bandeau {
     grid-template-columns: 1fr;
