@@ -1,16 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto|Ubuntu&display=swap");
 .vehicule-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  font-family: "Ubuntu", sans-serif;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
 }
 .vehicule-card {
   background-color: #1e3c72;
   border-radius: 21px;
   max-width: 400px;
   padding: 10px;
-  box-shadow: 0px 0px 15px 2px black;
+
+  box-shadow: 1px 1px 3px rgb(185, 180, 180), -1px -1px 3px #ffffff;
   margin: 15px;
+
+  color: white;
+  transition: 0.25s linear;
 }
 .logo {
   border-radius: 50%;
@@ -43,17 +48,22 @@
 a:hover {
   text-decoration: none;
 }
+.vehicule-container .vehicule-card .model,
+.vehicule-container .vehicule-card .imma,
+.vehicule-container .vehicule-card .km,
+.vehicule-container .vehicule-card .annee,
+.vehicule-container .vehicule-card .statut,
+.vehicule-container .vehicule-card .type {
+  margin-bottom: 15px;
+}
 
-.model,
+/* .model,
 .imma,
 .km {
   color: white;
   margin: 10px;
 }
-span.label {
-  font-weight: bold;
-  font-size: 1.1em;
-}
+
 .compo {
   color: white;
   margin: 10px;
@@ -62,4 +72,42 @@ span.label {
 li {
   margin: 10px 0px;
   text-transform: capitalize;
+} */
+span.label {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.vehicule-card .body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.vehicule-card .statut:hover {
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+}
+
+.contain.shadow .main .vehicule-container .vehicule-card {
+  color: #6e93d8;
+  background-color: #212121;
+  border: 2px solid #6e93d8;
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+}
+.contain.shadow .main .vehicule-container .vehicule-card .statut {
+  color: #6e93d8;
+  transition: 0.25s linear;
+}
+.contain.shadow .main .vehicule-container .vehicule-card .logo {
+  background-color: #212121;
+  transition: 0.25s linear;
+  border: 2px solid #6e93d8;
+  transition: 0.25s linear;
+}
+
+.contain.shadow .main .vehicule-container .vehicule-card .logo i {
+  color: #6e93d8;
+  transition: 0.25s linear;
 }

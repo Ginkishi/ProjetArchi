@@ -34,7 +34,8 @@ class API
 	public static function getAllVehicules()
 	{
 		self::checkBDD();
-		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE;");
+		//$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE;");
+		$query = self::$bdd->query("SELECT V_ID ID,V_INDICATIF Nom,V_MODELE Modele,V_IMMATRICULATION Immatriculation,V_ANNEE Annee,V_KM Kilometrage,VP_LIBELLE Statut,TV_LIBELLE Type FROM vehicule v JOIN vehicule_position vp on v.VP_ID = vp.VP_ID JOIN type_vehicule tv on tv.TV_CODE = v.TV_CODE");
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
@@ -122,7 +123,7 @@ class API
 		return $row['TV_CODE'];
 	}
 
-	
+
 
 	public static function getPompierById($id)
 	{
