@@ -6,7 +6,7 @@
     <div class="photo">
         <i class="fa fa-user-circle fa-4x"></i>
     </div>
-    <div class="info"><span class="nom">Victor MARFIL</span><span class="role">Administrator</span></div>
+    <div class="info"><span class="nom"><?= $_SESSION['nom'] . " " . $_SESSION['prenom'] ?></span><span class="role"><?= $_SESSION['grade'] ?></span></div>
     <div class="tool">
         <a href="#" class="notif"><i class="fa fa-bell "></i></a>
         <a href="#" class="msg"><i class="fa fa-envelope"></i></a>
@@ -20,7 +20,7 @@
             <div class="submenu">
                 <a href="<?= LOCAL_DIR ?>intervention/listAll" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Liste</span></a>
                 <a href="<?= LOCAL_DIR ?>intervention/add" class="submenu-item"><span class="title-item"><i class="fa fa-plus-circle fa-2x"></i>Ajouter</span></a>
-                <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Exportation</span></a>
+                <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item"><span class="title-item"><i class="fa fa-file-download fa-2x"></i>Exportation</span></a>
             </div>
         </div>
         <a href="#" class="sidebar-item"><span class="title-item"><i class="fa fa-user-tie fa-2x"></i>Pompier</span></a>

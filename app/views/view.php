@@ -36,7 +36,11 @@ class View
         echo '</div>';
         echo '</div>';
         include VIEWS . DS . 'common' . DS . 'bs_js.php';
-
+        if (isset($this->listScripts)) {
+            foreach ($this->listScripts as $l => $val) {
+                echo '<script src="' . LOCAL_VENDORS . DS . $val . DS . "js" . DS . $l . '.js"></script>';
+            }
+        }
         echo '</body></html>';
     }
 

@@ -17,7 +17,9 @@ class HomeController
 		$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
 		$v->ajouterVariable("interventions", $interventions);
 		$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
-		$v->ajouterLink("personal", "home");
-		$v->afficher("home_index");
+		$v->ajouterLink("personal", "home2");
+		$v->ajouterLink("personal", "intervention_card");
+		$v->ajouterScript("personal", "clock");
+		$v->afficher("home_index2");
 	}
 }
