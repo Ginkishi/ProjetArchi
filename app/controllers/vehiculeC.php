@@ -26,7 +26,7 @@ class VehiculeController
 		$v = new View();
 		$v->ajouterVariable("vehicule", $vehicule);
 		$v->ajouterVariable("roles", $roles);
-		$v->ajouterLink("personal", "vehicule");
+		$v->ajouterLink("personal", "vehicule_view");
 		$v->afficher("vehicule_view");
 	}
 }
