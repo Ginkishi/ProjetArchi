@@ -2,7 +2,7 @@
     <?php foreach ($records as $r) { ?>
     <div class="vehicule-card">
         <div class="logo"><i class="fa fa-car fa-3x"></i></div>
-        <a href="#">
+        <a href="<?= LOCAL_DIR ?>vehicule/view/<?= $r["ID"]; ?>">
             <div class="title"><?= $r["Nom"] ?></div>
         </a>
         <div class="body">

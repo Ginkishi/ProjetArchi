@@ -50,9 +50,17 @@ class API
 	{
 		self::checkBDD();
 		$id = self::cleanUserInput($id);
-		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_KM,ROLE_NAME,ROLE_ID FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
-		return $query->fetchAll(PDO::FETCH_ASSOC);
+		$query = self::$bdd->query("SELECT V_ID,V_INDICATIF,V_MODELE,V_IMMATRICULATION,V_ANNEE,V_KM,VP_LIBELLE,TV_LIBELLE FROM vehicule v JOIN vehicule_position vp on v.VP_ID = vp.VP_ID JOIN type_vehicule tv on tv.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id . " ;");
+		return $query->fetch(PDO::FETCH_ASSOC);
 	}
+
+	public static function getVehiculeRole($id)
+	{
+		self::checkBDD();
+		$query = self::$bdd->query("SELECT V_ID,ROLE_NAME,ROLE_ID FROM `vehicule` v INNER JOIN type_vehicule_role tvr on tvr.TV_CODE = v.TV_CODE WHERE v.V_ID = " . $id);
+		return $query;
+	}
+
 
 	public static function getAllUsersId()
 	{

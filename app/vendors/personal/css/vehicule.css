@@ -111,3 +111,6 @@ span.label {
   color: #6e93d8;
   transition: 0.25s linear;
 }
+pre {
+  color: white;
+}

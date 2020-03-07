@@ -19,4 +19,14 @@ class VehiculeController
 		$v->ajouterLink("personal", "vehicule");
 		$v->afficher("vehicule_index");
 	}
+	public function view($id)
+	{
+		$vehicule = $this->modelVehicule->getById($id);
+		$roles = $this->modelVehicule->getVehiculeRole($id);
+		$v = new View();
+		$v->ajouterVariable("vehicule", $vehicule);
+		$v->ajouterVariable("roles", $roles);
+		$v->ajouterLink("personal", "vehicule");
+		$v->afficher("vehicule_view");
+	}
 }
