@@ -1,2 +1,2 @@
 # ProjetArchi
-![alt text](https://www.sdis30.fr/SiteCollectionImages/Internet/casque.JPG)
+![alt text](https://octodex.github.com/sentrytocat/)
