@@ -254,19 +254,28 @@ class InterventionController
 						} else {
 							array_push($l, $composition[$IDvehicule][$j]);
 							array_push($l, $_POST[$composition[$IDvehicule][$j]][$incremant[$IDvehicule]]);
+							
 						}
-
+                     
 						array_push($listetosend, $l);
 					}
 				}
+						$apprenti="none"; 
+						if(!empty($_POST["apprenti"][$i]))
+						{     
+					         echo $_POST["apprenti"][$i];
+						    $apprenti=$_POST["apprenti"][$i];
+						}	
+	
 				$incremant[$IDvehicule]++;
-				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend);
+			
+				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti);
 			}
 		}
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		//  $Intervention = new InterventionController();
 		// $Intervention->index();
-		header('Location: ' . LOCAL_DIR . DS . 'home/index');
+       	header('Location: ' . LOCAL_DIR . DS . 'home/index');
 	}
 
 
@@ -394,7 +403,7 @@ class InterventionController
 			}
 		}
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
-		//  $Intervention = new InterventionController();
+		// $Intervention = new InterventionController();
 		// $Intervention->index();
 	}
 }

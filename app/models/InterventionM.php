@@ -191,21 +191,31 @@ class InterventionM
 		return API::getAllVehiculesIndicatif();
 	}
 
-	public function AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend)
+	public function AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti)
 	{
 
-		// var_dump($listetosend);
+	 var_dump($listetosend);
+	        $id = API::getVehiculeTV_CODE($IDvehicule);
+
 		for ($j = 0; $j < count($listetosend); $j++) {
 			$role = str_replace("_", " ", $listetosend[$j][0]);
 			// echo $role;
-			$id = API::getVehiculeTV_CODE($IDvehicule);
-
+			
 			$IDrole = $j + 1;
 			//  echo  $IDrole;
 			$pieces = explode(" ", $listetosend[$j][1]);
 			$IDPompier = API::getPompierID($pieces[0], $pieces[1]);
 			echo $listetosend[$j][1] . "<br>";
 			$this->con->query("INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);");
+
+		}
+		if (strcmp($apprenti,"none")!==0)
+		{
+			$pieces = explode(" ",$apprenti);
+			$IDPompier = API::getPompierID($pieces[0], $pieces[1]);
+			$req="INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention,0);";
+			$this->con->query($req);
+
 		}
 	}
 }
