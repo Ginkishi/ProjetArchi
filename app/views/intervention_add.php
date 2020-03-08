@@ -165,7 +165,7 @@
                         <div class="barre"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="vehicule0">Supprimer ce véhicule</button>
+              
             </div>
             <button type="button" class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
