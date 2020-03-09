@@ -120,11 +120,15 @@ class InterventionM
 
 	public function getAllVehiculeByIntervention($id)
 	{
+
 		$query = $this->con->query("SELECT * FROM  vehiculeutilise where IDIntervention=$id");
+
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+
 		for ($i = 0; $i < sizeof($record); $i++) {
-			$record[$i]["vehicule"] = API::getVehiculeById($record[$i]["IDVehicule"]);
+			$record[$i]["vehicule"] = API::getVehiculeInterventionById($record[$i]["IDVehicule"]);
 			for ($j = 0; $j < sizeof($record[$i]["vehicule"]); $j++) {
+
 				$query = $this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole=" . (int) $record[$i]["vehicule"][$j]["ROLE_ID"]);
 				$record2 = $query->fetch(PDO::FETCH_ASSOC);
 				$np = API::getPompierById($record2["IDPersonne"]);
