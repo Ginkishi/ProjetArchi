@@ -185,6 +185,7 @@
     </form>
 </div>
 <script type='text/javascript'>
+var nb=0;
 var nbvehicule = 0;
 
 function getXMLHttpRequest() {
@@ -236,6 +237,18 @@ function html_entity_decode(str) {
     toReturn = ta.value;
     ta = null;
     return toReturn
+}
+
+function getchef()
+{   
+    if(nb===0)
+    {    nb++;
+         return "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>";
+    }
+    else
+    {
+        return "chef d'agrés";
+    }
 }
 //ajout des champs pour l'equipe
 function selection(xml, sel, p, val) {
@@ -298,6 +311,8 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
+  
+    
     var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -316,12 +331,13 @@ function selection(xml, sel, p, val) {
         input.setAttribute("type", "text");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("placeholder", "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>");
+        input.setAttribute("placeholder",getchef());
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
+    
     console.log(liste);
 }
 
