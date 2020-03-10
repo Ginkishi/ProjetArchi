@@ -54,6 +54,12 @@ class InterventionController
 		header("Content-Transfer-Encoding: binary");
 	}
 
+	public function displayForbidden()
+	{
+		$v = new View();
+		$v->afficher("forbidden_view");
+	}
+
 
 	public function doexport()
 	{
@@ -120,8 +126,7 @@ class InterventionController
 		}
 		else
 		{
-			$v = new View();
-			$v->afficher("forbidden_view");
+			$this->displayForbidden();
 		}
 	}
 	public function listAll()
@@ -139,26 +144,32 @@ class InterventionController
 		}
 		else
 		{
-			$v = new View();
-			$v->afficher("forbidden_view");
+			$this->displayForbidden();
 		}
 	}
 
 
 	public function modification($id)
 	{
-		$InterventionModel = new InterventionM();
-		$typeList = $InterventionModel->getTypeInterventionList();
-		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-		$intervention = $InterventionModel->getInterventionById($id);
-		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
-		$v = new View();
-		$v->ajouterVariable("typeList", $typeList);
-		$v->ajouterVariable("typeVehicule", $typeVehicule);
-		$v->ajouterVariable("intervention", $intervention);
-		$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_modification");
+		if(GestionnaireGrade::aLesDroitsModification())
+		{
+			$InterventionModel = new InterventionM();
+			$typeList = $InterventionModel->getTypeInterventionList();
+			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$intervention = $InterventionModel->getInterventionById($id);
+			$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
+			$v = new View();
+			$v->ajouterVariable("typeList", $typeList);
+			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterVariable("intervention", $intervention);
+			$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
+			$v->ajouterLink("personal", "intervention");
+			$v->afficher("intervention_modification");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
 
 	public function addInterventionToBDD()

@@ -35,11 +35,25 @@
                 <?php
                     }
                 ?>
+                <?php
+                    if(GestionnaireGrade::aLesDroitsLecture())
+                    {
+                ?>
                 <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item disabled"><span class="title-item"><i class="fa fa-file-download fa-2x"></i>Exportation</span></a>
+                <?php
+                    }
+                ?>
             </div>
         </div>
         <a href="#" class="sidebar-item"><span class="title-item"><i class="fa fa-user-tie fa-2x"></i>Pompier</span></a>
+        <?php
+            if(GestionnaireGrade::aLesDroitsLecture())
+            {
+        ?>
         <a href="<?= LOCAL_DIR ?>vehicule/index" class="sidebar-item"><span class="title-item"><i class="fa fa-car fa-2x"></i>Véhicules</span></a>
+        <?php
+            }
+        ?>
         <div class="sidebar-item"><span class="title-item"><i class="far fa-id-badge fa-2x"></i>Roles</span></div>
     </div>
 </div>
