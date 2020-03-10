@@ -13,7 +13,7 @@
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
     <form action="../intervention/addinterventiontobdd" method="post">
-    test: <input type="text" name="q" class="search" placeholder="Enter Name">
+    test: <input type="text" name="q" class="search" autocomplete="off" placeholder="Enter Name">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
