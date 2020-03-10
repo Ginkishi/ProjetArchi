@@ -10,6 +10,7 @@ define('ROOT', dirname(__FILE__));
 define('CONTROLLERS', ROOT.DS.'controllers');
 define('MODELS', ROOT.DS.'models');
 define('CLASSES', ROOT.DS.'classes');
+define('PDO_PATH', ROOT.DS.'pdo.php');
 
 
 // =====================  Détermination du controleur à utiliser: Est-ce que j'ai un paramètre 'url' dans mon URL?
@@ -55,6 +56,20 @@ $router = new Routeur($_GET['url']);
         require_once CONTROLLERS.DS.'type_interventionC.php';
         $ti = new typeInterventionController();
         $ti->UnTypeIntervention($id); 
+    });
+
+     
+    $router->get('/fonctionnalite', function() {
+        require_once CONTROLLERS.DS.'fonctionnaliteC.php';
+        $ti = new FonctionnaliteController();
+        $ti->fonctionnalites(); 
+    });
+
+
+    $router->get('/fonctionnalite/:id', function($id) {
+        require_once CONTROLLERS.DS.'fonctionnaliteC.php';
+        $f = new FonctionnaliteController();
+        $f->UneFonctionnalite($id); 
     });
 
     

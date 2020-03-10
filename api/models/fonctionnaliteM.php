@@ -9,17 +9,17 @@ class TypeIntervention {
 		return $input;
 	}
 
-  public function listAll() {
-    $sql='SELECT * FROM type_intervention';
+  public function listAllFonct() {
+    $sql='SELECT F_ID, F_DESCRIPTION FROM fonctionnalite';
     $dbh = BDD::getInstance();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
   }
 
-  public function OneTIByID($id) {
+  public function OneFonctByID($id) {
     $id = self::cleanUserInput($id);
-    $sql="SELECT * FROM type_intervention WHERE TI_CODE = \"" . $id . "\";";
+    $sql="SELECT F_ID, F_DESCRIPTION FROM fonctionnalite WHERE F_ID = " . $id . ";";
     $dbh = BDD::getInstance();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();

@@ -1,5 +1,5 @@
 <?php
-include("pdo.php");
+require_once(PDO_PATH);
 class Pompier {
   public function __construct(){}
 
@@ -11,6 +11,16 @@ class Pompier {
 
   public function listAllPompier() {
     $sql="SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE, GP_ID, GP_ID2 FROM `pompier`;";
+    $dbh = BDD::getInstance();
+    $stmt=$dbh->prepare($sql);
+    $stmt->execute();
+    return $stmt;
+  }
+
+  
+  public function OnePompierByID($id) {
+    $id = self::cleanUserInput($id);
+    $sql="SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE, GP_ID, GP_ID2 FROM `pompier` WHERE P_ID = " . $id . ";";
     $dbh = BDD::getInstance();
     $stmt=$dbh->prepare($sql);
     $stmt->execute();

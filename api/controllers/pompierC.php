@@ -59,13 +59,13 @@ class PompierController {
 
     public function UnPompier($id) {
         $model = new Pompier();
-        $stmt = $model->listAllPompier();
+        $stmt = $model->OnePompierByID($id);
         $num = $stmt->rowCount();
         if($num>0){
-            
-        $parr = array();
-        $parr["pompiers"] = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                
+            $parr = array();
+            $parr["pompier"] = array();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
             extract($row);
             $p = array(
                 "P_ID" => $P_ID,
@@ -97,16 +97,15 @@ class PompierController {
                     array_push($p["ROLE2"], $F_ID);
                 }
             }
-            array_push($parr["pompiers"], $p);
-        }
-        header('Content-Type: application/json');
-        http_response_code(200);
-        echo json_encode($parr) ;
+            array_push($parr["pompier"], $p);
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode($parr) ;
         } else {
-        http_response_code(404);
-        echo json_encode(
-            array("message" => "Pas de pompier.")
-        );
+            http_response_code(404);
+            echo json_encode(
+                array("message" => "Pas de pompier.")
+            );
         }
     }
 }
