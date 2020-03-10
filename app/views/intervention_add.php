@@ -1,19 +1,46 @@
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="../views/jquery-1.4.2.min.js" > </script>
-<script src="../views/jquery.autocomplete.js"></script> 
-  <script>
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="jquery.autocomplete.js"></script>
+<style>
+.ac_results {
+	padding: 0px;
+	border: 1px solid ;
+	overflow: hidden;
+}
 
-    $( ".search" ).autocomplete({
-      source:'../intervention/autocomplete'
-                
-        });
-      
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;
+	font-family:verdana;
+
+	font-size: 12px;
+
+	line-height: 16px;
+	overflow: hidden;
+
+}
+</style>
+
+<script> 
+ jQuery(function(){ 
+ $('.search').autocomplete("../intervention/autocomplete"
+     );
+ });
 
  </script>
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
     <form action="../intervention/addinterventiontobdd" method="post">
-    test: <input type="text" name="q" class="search" autocomplete="off" placeholder="Enter Name">
+    test: <input type="text" name="coucou" class="search" placeholder="Enter Name">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">

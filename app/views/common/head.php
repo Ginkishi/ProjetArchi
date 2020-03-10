@@ -11,4 +11,3 @@
 <link href="<?= LOCAL_VENDORS ?>/font-awesome/css/all.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="<?= LOCAL_VENDORS ?>/personal/css/menu.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
