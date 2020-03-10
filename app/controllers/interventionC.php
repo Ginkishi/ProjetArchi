@@ -2,6 +2,7 @@
 
 require_once(VIEWS . DS . "view.php");
 require_once(MODELS . DS . "InterventionM.php");
+require_once(CONTROLLERS.DS."gestionnaireGrade.php");
 class InterventionController
 {
 
@@ -117,14 +118,22 @@ class InterventionController
 	}
 	public function listAll()
 	{
-		$InterventionModel = new InterventionM();
-		$interventions = $InterventionModel->getAll();
+		if(GestionnaireGrade::aLesDroitsLecture())
+		{
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAll();
 
-		$v = new View();
-		$v->ajouterVariable("interventions", $interventions);
-		$v->ajouterLink("personal", "intervention");
+			$v = new View();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterLink("personal", "intervention");
 
-		$v->afficher("intervention_listAll");
+			$v->afficher("intervention_listAll");
+		}
+		else
+		{
+			$v = new View();
+			$v->afficher("forbidden_view");
+		}
 	}
 
 

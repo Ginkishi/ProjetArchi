@@ -50,7 +50,9 @@ class LoginController
 				$record[0]['P_CODE'],
 				$record[0]['P_NOM'],
 				$record[0]['P_PRENOM'],
-				$record[0]['P_GRADE']
+				$record[0]['P_GRADE'],
+				[],
+				[]
 			);
 			/**$_SESSION["id"] = $record[0]['P_ID'];
 				$_SESSION["code"] = $record[0]['P_CODE'];
