@@ -107,14 +107,22 @@ class InterventionController
 
 	public function add()
 	{
-		$InterventionModel = new InterventionM();
-		$typeList = $InterventionModel->getTypeInterventionList();
-		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-		$v = new View();
-		$v->ajouterVariable("typeList", $typeList);
-		$v->ajouterVariable("typeVehicule", $typeVehicule);
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_add");
+		if(GestionnaireGrade::aLesDroitsAjout())
+		{
+			$InterventionModel = new InterventionM();
+			$typeList = $InterventionModel->getTypeInterventionList();
+			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$v = new View();
+			$v->ajouterVariable("typeList", $typeList);
+			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterLink("personal", "intervention");
+			$v->afficher("intervention_add");
+		}
+		else
+		{
+			$v = new View();
+			$v->afficher("forbidden_view");
+		}
 	}
 	public function listAll()
 	{
