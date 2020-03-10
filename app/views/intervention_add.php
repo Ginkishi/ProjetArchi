@@ -1,12 +1,13 @@
-<script type="text/javascript" src="../views/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="../views/jquery.autocomplete.js"></script>
-<script> 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="../views/jquery-1.4.2.min.js" > </script>
+<script src="../views/jquery.autocomplete.js"></script> 
+  <script>
 
- $('.search').autocomplete({
-     
-    source : "../views/search.php"
- }
- );
+    $( ".search" ).autocomplete({
+      source:'../intervention/autocomplete'
+                
+        });
+      
 
  </script>
 <div class="form-container">
