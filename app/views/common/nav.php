@@ -1,3 +1,6 @@
+<?php
+    require_once(CONTROLLERS.DS."gestionnaireGrade.php");
+?>
 <div class="menu">
     <div id="toggleBtn" class="toggleBtn"><i class="fa fa-bars fa-2x"></i></div>
     <div class="darkbtn"><label><input type="checkbox" id="darkbtn"><span class="check"></span></label></div>
@@ -18,9 +21,21 @@
         <div class="sidebar-item drop">
             <span class="title-item"><i class="fa fa-map-marked-alt fa-2x"></i>Intervention</span>
             <div class="submenu">
+                <?php
+                    if(GestionnaireGrade::aLesDroitsLecture())
+                    {
+                ?>
                 <a href="<?= LOCAL_DIR ?>intervention/listAll" class="submenu-item"><span class="title-item"><i class="fa fa-list fa-2x"></i>Liste</span></a>
-                <a href="<?= LOCAL_DIR ?>intervention/add" class="submenu-item"><span class="title-item"><i class="fa fa-plus-circle fa-2x"></i>Ajouter</span></a>
-                <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item"><span class="title-item"><i class="fa fa-file-download fa-2x"></i>Exportation</span></a>
+                <?php
+                    }
+                    if(GestionnaireGrade::aLesDroitsAjout())
+                    {
+                ?>
+                <a href="<?= LOCAL_DIR ?>intervention/add" class="submenu-item"><span class="title-item"><i class="fa fa-plus-circle fa-2x"></i>Ajouter</span></a>           
+                <?php
+                    }
+                ?>
+                <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item disabled"><span class="title-item"><i class="fa fa-file-download fa-2x"></i>Exportation</span></a>
             </div>
         </div>
         <a href="#" class="sidebar-item"><span class="title-item"><i class="fa fa-user-tie fa-2x"></i>Pompier</span></a>
