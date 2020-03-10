@@ -40,7 +40,7 @@
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
     <form action="../intervention/addinterventiontobdd" method="post">
-    test: <input type="text" name="coucou" class="search" placeholder="Enter Name">
+    test: <input type="text"  class="search" placeholder="Enter Name">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
@@ -317,6 +317,7 @@ function selection(xml, sel, p, val) {
         input.setAttribute("type", "text");
         input.required = false;
         input.setAttribute("name",  "apprenti[]");
+        input.setAttribute("class","search");
         input.setAttribute("placeholder", "Apprenti");
         var span2 = document.createElement("span");
         div.appendChild(label);
@@ -344,6 +345,7 @@ function selection(xml, sel, p, val) {
         input.required = true;
         input.setAttribute("name", liste[i] + "[]");
         input.setAttribute("placeholder", liste[i]);
+        input.setAttribute("class","search");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
