@@ -12,10 +12,17 @@ class InterventionController
 
 	public function export()
 	{
-		$v = new View();
-		$v->ajouterLink("personal", "intervention_export");
-		$v->ajouterScript("personal", "clock");
-		$v->afficher("intervention_export");
+		if(GestionnaireGrade::aLesDroitsExportation())
+		{
+			$v = new View();
+			$v->ajouterLink("personal", "intervention_export");
+			$v->ajouterScript("personal", "clock");
+			$v->afficher("intervention_export");
+		}
+		else
+		{
+			$this->displayForbidden();	
+		}
 	}
 
 

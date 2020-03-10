@@ -9,36 +9,43 @@
         public static function aLesDroitsAjout()
         {
             GestionnaireSession::ouvreSession();
-            return GestionnaireSession::aUnDesRoles("15");
+            return GestionnaireSession::aUnDesRoles("78"); // 78 = droit d'ajout au niveau de e-brigade au niveau de e-brigade
         }
 
         public static function aLesDroitsModification()
         {
-            return GestionnaireGrade::aLesDroitsAjout(); // Les droits de modification et d'ajout sont les mêmes
+            GestionnaireSession::ouvreSession();
+            return GestionnaireGrade::aUnDesRoles("79"); // 79 = droit de modification au niveau de e-brigade au niveau de e-brigade
         }
 
         public static function aLesDroitsSuppression()
         {
             GestionnaireSession::ouvreSession();
-            return GestionnaireSession::aUnDesRoles("19");
+            return GestionnaireSession::aUnDesRoles("82"); // 82 = droit de suppression au niveau de e-brigade
         }
 
         public static function aLesDroitsLecture()
         {
             GestionnaireSession::ouvreSession();
-            return GestionnaireSession::aUnDesRoles("40", "44"); // 40 & 44 = droit de lecture / lecture total
+            return GestionnaireSession::aUnDesRoles("81"); // 81 = droit de lecture / lecture total
         }
 
         public static function aLesDroitsDemandeModification()
         {
             GestionnaireSession::ouvreSession();
-            return true;
+            return GestionnaireSession::aUnDesRoles("83");
         }
 
         public static function aLesDroitsValidation()
         {
             GestionnaireSession::ouvreSession();
-            return GestionnaireSession::aUnDesRoles("13");
+            return GestionnaireSession::aUnDesRoles("80"); // 80 = droit de validation au niveau de e-brigade
+        }
+
+        public static function aLesDroitsExportation()
+        {
+            GestionnaireSession::ouvreSession();
+            return GestionnaireSession::aUnDesRoles("84");
         }
     }
 ?>

@@ -36,7 +36,7 @@
                     }
                 ?>
                 <?php
-                    if(GestionnaireGrade::aLesDroitsLecture())
+                    if(GestionnaireGrade::aLesDroitsExportation())
                     {
                 ?>
                 <a href="<?= LOCAL_DIR ?>intervention/export" class="submenu-item disabled"><span class="title-item"><i class="fa fa-file-download fa-2x"></i>Exportation</span></a>
