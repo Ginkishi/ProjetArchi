@@ -1,5 +1,6 @@
-<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="jquery.autocomplete.js"></script>
+<script type="text/javascript" src="../views/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../views/jquery.autocomplete.js"> </script>
+
 <style>
 .ac_results {
 	padding: 0px;
@@ -8,11 +9,13 @@
 }
 
 .ac_results ul {
+    color: #000;
 	width: 100%;
 	list-style-position: outside;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+    background-color: #fff;
 }
 
 .ac_results li {
