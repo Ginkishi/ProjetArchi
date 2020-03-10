@@ -1,5 +1,5 @@
 <?php
-require_once(".." . DS . API_DIRNAME . "/API.php");
+require_once(API_PATH);
 
 class VehiculeModel
 {
