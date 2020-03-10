@@ -1,6 +1,18 @@
+<script type="text/javascript" src="../views/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../views/jquery.autocomplete.js"></script>
+<script> 
+
+ $('.search').autocomplete({
+     
+    source : "../views/search.php"
+ }
+ );
+
+ </script>
 <div class="form-container">
     <h1 class="header">Compte-rendu d'intervention</h1>
     <form action="../intervention/addinterventiontobdd" method="post">
+    test: <input type="text" name="q" class="search" placeholder="Enter Name">
         <div class="section">
             <h2 class="title">Intervention</h2>
             <div class="body">
@@ -174,7 +186,7 @@
             <div class="body">
                 <div class="champ">
                     <label for="">Nom du responsable</label>
-                    <input type="text" autocomplete="off" name="responsable">
+                    <input type="text" autocomplete="off" class="search"  name="responsable">
                     <div class="barre"></div>
                 </div>
             </div>
