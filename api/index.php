@@ -17,6 +17,14 @@ define('PDO_PATH', ROOT.DS.'pdo.php');
 require_once CLASSES.DS.'router.php';
 $router = new Routeur($_GET['url']); 
 
+
+    $router->post('/auth', function() {
+        require_once CONTROLLERS.DS.'pompierC.php';
+        $p = new PompierController();
+        $p->authentification($_POST['code'],$_POST['mp']);
+    });
+
+
     $router->get('/pompier', function() { 
         require_once CONTROLLERS.DS.'pompierC.php';
         $p = new PompierController();

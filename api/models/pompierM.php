@@ -9,6 +9,17 @@ class Pompier {
 		return $input;
 	}
 
+
+  public function getUser($code, $mp) {
+    $code = self::cleanUserInput($code);
+    $sql="SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_GRADE, GP_ID, GP_ID2 FROM `pompier` WHERE P_CODE = \"" . $code .  "\" AND P_MDP = \"" . $mp . "\";";
+    $dbh = BDD::getInstance();
+    $stmt=$dbh->prepare($sql);
+    $stmt->execute();
+    return $stmt;
+  }
+
+
   public function listAllPompier() {
     $sql="SELECT P_ID,P_CODE,P_NOM, P_PRENOM, P_PRENOM2, P_SEXE, P_CIVILITE , P_GRADE, GP_ID, GP_ID2 FROM `pompier`;";
     $dbh = BDD::getInstance();
