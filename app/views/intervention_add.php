@@ -203,18 +203,7 @@
 </div>
 <script type='text/javascript'>
 var nbvehicule = 0;
-var nb=0;
-function getchef()
-{   
-    if(nb===0)
-    {    nb++;
-         return "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>";
-    }
-    else
-    {
-        return "chef d'agrès";
-    }
-} 
+
 function getXMLHttpRequest() {
     var xhr = null;
 
@@ -328,7 +317,9 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-    var div = document.createElement("div");
+    if(nbvehicule==0)
+    { nbvehicule++;
+        var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
         var label = document.createElement("label");
@@ -347,12 +338,44 @@ function selection(xml, sel, p, val) {
         input.setAttribute("list","firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("placeholder", getchef());
+        input.setAttribute("value", "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
+
+    }
+    else{
+        var div = document.createElement("div");
+        div.setAttribute("id", "team" + nb[1]);
+        div.setAttribute("class", "champ");
+        var label = document.createElement("label");
+        label.setAttribute("for", "")
+        var text = document.createTextNode(liste[1]);
+        var span = document.createElement("span");
+        span.setAttribute("class", "important");
+        var etoile = document.createTextNode("*");
+        span.appendChild(etoile);
+        label.appendChild(text);
+        label.appendChild(span);
+        var deuxpoints = document.createTextNode(":");
+        label.appendChild(deuxpoints);
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("list","firefighters");
+        input.required = true;
+        input.setAttribute("name", liste[1] + "[]");
+        input.setAttribute("placeholder", "chef d'agrès");
+        var span2 = document.createElement("span");
+        div.appendChild(label);
+        div.appendChild(input);
+        div.appendChild(span2);
+        sel.parentNode.insertBefore(div, sel.nextSibling);
+    }
+   
+   
+    
     console.log(liste);
 }
 
@@ -530,6 +553,7 @@ function deleteEngin(id) {
     if (document.contains(document.getElementById(id))) {
         document.getElementById(id).remove();
     }
+    nbvehicule++;
 
 }
 </script>
