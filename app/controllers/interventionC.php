@@ -127,6 +127,7 @@ class InterventionController
 			$v->ajouterVariable("typeVehicule", $typeVehicule);
 			$v->ajouterVariable("listFirefighter", $listFirefighter);
 			$v->ajouterLink("personal", "intervention");
+
 			$v->afficher("intervention_add");
 		} else {
 			$this->displayForbidden();

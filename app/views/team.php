@@ -7,7 +7,7 @@
 
 	if ($variable) 
     {     $typeList = API::getTeam($variable);
-        while ($donnees = $typeList->fetch())
+        foreach ($typeList as $donnees)
          {
             
             
@@ -26,4 +26,3 @@
     {
 		echo "FAIL";
     }
-?>
