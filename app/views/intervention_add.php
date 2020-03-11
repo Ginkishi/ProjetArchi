@@ -553,9 +553,8 @@ function addtoform(types) {
 function deleteEngin(id) {
     if (document.contains(document.getElementById(id))) {
         document.getElementById(id).remove();
-        nbvehicule--;
     }
-    
+    nbvehicule--;
 
 }
 </script>
