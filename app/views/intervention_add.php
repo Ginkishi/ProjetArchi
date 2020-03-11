@@ -307,6 +307,7 @@ function selection(xml, sel, p, val) {
         label.appendChild(deuxpoints);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
+        input.setAttribute("list","firefighters");
         input.required = true;
         input.setAttribute("name", liste[i] + "[]");
         input.setAttribute("placeholder", liste[i]);
@@ -332,6 +333,7 @@ function selection(xml, sel, p, val) {
         label.appendChild(deuxpoints);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
+        input.setAttribute("list","firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
         input.setAttribute("placeholder", "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>");
