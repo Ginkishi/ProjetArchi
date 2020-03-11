@@ -28,10 +28,6 @@
             <?php } ?>
         </div>
     </div>
-    <?php
-
-
-    ?>
     <?php //var_dump($vehicules[0]["vehicule"]) 
     ?>
 </div>

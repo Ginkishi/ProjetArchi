@@ -256,7 +256,7 @@ function html_entity_decode(str) {
 //ajout des champs pour l'equipe
 function selection(xml, sel, p, val) {
     var nb = p.split("%");
-    console.log(val);
+
     while (document.contains(document.getElementById("team" + nb[1]))) {
         document.getElementById("team" + nb[1]).remove();
     }
@@ -371,7 +371,7 @@ function selection(xml, sel, p, val) {
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
 
-    console.log(liste);
+    console.log(liste, "  je fais un test");
 }
 
 function AddEngin() {
