@@ -20,33 +20,28 @@ class VehiculeController
 
 	public function index()
 	{
-		if(GestionnaireGrade::aLesDroitsLecture())
-		{
+		if (GestionnaireGrade::aLesDroitsLecture()) {
 			$records = $this->modelVehicule->getListe();
 			$v = new View();
 			$v->ajouterVariable("records", $records);
 			$v->ajouterLink("personal", "vehicule");
 			$v->afficher("vehicule_index");
-		}
-		else
-		{
+		} else {
 			$this->displayForbidden();
 		}
 	}
+
 	public function view($id)
 	{
-		if(GestionnaireGrade::aLesDroitsLecture())
-		{
+		if (GestionnaireGrade::aLesDroitsLecture()) {
 			$vehicule = $this->modelVehicule->getById($id);
-			$roles = $this->modelVehicule->getVehiculeRole($id);
+			$roles = $vehicule["ROLE"];
 			$v = new View();
 			$v->ajouterVariable("vehicule", $vehicule);
 			$v->ajouterVariable("roles", $roles);
 			$v->ajouterLink("personal", "vehicule_view");
 			$v->afficher("vehicule_view");
-		}
-		else
-		{
+		} else {
 			$this->displayForbidden();
 		}
 	}

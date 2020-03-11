@@ -2,7 +2,7 @@
 
 require_once(VIEWS . DS . "view.php");
 require_once(MODELS . DS . "InterventionM.php");
-require_once(CONTROLLERS.DS."gestionnaireGrade.php");
+require_once(CONTROLLERS . DS . "gestionnaireGrade.php");
 class InterventionController
 {
 
@@ -12,16 +12,13 @@ class InterventionController
 
 	public function export()
 	{
-		if(GestionnaireGrade::aLesDroitsExportation())
-		{
+		if (GestionnaireGrade::aLesDroitsExportation()) {
 			$v = new View();
 			$v->ajouterLink("personal", "intervention_export");
 			$v->ajouterScript("personal", "clock");
 			$v->afficher("intervention_export");
-		}
-		else
-		{
-			$this->displayForbidden();	
+		} else {
+			$this->displayForbidden();
 		}
 	}
 
@@ -120,29 +117,25 @@ class InterventionController
 
 	public function add()
 	{
-		if(GestionnaireGrade::aLesDroitsAjout())
-		{
+		if (GestionnaireGrade::aLesDroitsAjout()) {
 			$InterventionModel = new InterventionM();
-      $typeList = $InterventionModel->getTypeInterventionList();
-      $typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-      $listFirefighter=$InterventionModel->getAllFirefighter();
-      $v = new View();
-      $v->ajouterVariable("typeList", $typeList);
-      $v->ajouterVariable("typeVehicule", $typeVehicule);
-      $v->ajouterVariable("listFirefighter", $listFirefighter);
-      $v->ajouterLink("personal", "intervention");
-      $v->afficher("intervention_add");
-		}
-		else
-		{
+			$typeList = $InterventionModel->getTypeInterventionList();
+			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$listFirefighter = $InterventionModel->getAllFirefighter();
+			$v = new View();
+			$v->ajouterVariable("typeList", $typeList);
+			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterVariable("listFirefighter", $listFirefighter);
+			$v->ajouterLink("personal", "intervention");
+			$v->afficher("intervention_add");
+		} else {
 			$this->displayForbidden();
 		}
 	}
-  
+
 	public function listAll()
 	{
-		if(GestionnaireGrade::aLesDroitsLecture())
-		{
+		if (GestionnaireGrade::aLesDroitsLecture()) {
 			$InterventionModel = new InterventionM();
 			$interventions = $InterventionModel->getAll();
 
@@ -151,9 +144,7 @@ class InterventionController
 			$v->ajouterLink("personal", "intervention");
 
 			$v->afficher("intervention_listAll");
-		}
-		else
-		{
+		} else {
 			$this->displayForbidden();
 		}
 	}
@@ -161,25 +152,22 @@ class InterventionController
 
 	public function modification($id)
 	{
-		if(GestionnaireGrade::aLesDroitsModification())
-		{
-      $InterventionModel = new InterventionM();
-      $typeList = $InterventionModel->getTypeInterventionList();
-      $typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-      $listFirefighter=$InterventionModel->getAllFirefighter();
-      $intervention = $InterventionModel->getInterventionById($id);
-      $tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
-      $v = new View();
-      $v->ajouterVariable("typeList", $typeList);
-      $v->ajouterVariable("typeVehicule", $typeVehicule);
-      $v->ajouterVariable("intervention", $intervention);
-      $v->ajouterVariable("listFirefighter", $listFirefighter);
-      $v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
-      $v->ajouterLink("personal", "intervention");
-      $v->afficher("intervention_modification");
-		}
-		else
-		{
+		if (GestionnaireGrade::aLesDroitsModification()) {
+			$InterventionModel = new InterventionM();
+			$typeList = $InterventionModel->getTypeInterventionList();
+			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$listFirefighter = $InterventionModel->getAllFirefighter();
+			$intervention = $InterventionModel->getInterventionById($id);
+			$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
+			$v = new View();
+			$v->ajouterVariable("typeList", $typeList);
+			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterVariable("intervention", $intervention);
+			$v->ajouterVariable("listFirefighter", $listFirefighter);
+			$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
+			$v->ajouterLink("personal", "intervention");
+			$v->afficher("intervention_modification");
+		} else {
 			$this->displayForbidden();
 		}
 	}
@@ -209,9 +197,9 @@ class InterventionController
 
 			$composition[$i] = array();
 			$team = $InterventionModel->getRolesById($i);
-			print_r  ($team);
+			print_r($team);
 			foreach ($team as $r) {
-				array_push($composition[$i], str_replace(" ","_",(utf8_encode($r["ROLE_NAME"]))));
+				array_push($composition[$i], str_replace(" ", "_", ($r["ROLE_NAME"])));
 				//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
 			}
 		}
@@ -295,28 +283,26 @@ class InterventionController
 						} else {
 							array_push($l, $composition[$IDvehicule][$j]);
 							array_push($l, $_POST[$composition[$IDvehicule][$j]][$incremant[$IDvehicule]]);
-							
 						}
-                     
+
 						array_push($listetosend, $l);
 					}
 				}
-						$apprenti="none"; 
-						if(!empty($_POST["apprenti"][$i]))
-						{     
-					         echo $_POST["apprenti"][$i];
-						    $apprenti=$_POST["apprenti"][$i];
-						}	
-	
+				$apprenti = "none";
+				if (!empty($_POST["apprenti"][$i])) {
+					echo $_POST["apprenti"][$i];
+					$apprenti = $_POST["apprenti"][$i];
+				}
+
 				$incremant[$IDvehicule]++;
-			
-				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti);
+
+				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend, $apprenti);
 			}
 		}
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		//  $Intervention = new InterventionController();
 		// $Intervention->index();
-       	header('Location: ' . LOCAL_DIR . DS . 'home/index');
+		header('Location: ' . LOCAL_DIR . DS . 'home/index');
 	}
 
 
@@ -439,17 +425,16 @@ class InterventionController
 						array_push($listetosend, $l);
 					}
 				}
-				
-				$apprenti="none"; 
-						if(!empty($_POST["apprenti"][$i]))
-						{     
-					         echo $_POST["apprenti"][$i];
-						    $apprenti=$_POST["apprenti"][$i];
-						}	
-	
+
+				$apprenti = "none";
+				if (!empty($_POST["apprenti"][$i])) {
+					echo $_POST["apprenti"][$i];
+					$apprenti = $_POST["apprenti"][$i];
+				}
+
 				$incremant[$IDvehicule]++;
-			
-				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti);
+
+				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend, $apprenti);
 			}
 		}
 		// un traiment d'erreur a effectuer apres eg: champ non rempli

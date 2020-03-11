@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . "\..\connectBDD.php";
-require_once(".." . DS . API_DIRNAME . "/API.php");
+require_once(API_PATH);
 class InterventionM
 {
 	private $con;
