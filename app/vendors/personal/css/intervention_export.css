@@ -97,6 +97,31 @@
   box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
   transition: 0.25s linear;
 }
+.export-container .body {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+  padding: 10px 25px;
+  font-family: "Montserrat", sans-serif;
+  text-align: left;
+  justify-items: center;
+}
+
+.export-container .body span.label {
+  font-size: 24px;
+  font-weight: bold;
+}
+.export-container .body input[type="date"] {
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #56ab2f;
+  color: white;
+}
 .contain.shadow .main .export-container .submit {
   background-color: #212121;
   color: #56ab2f;
@@ -130,6 +155,11 @@
 .contain.shadow .main .bandeau .clocks .time {
   color: white;
   transition: 0.25s linear;
+}
+.contain.shadow .main .export-container .body input[type="date"] {
+  background-color: #212121;
+  color: #56ab2f;
+  border: 3px solid #56ab2f;
 }
 
 @media screen and (max-width: 768px) {

@@ -10,7 +10,10 @@
                 <div class="date">03 Mar 2020</div>
             </div>
         </div>
-        <p>Date de début: <input type="date" name="date_debut"></input><br>Date de fin:<input type="date" name="date_fin" /></p>
-        <input class="submit" type="submit" value="Exporter">
+        <div class="body">
+            <div class="champ"><span class="label"> Date de début : </span><input type="date" name="date_debut" /></div>
+            <div class="champ"><span class="label">Date de fin :</span> <input type="date" name="date_fin" /></div>
+            <div class="champ"><input class="submit" type="submit" value="Exporter"></div>
+        </div>
     </form>
 </div>
