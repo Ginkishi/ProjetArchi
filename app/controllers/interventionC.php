@@ -110,7 +110,7 @@ class InterventionController
 		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
 		$v->ajouterVariable("intervention", $intervention);
 		$v->ajouterVariable("vehicules", $tousLesVehiculeIntervention);
-		$v->ajouterLink("personal", "intervention");
+		$v->ajouterLink("personal", "intervention_view");
 		$v->afficher("intervention_view");
 	}
 
@@ -127,7 +127,6 @@ class InterventionController
 			$v->ajouterVariable("typeVehicule", $typeVehicule);
 			$v->ajouterVariable("listFirefighter", $listFirefighter);
 			$v->ajouterLink("personal", "intervention");
-
 			$v->afficher("intervention_add");
 		} else {
 			$this->displayForbidden();
@@ -200,7 +199,7 @@ class InterventionController
 			$team = $InterventionModel->getRolesById($i);
 			print_r($team);
 			foreach ($team as $r) {
-				array_push($composition[$i], str_replace(" ", "_", ($r["ROLE_NAME"])));
+				array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
 				//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
 			}
 		}
