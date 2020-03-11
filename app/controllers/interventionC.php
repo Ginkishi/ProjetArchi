@@ -121,15 +121,18 @@ class InterventionController
 			$InterventionModel = new InterventionM();
 			$typeList = $InterventionModel->getTypeInterventionList();
 			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$listFirefighter = $InterventionModel->getAllFirefighter();
 			$v = new View();
 			$v->ajouterVariable("typeList", $typeList);
 			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterVariable("listFirefighter", $listFirefighter);
 			$v->ajouterLink("personal", "intervention");
 			$v->afficher("intervention_add");
 		} else {
 			$this->displayForbidden();
 		}
 	}
+
 	public function listAll()
 	{
 		if (GestionnaireGrade::aLesDroitsLecture()) {
@@ -153,12 +156,14 @@ class InterventionController
 			$InterventionModel = new InterventionM();
 			$typeList = $InterventionModel->getTypeInterventionList();
 			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$listFirefighter = $InterventionModel->getAllFirefighter();
 			$intervention = $InterventionModel->getInterventionById($id);
 			$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
 			$v = new View();
 			$v->ajouterVariable("typeList", $typeList);
 			$v->ajouterVariable("typeVehicule", $typeVehicule);
 			$v->ajouterVariable("intervention", $intervention);
+			$v->ajouterVariable("listFirefighter", $listFirefighter);
 			$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
 			$v->ajouterLink("personal", "intervention");
 			$v->afficher("intervention_modification");
@@ -191,7 +196,8 @@ class InterventionController
 		for ($i = 0; $i <= $nbv; $i++) {
 
 			$composition[$i] = array();
-			$team = $InterventionModel->getVehiculeById($i);
+			$team = $InterventionModel->getRolesById($i);
+			print_r($team);
 			foreach ($team as $r) {
 				array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
 				//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";

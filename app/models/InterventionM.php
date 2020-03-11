@@ -179,7 +179,12 @@ class InterventionM
 		return API::getVehiculeById($id);
 	}
 
+	
+	public function getRolesById($id)
+	{
 
+	 return API::getRolesById($id);
+	}
 
 	public function getTypeInterventionList()
 	{
@@ -221,5 +226,11 @@ class InterventionM
 			$this->con->query($req);
 
 		}
+	}
+
+	function getAllFirefighter()
+	{
+		return API::getAllFirefighter();
+
 	}
 }
