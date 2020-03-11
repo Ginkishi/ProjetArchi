@@ -286,7 +286,24 @@
             <div class="body">
                 <div class="champ">
                     <label for="">Nom du responsable</label>
-                    <input type="text" autocomplete="off" name="responsable" value="<?php echo utf8_encode($intervention["IDResponsable"]);?>">
+                    <input type="text" autocomplete="off" name="responsable" list="firefighters" value="<?php echo utf8_encode($intervention["IDResponsable"]);?>">
+                    <datalist id="firefighters">
+                    <?php
+                           foreach ( $listFirefighter as $Firefighter) {
+                            ?>
+                            <option value="<?php
+
+                                                $output = htmlentities($Firefighter, 0, "UTF-8");
+                                                if ($output == "") {
+                                                    $output = htmlentities(utf8_encode($Firefighter), 0, "UTF-8");
+                                                }
+                                                echo $output;
+                                ?>">
+                            </option>
+                            <?php
+                            }
+                            ?>
+                    </datalist>
                     <div class="barre"></div>
                 </div>
             </div>
