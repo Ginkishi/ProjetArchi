@@ -274,7 +274,6 @@
                         <div class="barre"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="vehicule0">Supprimer ce  véhicule</button>
             </div>
             <?php 
                     }
@@ -363,6 +362,7 @@ function selection(xml, sel, p, val) {
         liste[i] = html_entity_decode(liste[i]);
     }
     for (let i = 1; i < liste.length; i++) {
+        console.log(liste[i]);
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");

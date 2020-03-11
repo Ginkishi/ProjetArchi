@@ -165,7 +165,7 @@
                         <div class="barre"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="vehicule0">Supprimer ce véhicule</button>
+              
             </div>
             <button type="button" class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
@@ -249,7 +249,30 @@ function selection(xml, sel, p, val) {
     for (let i = 1; i < liste.length; i++) {
         liste[i] = html_entity_decode(liste[i]);
     }
-    for (let i = 1; i < liste.length; i++) {
+    var div = document.createElement("div");
+        div.setAttribute("id", "team" + nb[1]);
+        div.setAttribute("class", "champ");
+        var label = document.createElement("label");
+        label.setAttribute("for", "")
+        var text = document.createTextNode("Apprenti");
+        var span = document.createElement("span");
+        span.setAttribute("class", "important");
+        label.appendChild(text);
+        label.appendChild(span);
+        var deuxpoints = document.createTextNode(":");
+        label.appendChild(deuxpoints);
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.required = false;
+        input.setAttribute("name",  "apprenti[]");
+        input.setAttribute("placeholder", "Apprenti");
+        var span2 = document.createElement("span");
+        div.appendChild(label);
+        div.appendChild(input);
+        div.appendChild(span2);
+        sel.parentNode.insertBefore(div, sel.nextSibling);
+
+    for (let i =  liste.length-1; i >1; i--) {
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -275,6 +298,30 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
+    var div = document.createElement("div");
+        div.setAttribute("id", "team" + nb[1]);
+        div.setAttribute("class", "champ");
+        var label = document.createElement("label");
+        label.setAttribute("for", "")
+        var text = document.createTextNode(liste[1]);
+        var span = document.createElement("span");
+        span.setAttribute("class", "important");
+        var etoile = document.createTextNode("*");
+        span.appendChild(etoile);
+        label.appendChild(text);
+        label.appendChild(span);
+        var deuxpoints = document.createTextNode(":");
+        label.appendChild(deuxpoints);
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.required = true;
+        input.setAttribute("name", liste[1] + "[]");
+        input.setAttribute("placeholder", "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>");
+        var span2 = document.createElement("span");
+        div.appendChild(label);
+        div.appendChild(input);
+        div.appendChild(span2);
+        sel.parentNode.insertBefore(div, sel.nextSibling);
     console.log(liste);
 }
 
