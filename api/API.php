@@ -93,6 +93,19 @@ class API
 		return $row['P_ID'];
 	}
 
+	public static function getAllFirefighter()
+	{
+		self::checkBDD();
+		$query = self::$bdd->query( "select P_PRENOM,P_NOM from pompier;");
+
+			$array = array();
+			while($row = $query->fetch())
+			{
+				$array[]= $row["P_PRENOM"]." ".$row["P_NOM"]."\n";
+		
+			}
+			return $array;
+	}
 	public static function getTypeInterventionList()
 	{
 		self::checkBDD();
