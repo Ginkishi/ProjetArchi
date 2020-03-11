@@ -15,7 +15,7 @@
         public static function aLesDroitsModification()
         {
             GestionnaireSession::ouvreSession();
-            return GestionnaireGrade::aUnDesRoles("79"); // 79 = droit de modification au niveau de e-brigade au niveau de e-brigade
+            return GestionnaireSession::aUnDesRoles("79"); // 79 = droit de modification au niveau de e-brigade au niveau de e-brigade
         }
 
         public static function aLesDroitsSuppression()
@@ -48,4 +48,3 @@
             return GestionnaireSession::aUnDesRoles("84");
         }
     }
-?>
