@@ -17,9 +17,10 @@
             <div class="title">V&eacute;hicule(s)</div>
             <?php foreach ($vehicules as $v) { ?>
             <div class="vehicule">
-                <div class="nom"><?= $v["vehicule"][0]["V_INDICATIF"] ?></div>
-                <div class="modele"><?= $v["vehicule"][0]["V_MODELE"] ?></div>
-                <div class="immatriculation"><?= $v["vehicule"][0]["V_IMMATRICULATION"] ?></div>
+                <div class="nom"><span class="label">Nom : </span><?= $v["vehicule"][0]["V_INDICATIF"] ?></div>
+                <div class="modele"><span class="label">Modèle : </span><?= $v["vehicule"][0]["V_MODELE"] ?></div>
+                <div class="immatriculation"><span class="label">Immatriculation : </span><?= $v["vehicule"][0]["V_IMMATRICULATION"] ?></div>
+                <div class="comp"><span class="label">Composition :</div>
                 <?php foreach ($v["vehicule"] as $ve) { ?>
                 <div class="poste"><span class="label"><?= utf8_encode($ve["ROLE_NAME"]) ?> : </span><?= utf8_encode($ve["pompier"]) ?></div>
                 <?php } ?>
@@ -31,5 +32,6 @@
 
 
     ?>
-    <?php var_dump($vehicules[0]["vehicule"]) ?>
+    <?php //var_dump($vehicules[0]["vehicule"]) 
+    ?>
 </div>

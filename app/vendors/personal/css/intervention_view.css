@@ -11,7 +11,7 @@
 .bandeau-title {
   min-height: 75px;
   max-height: 75px;
-  background-color: #6e93d8;
+  background-color: rgb(31, 82, 150);
 
   min-width: 80%;
   margin: 10px;
@@ -39,7 +39,7 @@
 }
 
 .intervention-container .body .info {
-  color: white;
+  color: black;
   font-size: 20px;
   font-family: "Montserrat", sans-serif;
   display: grid;
@@ -47,29 +47,45 @@
   row-gap: 10px;
   padding: 10px 50px;
 }
+.intervention-container .body .info .title {
+  color: white;
+}
 .intervention-container .body .vehicule-container {
   padding: 10px 50px;
-}
-.intervention-container .body .vehicule-container .vehicule {
   color: white;
+}
+
+.intervention-container .body .vehicule-container .vehicule {
+  color: black;
   text-transform: capitalize;
   font-family: "Montserrat", sans-serif;
+  border: 2px solid orange;
+  padding: 10px;
+  margin: 5px 10px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+.intervention-container .body .vehicule-container .vehicule .poste {
+  margin: 5px 20px;
+}
+.intervention-container .body .vehicule-container .vehicule .nom {
+  font-weight: normal;
 }
 .intervention-container .body .info .label {
   font-weight: bold;
-  color: #6e93d8;
+  color: rgb(38, 105, 192);
   font-size: 24px;
 }
 .intervention-container .body .vehicule-container .vehicule .label {
   font-weight: bold;
-  color: #6e93d8;
-  font-size: 18px;
+  color: rgb(38, 105, 192);
+  font-size: 20px;
 }
 .intervention-container .body .info #responsable {
   text-transform: capitalize;
 }
 .intervention-container .body .info .title {
-  background-color: orange;
+  background-color: rgb(38, 105, 192);
   font-size: 1.5em;
   text-align: center;
   border-radius: 8px;
@@ -78,7 +94,7 @@
   padding: 5px 0px;
 }
 .intervention-container .body .vehicule-container .title {
-  background-color: orange;
+  background-color: rgb(38, 105, 192);
   font-size: 1.5em;
   text-align: center;
   border-radius: 8px;
@@ -89,4 +105,39 @@
 
 pre {
   color: white;
+}
+
+.contain.shadow .main .intervention-container .bandeau-title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid rgb(38, 105, 192);
+}
+.contain.shadow .main .intervention-container .bandeau-title .title {
+  color: rgb(38, 105, 192);
+  transition: 0.25s linear;
+}
+.contain.shadow .main .intervention-container .bandeau-title .logo {
+  color: rgb(38, 105, 192);
+  transition: 0.25s linear;
+}
+.contain.shadow .main .intervention-container .body .info {
+  color: white;
+}
+.contain.shadow .main .intervention-container .body .info .title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid rgb(38, 105, 192);
+  color: rgb(38, 105, 192);
+}
+.contain.shadow .main .intervention-container .body .vehicule-container .vehicule {
+  color: white;
+}
+.contain.shadow .main .intervention-container .body .vehicule-container .title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid rgb(38, 105, 192);
+  color: rgb(38, 105, 192);
 }
