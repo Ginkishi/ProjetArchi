@@ -425,8 +425,17 @@ class InterventionController
 						array_push($listetosend, $l);
 					}
 				}
+				
+				$apprenti="none"; 
+						if(!empty($_POST["apprenti"][$i]))
+						{     
+					         echo $_POST["apprenti"][$i];
+						    $apprenti=$_POST["apprenti"][$i];
+						}	
+	
 				$incremant[$IDvehicule]++;
-				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend);
+			
+				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti);
 			}
 		}
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
