@@ -135,12 +135,14 @@ class InterventionController
 		$InterventionModel = new InterventionM();
 		$typeList = $InterventionModel->getTypeInterventionList();
 		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+		$listFirefighter=$InterventionModel->getAllFirefighter();
 		$intervention = $InterventionModel->getInterventionById($id);
 		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
 		$v = new View();
 		$v->ajouterVariable("typeList", $typeList);
 		$v->ajouterVariable("typeVehicule", $typeVehicule);
 		$v->ajouterVariable("intervention", $intervention);
+		$v->ajouterVariable("listFirefighter", $listFirefighter);
 		$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
 		$v->ajouterLink("personal", "intervention");
 		$v->afficher("intervention_modification");
