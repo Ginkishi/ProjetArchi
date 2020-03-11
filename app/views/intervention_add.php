@@ -280,6 +280,7 @@ function selection(xml, sel, p, val) {
         label.appendChild(deuxpoints);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
+        input.setAttribute("list","firefighters");
         input.required = false;
         input.setAttribute("name",  "apprenti[]");
         input.setAttribute("placeholder", "Apprenti");
