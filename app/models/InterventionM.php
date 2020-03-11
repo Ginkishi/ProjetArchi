@@ -222,4 +222,10 @@ class InterventionM
 
 		}
 	}
+
+	function getAllFirefighter()
+	{
+		return API::getAllFirefighter();
+
+	}
 }
