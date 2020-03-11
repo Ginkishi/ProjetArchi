@@ -10,13 +10,15 @@
         <div class="km"><span class="label">Kilometrage : </span><?= $vehicule["V_KM"] ?></div>
         <div class="annee"><span class="label">Ann&eacute;e : </span><?= $vehicule["V_ANNEE"] ?></div>
         <div class="statut"><span class="label">Statut : </span><?= utf8_encode($vehicule["VP_LIBELLE"]) ?></div>
-        <div class="comp"><span class="label">Composition : </span></div>
-        <div class="vehicule-role-container">
-            <ul>
-                <?php foreach ($roles as $r) { ?>
-                <li class="vehicule-role"><?= utf8_encode($r["ROLE_NAME"]) ?></li>
-                <?php } ?>
-            </ul>
+        <div class="compo-container">
+            <div class="comp"><span class="label">Composition : </span></div>
+            <div class="vehicule-role-container">
+                <ul>
+                    <?php foreach ($roles as $r) { ?>
+                    <li class="vehicule-role"><?= utf8_encode($r["ROLE_NAME"]) ?></li>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
