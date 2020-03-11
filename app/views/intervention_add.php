@@ -203,6 +203,7 @@
 </div>
 <script type='text/javascript'>
 var nbvehicule = 0;
+var nbchef=0;
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -317,8 +318,8 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-    if(nbvehicule==0)
-    { nbvehicule++;
+    if(nbchef==0)
+    { nbchef++;
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -552,8 +553,9 @@ function addtoform(types) {
 function deleteEngin(id) {
     if (document.contains(document.getElementById(id))) {
         document.getElementById(id).remove();
+        nbvehicule--;
     }
-    nbvehicule++;
+    
 
 }
 </script>
