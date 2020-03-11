@@ -2,6 +2,7 @@
 
 require_once(VIEWS . DS . "view.php");
 require_once(MODELS . DS . "InterventionM.php");
+require_once(CONTROLLERS.DS."gestionnaireGrade.php");
 class InterventionController
 {
 
@@ -11,10 +12,17 @@ class InterventionController
 
 	public function export()
 	{
-		$v = new View();
-		$v->ajouterLink("personal", "intervention_export");
-		$v->ajouterScript("personal", "clock");
-		$v->afficher("intervention_export");
+		if(GestionnaireGrade::aLesDroitsExportation())
+		{
+			$v = new View();
+			$v->ajouterLink("personal", "intervention_export");
+			$v->ajouterScript("personal", "clock");
+			$v->afficher("intervention_export");
+		}
+		else
+		{
+			$this->displayForbidden();	
+		}
 	}
 
 
@@ -51,6 +59,12 @@ class InterventionController
 		// disposition / encoding on response body
 		header("Content-Disposition: attachment;filename={$filename}");
 		header("Content-Transfer-Encoding: binary");
+	}
+
+	public function displayForbidden()
+	{
+		$v = new View();
+		$v->afficher("forbidden_view");
 	}
 
 
@@ -106,42 +120,63 @@ class InterventionController
 
 	public function add()
 	{
-		$InterventionModel = new InterventionM();
-		$typeList = $InterventionModel->getTypeInterventionList();
-		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-		$v = new View();
-		$v->ajouterVariable("typeList", $typeList);
-		$v->ajouterVariable("typeVehicule", $typeVehicule);
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_add");
+		if(GestionnaireGrade::aLesDroitsAjout())
+		{
+			$InterventionModel = new InterventionM();
+			$typeList = $InterventionModel->getTypeInterventionList();
+			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$v = new View();
+			$v->ajouterVariable("typeList", $typeList);
+			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterLink("personal", "intervention");
+			$v->afficher("intervention_add");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
 	public function listAll()
 	{
-		$InterventionModel = new InterventionM();
-		$interventions = $InterventionModel->getAll();
+		if(GestionnaireGrade::aLesDroitsLecture())
+		{
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAll();
 
-		$v = new View();
-		$v->ajouterVariable("interventions", $interventions);
-		$v->ajouterLink("personal", "intervention");
+			$v = new View();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterLink("personal", "intervention");
 
-		$v->afficher("intervention_listAll");
+			$v->afficher("intervention_listAll");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
 
 
 	public function modification($id)
 	{
-		$InterventionModel = new InterventionM();
-		$typeList = $InterventionModel->getTypeInterventionList();
-		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-		$intervention = $InterventionModel->getInterventionById($id);
-		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
-		$v = new View();
-		$v->ajouterVariable("typeList", $typeList);
-		$v->ajouterVariable("typeVehicule", $typeVehicule);
-		$v->ajouterVariable("intervention", $intervention);
-		$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_modification");
+		if(GestionnaireGrade::aLesDroitsModification())
+		{
+			$InterventionModel = new InterventionM();
+			$typeList = $InterventionModel->getTypeInterventionList();
+			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+			$intervention = $InterventionModel->getInterventionById($id);
+			$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
+			$v = new View();
+			$v->ajouterVariable("typeList", $typeList);
+			$v->ajouterVariable("typeVehicule", $typeVehicule);
+			$v->ajouterVariable("intervention", $intervention);
+			$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
+			$v->ajouterLink("personal", "intervention");
+			$v->afficher("intervention_modification");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
 
 	public function addInterventionToBDD()
