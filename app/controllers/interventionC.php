@@ -172,9 +172,10 @@ class InterventionController
 		for ($i = 0; $i <= $nbv; $i++) {
 
 			$composition[$i] = array();
-			$team = $InterventionModel->getVehiculeById($i);
+			$team = $InterventionModel->getRolesById($i);
+			print_r  ($team);
 			foreach ($team as $r) {
-				array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
+				array_push($composition[$i], str_replace(" ","_",(utf8_encode($r["ROLE_NAME"]))));
 				//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
 			}
 		}
