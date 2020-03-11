@@ -13,7 +13,7 @@ class InterventionM
 
 	public function getAll()
 	{
-		$query = $this->con->query("SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement datedec,DateFin datefin, s.label statut FROM interventions i JOIN status s on i.IDstatus = s.IDstatus");
+		$query = $this->con->query("SELECT IDIntervention,NIntervention,OPM,Commune,Adresse,TypeIntervention,DateDeclenchement datedec,DateFin datefin, s.IDStatus idstatut, s.label statut FROM interventions i JOIN status s on i.IDstatus = s.IDstatus");
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 		return $record;
 	}

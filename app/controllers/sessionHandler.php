@@ -20,13 +20,15 @@ class GestionnaireSession
 	}
 
 
-	public static function initializeSession($id, $code, $nom, $prenom, $grade)
+	public static function initializeSession($id, $code, $nom, $prenom, $grade, $roles, $roles2)
 	{
 		$_SESSION["id"] = $id;
 		$_SESSION["code"] = $code;
 		$_SESSION["nom"] = $nom;
 		$_SESSION["prenom"] = $prenom;
 		$_SESSION["grade"] = $grade;
+		$_SESSION["roles"] = $roles;
+		$_SESSION["roles2"] = $roles2;
 	}
 
 
@@ -70,11 +72,11 @@ class GestionnaireSession
 
 	public static function aTousLesRoles(...$roles)
 	{
-		return GestionnaireSession::array_values_identical($roles, $_SESSION["roles"]);
+		return GestionnaireSession::array_values_identical($roles, $_SESSION["roles"]) || GestionnaireSession::array_values_identical($roles, $_SESSION["roles2"]);
 	}
 
 	public static function aUnDesRoles(...$roles)
 	{
-		return GestionnaireSession::hasIntersection($roles, $_SESSION["roles"]);
+		return GestionnaireSession::hasIntersection($roles, $_SESSION["roles"]) || GestionnaireSession::hasIntersection($roles, $_SESSION["roles2"]) ;
 	}
 }
