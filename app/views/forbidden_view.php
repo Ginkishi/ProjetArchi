@@ -1,0 +1,1 @@
+<div class="error_info" style="text-align: center;"> Forbidden 403 - Vous n'avez pas accès a cette page</div>

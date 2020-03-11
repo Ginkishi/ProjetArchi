@@ -10,6 +10,7 @@
 	define('CLASSES', ROOT.DS.'classes');
 	define('VENDORS', ROOT . DS . 'vendors');
 	define('LOCAL_DIR', 'http://' . $_SERVER["HTTP_HOST"] . DS . "projetarchi" . DS . ROOT_DIR . DS);
+	define('API_URL', 'http://' . $_SERVER["HTTP_HOST"] . "/projetarchi/api/");
 	define('LOCAL_VENDORS', LOCAL_DIR . "vendors");
 	define('LOCAL_ASSETS', LOCAL_DIR . "views" . DS . "assets");
 	define('API_PATH', CLASSES . DS . API_DIRNAME . DS . "API.php");

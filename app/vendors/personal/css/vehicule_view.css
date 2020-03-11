@@ -47,6 +47,15 @@
 .vehicule-container .body {
   margin: 10px;
   padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr;
+  row-gap: 20px;
+}
+
+.vehicule-container .body .statut:hover {
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
 }
 
 .contain.shadow .main .vehicule-container .body {
@@ -54,7 +63,7 @@
   transition: 0.25s linear;
   background: #212121;
   border: 3px solid #6e93d8;
-  color: #6e93d8;
+  color: white;
   font-size: 18px;
 }
 .contain.shadow .main .vehicule-container .body span.label {

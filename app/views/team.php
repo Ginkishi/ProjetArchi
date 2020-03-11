@@ -6,7 +6,7 @@
 
 
 	if ($variable) 
-    {     $typeList = API:: getTeam($variable);
+    {     $typeList = API::getTeam($variable);
         while ($donnees = $typeList->fetch())
          {
             
@@ -14,7 +14,7 @@
             $output = htmlentities($donnees['ROLE_NAME'], 0, "UTF-8");
             if ($output == "") 
             {
-             $output = htmlentities(utf8_encode($donnees['ROLE_NAME']), 0, "UTF-8"); 
+             $output = htmlentities($donnees['ROLE_NAME'], 0, "UTF-8"); 
             }
             echo '%'.$output;
            

@@ -2,6 +2,7 @@
 
 require_once(VIEWS . DS . "view.php");
 require_once(MODELS . DS . "InterventionM.php");
+require_once(CONTROLLERS.DS."gestionnaireGrade.php");
 class InterventionController
 {
 
@@ -11,10 +12,17 @@ class InterventionController
 
 	public function export()
 	{
-		$v = new View();
-		$v->ajouterLink("personal", "intervention_export");
-		$v->ajouterScript("personal", "clock");
-		$v->afficher("intervention_export");
+		if(GestionnaireGrade::aLesDroitsExportation())
+		{
+			$v = new View();
+			$v->ajouterLink("personal", "intervention_export");
+			$v->ajouterScript("personal", "clock");
+			$v->afficher("intervention_export");
+		}
+		else
+		{
+			$this->displayForbidden();	
+		}
 	}
 
 
@@ -51,6 +59,12 @@ class InterventionController
 		// disposition / encoding on response body
 		header("Content-Disposition: attachment;filename={$filename}");
 		header("Content-Transfer-Encoding: binary");
+	}
+
+	public function displayForbidden()
+	{
+		$v = new View();
+		$v->afficher("forbidden_view");
 	}
 
 
@@ -106,42 +120,68 @@ class InterventionController
 
 	public function add()
 	{
-		$InterventionModel = new InterventionM();
-		$typeList = $InterventionModel->getTypeInterventionList();
-		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-		$v = new View();
-		$v->ajouterVariable("typeList", $typeList);
-		$v->ajouterVariable("typeVehicule", $typeVehicule);
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_add");
+		if(GestionnaireGrade::aLesDroitsAjout())
+		{
+			$InterventionModel = new InterventionM();
+      $typeList = $InterventionModel->getTypeInterventionList();
+      $typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+      $listFirefighter=$InterventionModel->getAllFirefighter();
+      $v = new View();
+      $v->ajouterVariable("typeList", $typeList);
+      $v->ajouterVariable("typeVehicule", $typeVehicule);
+      $v->ajouterVariable("listFirefighter", $listFirefighter);
+      $v->ajouterLink("personal", "intervention");
+      $v->afficher("intervention_add");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
+  
 	public function listAll()
 	{
-		$InterventionModel = new InterventionM();
-		$interventions = $InterventionModel->getAll();
+		if(GestionnaireGrade::aLesDroitsLecture())
+		{
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAll();
 
-		$v = new View();
-		$v->ajouterVariable("interventions", $interventions);
-		$v->ajouterLink("personal", "intervention");
+			$v = new View();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterLink("personal", "intervention");
 
-		$v->afficher("intervention_listAll");
+			$v->afficher("intervention_listAll");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
 
 
 	public function modification($id)
 	{
-		$InterventionModel = new InterventionM();
-		$typeList = $InterventionModel->getTypeInterventionList();
-		$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
-		$intervention = $InterventionModel->getInterventionById($id);
-		$tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
-		$v = new View();
-		$v->ajouterVariable("typeList", $typeList);
-		$v->ajouterVariable("typeVehicule", $typeVehicule);
-		$v->ajouterVariable("intervention", $intervention);
-		$v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
-		$v->ajouterLink("personal", "intervention");
-		$v->afficher("intervention_modification");
+		if(GestionnaireGrade::aLesDroitsModification())
+		{
+      $InterventionModel = new InterventionM();
+      $typeList = $InterventionModel->getTypeInterventionList();
+      $typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
+      $listFirefighter=$InterventionModel->getAllFirefighter();
+      $intervention = $InterventionModel->getInterventionById($id);
+      $tousLesVehiculeIntervention = $InterventionModel->getAllVehiculeByIntervention($id);
+      $v = new View();
+      $v->ajouterVariable("typeList", $typeList);
+      $v->ajouterVariable("typeVehicule", $typeVehicule);
+      $v->ajouterVariable("intervention", $intervention);
+      $v->ajouterVariable("listFirefighter", $listFirefighter);
+      $v->ajouterVariable("tousLesVehiculeIntervention", $tousLesVehiculeIntervention);
+      $v->ajouterLink("personal", "intervention");
+      $v->afficher("intervention_modification");
+		}
+		else
+		{
+			$this->displayForbidden();
+		}
 	}
 
 	public function addInterventionToBDD()
@@ -168,9 +208,10 @@ class InterventionController
 		for ($i = 0; $i <= $nbv; $i++) {
 
 			$composition[$i] = array();
-			$team = $InterventionModel->getVehiculeById($i);
+			$team = $InterventionModel->getRolesById($i);
+			print_r  ($team);
 			foreach ($team as $r) {
-				array_push($composition[$i], str_replace(" ", "_", (utf8_encode($r["ROLE_NAME"]))));
+				array_push($composition[$i], str_replace(" ","_",($r["ROLE_NAME"])));
 				//	echo $i." ".str_replace(" ","_",(utf8_encode($r["ROLE_NAME"])))."<br>";
 			}
 		}
@@ -398,8 +439,17 @@ class InterventionController
 						array_push($listetosend, $l);
 					}
 				}
+				
+				$apprenti="none"; 
+						if(!empty($_POST["apprenti"][$i]))
+						{     
+					         echo $_POST["apprenti"][$i];
+						    $apprenti=$_POST["apprenti"][$i];
+						}	
+	
 				$incremant[$IDvehicule]++;
-				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend);
+			
+				$InterventionModel->AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti);
 			}
 		}
 		// un traiment d'erreur a effectuer apres eg: champ non rempli

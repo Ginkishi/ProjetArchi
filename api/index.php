@@ -21,7 +21,8 @@ $router = new Routeur($_GET['url']);
     $router->post('/auth', function() {
         require_once CONTROLLERS.DS.'pompierC.php';
         $p = new PompierController();
-        $p->authentification($_POST['code'],$_POST['mp']);
+        $data = json_decode(file_get_contents('php://input'), true);
+        $p->authentification($data['code'],$data['mp']);
     });
 
 

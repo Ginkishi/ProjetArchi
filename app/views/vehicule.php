@@ -1,6 +1,6 @@
 <?php
 	header( 'content-type: text/html; charset=UTF-8' );
-	include ("../../api/API.php"); // a modifier ....
+	include (API_PATH); // a modifier ....
 
 
 

@@ -19,7 +19,7 @@ class PompierController {
                 "P_CODE" => utf8_encode($P_CODE),
                 "P_NOM" => utf8_encode($P_NOM),
                 "P_PRENOM" => utf8_encode($P_PRENOM),
-                "P_GRADE " => utf8_encode($P_GRADE ),
+                "P_GRADE" => utf8_encode($P_GRADE ),
                 "ROLE" => array(),
                 "ROLE2" => array()
             );
@@ -70,7 +70,7 @@ class PompierController {
                 "P_PRENOM2" => utf8_encode($P_PRENOM2),
                 "P_SEXE" => utf8_encode($P_SEXE),
                 "P_CIVILITE " => utf8_encode($P_CIVILITE ),
-                "P_GRADE " => utf8_encode($P_GRADE ),
+                "P_GRADE" => utf8_encode($P_GRADE ),
                 "GP_ID" => $GP_ID,
                 "GP_ID2" => $GP_ID2,
                 "ROLE" => array(),
@@ -124,7 +124,7 @@ class PompierController {
                 "P_PRENOM2" => utf8_encode($P_PRENOM2),
                 "P_SEXE" => utf8_encode($P_SEXE),
                 "P_CIVILITE " => utf8_encode($P_CIVILITE ),
-                "P_GRADE " => utf8_encode($P_GRADE ),
+                "P_GRADE" => utf8_encode($P_GRADE ),
                 "GP_ID" => $GP_ID,
                 "GP_ID2" => $GP_ID2,
                 "ROLE" => array(),

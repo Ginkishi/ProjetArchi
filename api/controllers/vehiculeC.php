@@ -20,6 +20,9 @@ class VehiculeController {
                 "V_IMMATRICULATION" => utf8_encode($V_IMMATRICULATION),
                 "V_KM" => $V_KM,
                 "TV_CODE" => utf8_encode($TV_CODE),
+                "V_ANNEE" => utf8_encode($V_ANNEE),
+                "VP_LIBELLE" => utf8_encode($VP_LIBELLE),
+                "TV_LIBELLE" => utf8_encode($TV_LIBELLE),
                 "ROLE" => array()
               );
               $stmt2 = $model->listAllRole($TV_CODE);
@@ -63,6 +66,9 @@ class VehiculeController {
               "V_IMMATRICULATION" => utf8_encode($V_IMMATRICULATION),
               "V_KM" => $V_KM,
               "TV_CODE" => utf8_encode($TV_CODE),
+              "V_ANNEE" => utf8_encode($V_ANNEE),
+              "VP_LIBELLE" => utf8_encode($VP_LIBELLE),
+              "TV_LIBELLE" => utf8_encode($TV_LIBELLE),
               "ROLE" => array()
             );
             $stmt2 = $model->listAllRole($TV_CODE);
