@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto|Ubuntu&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.intervention-container {
+  font-family: "Montserrat", sans-serif;
+}
+
+.bandeau-title {
+  min-height: 75px;
+  max-height: 75px;
+  background-color: #6e93d8;
+
+  min-width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.bandeau-title .title {
+  font-size: 2em;
+  margin-left: 20px;
+}
+.bandeau-title .logo {
+  font-size: 52px;
+}
+.bandeau-title .logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+pre {
+  color: white;
+}
