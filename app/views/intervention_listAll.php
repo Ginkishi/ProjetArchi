@@ -1,5 +1,5 @@
 <?php
-    require_once(CONTROLLERS.DS."gestionnaireGrade.php")
+    require_once(CLASSES.DS."gestionnaireGrade.php")
 ?>
 <div class="error_info"> (EN CONSTRUCTION) </div>
 <?php if ($interventions != null) { ?>
