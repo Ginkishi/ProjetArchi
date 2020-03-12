@@ -256,7 +256,7 @@ function html_entity_decode(str) {
 //ajout des champs pour l'equipe
 function selection(xml, sel, p, val) {
     var nb = p.split("%");
-
+    console.log(nb);
     while (document.contains(document.getElementById("team" + nb[1]))) {
         document.getElementById("team" + nb[1]).remove();
     }
@@ -316,8 +316,8 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-    if (nbchef == 0) {
-        nbchef++;
+    if (nb[1] == 0) {
+       
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -337,7 +337,7 @@ function selection(xml, sel, p, val) {
         input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("value", "<?= $_SESSION['prenom'] . '' . $_SESSION['nom'] ?>");
+        input.setAttribute("value", "<?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?>");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
@@ -379,7 +379,8 @@ function AddEngin() {
     console.log(nbvehicule);
     var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+        {
             addtoform(xhr.responseText);
         }
     };
