@@ -51,15 +51,15 @@ CREATE TABLE IF NOT EXISTS `interventions` (
   `DateFin` timestamp NOT NULL,
   `IDResponsable` int (11) NOT NULL,
   `IDCreateur` int (11) NOT NULL,
-   `IDstatus` int(11) NOT NULL,
+  `IDstatus` int(11) NOT NULL,
   PRIMARY KEY (`IDIntervention`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-CREATE TABLE IF NOT EXISTS  `status` ( 
-  `IDstatus` INT NOT NULL , 
+CREATE TABLE IF NOT EXISTS `status` (
+  `IDstatus` INT NOT NULL,
   `label` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`IDstatus`)
-   ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- validé par le chef
 -- validé par le responsable
@@ -96,19 +96,25 @@ CREATE TABLE IF NOT EXISTS `vehiculeutilise` (
   PRIMARY KEY (`IDVehicule`, `IDIntervention`, `DateDepart`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+INSERT INTO
+  `status` (`IDstatus`, `label`)
+VALUES
+  ('2', 'En cours de validation du responsable'),
+  ('4', 'Validé par le responsable'),
+  ('0', 'En cours de validation du chef'),
+  ('3', 'Chef demande modification '),
+  ('1', 'Validé par le chef');
 
-INSERT INTO `status` (`IDstatus`, `label`) VALUES 
-    ('0', 'En cours de validation du responsable'),
-    ('1', 'Validé par le responsable'), 
-    ('2', 'En cours de validation du chef'),
-    ('3', 'Chef demande modification '),
-    ('4', 'Validé par le chef');
+ALTER TABLE
+  `vehiculeutilise`
+ADD
+  FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
 
-ALTER TABLE `vehiculeutilise` 
-ADD FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
+ALTER TABLE
+  `personnelduvehicule`
+ADD
+  FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
 
-ALTER TABLE `personnelduvehicule` 
-ADD FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
