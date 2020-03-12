@@ -185,7 +185,7 @@
                     {
                         $v = $tousLesVehiculeIntervention[$i];
             ?>
-            <div class="body" id="vehicule0" >
+            <div class="body"id="<?php echo "vehicule".$i ?> " >
             	 <div class="group-champ col2">
 	                <div class="champ">
 	                    <label for="">Nom du v&eacute;hicule</label>
@@ -273,8 +273,8 @@
                     </div>
                 </div>
             </div>
-         
-         
+    
+            <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule".$i ?> ">Supprimer ce véhicule</button>
             <?php 
                     }
                 }
