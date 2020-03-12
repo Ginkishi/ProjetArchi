@@ -199,6 +199,14 @@
         <div class="champ">
             <input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg">
         </div>
+        <?php
+            require_once(CLASSES . DS . "gestionnaireGrade.php");
+            if (GestionnaireGrade::aLesDroitsValidation()) {
+        ?>
+        <div class="champ">
+            <input type="submit" value="Valider" formaction="../intervention/addValidatedInterventionToBDD" class="btn btn-primary btn-lg">
+        </div>
+        <?php } ?>
     </form>
 </div>
 <script>
