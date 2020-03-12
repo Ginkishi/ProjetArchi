@@ -272,9 +272,10 @@
                         <div class="barre"></div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule".$i ?> ">Supprimer ce véhicule</button>
             </div>
     
-            <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule".$i ?> ">Supprimer ce véhicule</button>
+           
             <?php 
                     }
                 }
