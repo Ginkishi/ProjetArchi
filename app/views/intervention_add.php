@@ -399,7 +399,6 @@ function AddEngin() {
 
 function addtoform(types) {
     liste = types.split("%");
-
     var section = document.getElementById("addVehicule");
     var body = document.createElement("div");
     body.setAttribute("class", "body");
