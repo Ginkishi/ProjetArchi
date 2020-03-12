@@ -61,6 +61,7 @@ class InterventionController
 	public function displayForbidden()
 	{
 		$v = new View();
+		$v->ajouterLink("personal", "forbidden_view");
 		$v->afficher("forbidden_view");
 	}
 
@@ -304,7 +305,7 @@ class InterventionController
 		header('Location: ' . LOCAL_DIR . DS . 'home/index');
 	}
 
-	
+
 	public function addValidatedInterventionToBDD()
 	{
 		$array = array_keys($_POST);
@@ -563,7 +564,7 @@ class InterventionController
 				}
 			}
 		}
-		
+
 		header('Location: ' . LOCAL_DIR . DS . 'home/index');
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		// $Intervention = new InterventionController();
@@ -643,7 +644,7 @@ class InterventionController
 				/// le format de la date yyyy-mm-dd 
 				/// le format de l'heure hh:mm:ss
 				$IDintervention = $InterventionModel->EditIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable);
-				if (GestionnaireGrade::aLesDroitsValidation()) $InterventionModel->validateIntervention($id,1);
+				if (GestionnaireGrade::aLesDroitsValidation()) $InterventionModel->validateIntervention($id, 1);
 				$InterventionModel->EraseVehiculeIntervention($id);
 				//  echo "id".$IDintervention."<br>";
 				//3- partie ajout vehicule et equipe
@@ -701,7 +702,7 @@ class InterventionController
 				}
 			}
 		}
-		
+
 		header('Location: ' . LOCAL_DIR . DS . 'home/index');
 		// un traiment d'erreur a effectuer apres eg: champ non rempli
 		// $Intervention = new InterventionController();
