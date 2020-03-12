@@ -15,7 +15,7 @@ class FonctionnaliteController {
             extract($row);
               $f = array(
                 "F_ID" =>utf8_encode( $F_ID),
-                "F_DESCRIPTION" => utf8_encode($F_DESCRIPTION)
+                "F_LIBELLE" => utf8_encode($F_LIBELLE)
               );
               array_push($farr["fonctionnalites"], $f);
           }
@@ -41,7 +41,7 @@ class FonctionnaliteController {
         extract($row);
         $f = array(
             "F_ID" =>utf8_encode( $F_ID),
-            "F_DESCRIPTION" => utf8_encode($F_DESCRIPTION)
+            "F_LIBELLE" => utf8_encode($F_LIBELLE)
         );
         array_push($farr["fonctionnalite"], $f);
         header('Content-Type: application/json');
