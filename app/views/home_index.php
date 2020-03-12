@@ -41,209 +41,24 @@ setlocale(LC_TIME, "fr_FR");
 <div class="last-intervention">
     <div class="title">Derni&egrave;res interventions</div>
     <div class="grille">
+        <?php if ($interventionsForUser != null) foreach ($interventionsForUser as $i) { ?>
         <div class="cards">
             <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
             <div class="info">
-                <div class="number">#001</div>
+                <div class="number"><?= $i["NIntervention"] ?></div>
                 <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
+                    <div class="dateDec"><?= $i["DateDeclenchement"] ?></div>
+                    <div class="dateFin"><?= $i["DateFin"] ?></div>
                 </div>
                 <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
+                    <div class="adresse"><?= $i["Adresse"] ?></div>
+                    <div class="commune"><?= $i["Commune"] ?></div>
                 </div>
-                <div class="type">BPGRV</div>
+                <div class="type"><?= $i["TypeIntervention"] ?></div>
                 <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
+                <a href="<?= LOCAL_DIR ?>intervention/view/<?= $i["IDIntervention"]; ?>" class="see-more">Voir</a>
             </div>
         </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <div class="see-more">Voir</div>
-            </div>
-        </div>
-        <div class="cards">
-            <!-- <div class="logo"><i class="far fa-clipboard"></i></div> -->
-            <div class="info">
-                <div class="number">#001</div>
-                <div class="dateIntervention">
-                    <div class="dateDec">2020-03-04 20:04</div>
-                    <div class="dateFin">2020-03-04 21:04</div>
-                </div>
-                <div class="location">
-                    <div class="adresse">64 rue de Dunkerque</div>
-                    <div class="commune">Mulhouse</div>
-                </div>
-                <div class="type">BPGRV</div>
-                <!-- <div class="statut">Validé responsable</div> -->
-                <a href="#" class="see-more">Voir</a>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
