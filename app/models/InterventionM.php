@@ -68,7 +68,14 @@ class InterventionM
 		return $ID['IDIntervention'];
 	}
 
-	public function EditIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $status)
+	public function validateIntervention($id, $ids) {
+		$this->con->query("UPDATE interventions 
+		  SET IDstatus = $ids
+		   WHERE IDIntervention = $id");
+	}
+
+
+	public function EditIntervention($id, $numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable)
 	{
 
 		//  echo   $numIntervention."<br>".$adresse."<br>".$commune."<br>".$typeIntervention."<br>".$dateDeclenchement."<br>".$heureDeclenchement."<br>";
@@ -98,8 +105,7 @@ class InterventionM
 		   Requerant = '$requerant',
 		   DateDeclenchement = '$datedec',
 		   DateFin = '$datef',
-		   IDResponsable = $idresp,
-		   IDstatus = $status
+		   IDResponsable = $idresp
 		   WHERE IDIntervention = $id");
 		return $id;
 	}
@@ -205,8 +211,6 @@ class InterventionM
 
 	public function AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend, $apprenti)
 	{
-
-		var_dump($listetosend);
 		$id = API::getVehiculeTV_CODE($IDvehicule);
 
 		for ($j = 0; $j < count($listetosend); $j++) {

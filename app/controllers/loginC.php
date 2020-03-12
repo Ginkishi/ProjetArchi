@@ -1,8 +1,8 @@
 <?php
 require_once(VIEWS . DS . "view.php");
 require_once(MODELS . DS . "loginM.php");
-require_once("./controllers/homeC.php");
-require_once("./controllers/sessionHandler.php");
+require_once(CONTROLLERS . DS . "homeC.php");
+require_once(CLASSES . DS . "sessionHandler.php");
 require_once(MODELS . DS . "InterventionM.php");
 
 class LoginController
@@ -10,8 +10,6 @@ class LoginController
 	public function __construct()
 	{
 	}
-
-
 
 	public function index()
 	{

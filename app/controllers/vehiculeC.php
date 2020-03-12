@@ -1,7 +1,7 @@
 <?php
 require_once(MODELS . DS . "vehiculeM.php");
 require_once(VIEWS . DS . "view.php");
-require_once(CONTROLLERS . DS . "gestionnaireGrade.php");
+require_once(CLASSES . DS . "gestionnaireGrade.php");
 
 class VehiculeController
 {

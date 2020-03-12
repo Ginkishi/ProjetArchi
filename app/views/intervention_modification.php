@@ -26,22 +26,20 @@
                     <select name="typeIntervention" id="typeIntervention" class="form-control">
                         <option value="">Selectionnez un type d'intervention</option>
                         <?php
-                        while ($donnees = $typeList->fetch()) {
+                            foreach ($typeList as $donnees) {
                         ?>
-                        <option value="
-                        <?php
+                        <option value="<?php
 
                             $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                             if ($output == "") {
-                                $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
+                                $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                             }
                             echo $output;
-                        ?>
-                           " 
+                        ?>" 
                         <?php if ($output == utf8_encode($intervention["TypeIntervention"])) echo "selected";?>><?php
                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 if ($output == "") {
-                                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                                    $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                 }
                                 echo $output;
                                 ?></option>
@@ -109,15 +107,15 @@
 	                        <option value="">Selectionnez un véhicule</option>
 	                        
 	                        <?php
-	                while ($vehicule = $typeVehicule->fetch())
-	                {
+	                        foreach ($typeVehicule as $vehicule)
+	                        {
 	                ?>
 	               <option value="<?php
 	                    
 	                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
 	                    if ($output == "") 
 	                    {
-	                     $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8"); 
+	                     $output = htmlentities($vehicule['V_ID'], 0, "UTF-8"); 
 	                    }
 	                    echo $output;
 	                 ?>"> 
@@ -125,7 +123,7 @@
 	                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
 	                    if ($output == "")
 	                     {
-	                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                    $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8"); 
 	                     }
 	                     echo $output;
 	                     ?> 
@@ -182,7 +180,7 @@
                 }
                 else
                 {
-                    $tv = $typeVehicule->fetchAll();
+                    $tv = $typeVehicule;
                     for($i = 0 ; $i< sizeof($tousLesVehiculeIntervention); $i++)
                     {
                         $v = $tousLesVehiculeIntervention[$i];
@@ -203,15 +201,15 @@
 	                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
 	                    if ($output == "") 
 	                    {
-	                     $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8"); 
+	                     $output = htmlentities($vehicule['V_ID'], 0, "UTF-8"); 
 	                    }
 	                    echo $output;
-	                 ?>" <?php if ($output == utf8_encode($v["IDVehicule"])) echo "selected";?>> 
+	                 ?>" <?php if ($output == $v["IDVehicule"]) echo "selected";?>> 
 	                  <?php 
 	                  $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
 	                    if ($output == "")
 	                     {
-	                    $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8"); 
+	                    $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8"); 
 	                     }
 	                     echo $output;
 	                     ?> 
@@ -226,8 +224,8 @@
                             {
                         ?>
                                 <div id="team<?php echo $i ?>" class="champs">
-                                    <label for=""><?php echo utf8_encode($v["vehicule"][$j]["ROLE_NAME"]);?><span class="important">*</span>:</label>
-                                    <input type="text" required name="<?php echo utf8_encode($v["vehicule"][$j]["ROLE_NAME"]);?>[]" value="<?php echo utf8_encode($v["vehicule"][$j]["pompier"]);?>">
+                                    <label for=""><?php echo $v["vehicule"][$j]["ROLE_NAME"];?><span class="important">*</span>:</label>
+                                    <input type="text" required name="<?php echo $v["vehicule"][$j]["ROLE_NAME"];?>[]" value="<?php echo $v["vehicule"][$j]["pompier"];?>">
                                 </div>
                         <?php 
                             }
@@ -275,6 +273,8 @@
                     </div>
                 </div>
             </div>
+         
+            <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id= "<?php echo "vehicule".$j ?>">Supprimer ce véhicule</button>
             <?php 
                     }
                 }
@@ -286,7 +286,7 @@
             <div class="body">
                 <div class="champ">
                     <label for="">Nom du responsable</label>
-                    <input type="text" autocomplete="off" name="responsable" list="firefighters" value="<?php echo utf8_encode($intervention["IDResponsable"]);?>">
+                    <input type="text" autocomplete="off" name="responsable" list="firefighters" value="<?php echo $intervention["IDResponsable"];?>">
                     <datalist id="firefighters">
                     <?php
                            foreach ( $listFirefighter as $Firefighter) {
@@ -295,7 +295,7 @@
 
                                                 $output = htmlentities($Firefighter, 0, "UTF-8");
                                                 if ($output == "") {
-                                                    $output = htmlentities(utf8_encode($Firefighter), 0, "UTF-8");
+                                                    $output = htmlentities($Firefighter, 0, "UTF-8");
                                                 }
                                                 echo $output;
                                 ?>">
@@ -311,6 +311,14 @@
         <div class="champ">
             <input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg">
         </div>
+        <?php
+            require_once(CLASSES . DS . "gestionnaireGrade.php");
+            if (GestionnaireGrade::aLesDroitsValidation()) {
+        ?>
+        <div class="champ">
+            <input type="submit" value="Valider" formaction="../editValidatedinterventiontobdd/<?php echo $intervention["IDIntervention"] ?>" class="btn btn-primary btn-lg">
+        </div>
+        <?php } ?>
     </form>
 </div>
 <script type='text/javascript'>
@@ -429,6 +437,36 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
+    if (nb[1] == 0) {
+       
+       var div = document.createElement("div");
+       div.setAttribute("id", "team" + nb[1]);
+       div.setAttribute("class", "champ");
+       var label = document.createElement("label");
+       label.setAttribute("for", "");
+       var text = document.createTextNode(liste[1]);
+       var span = document.createElement("span");
+       span.setAttribute("class", "important");
+       var etoile = document.createTextNode("*");
+       span.appendChild(etoile);
+       label.appendChild(text);
+       label.appendChild(span);
+       var deuxpoints = document.createTextNode(":");
+       label.appendChild(deuxpoints);
+       var input = document.createElement("input");
+       input.setAttribute("type", "text");
+       input.setAttribute("list", "firefighters");
+       input.required = true;
+       input.setAttribute("name", liste[1] + "[]");
+       input.setAttribute("value", "<?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?>");
+       var span2 = document.createElement("span");
+       div.appendChild(label);
+       div.appendChild(input);
+       div.appendChild(span2);
+       sel.parentNode.insertBefore(div, sel.nextSibling);
+    }
+    else 
+    {
     
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
@@ -457,7 +495,7 @@ function selection(xml, sel, p, val) {
         sel.parentNode.insertBefore(div, sel.nextSibling);
         console.log(liste);
     }
-   
+}
    
    
   
@@ -625,7 +663,7 @@ function addtoform(types) {
         button.setAttribute("class","btn btn-primary btn-lg");
         button.setAttribute("onClick","javascript:deleteEngin(this.id);");
         button.setAttribute("id","vehicule"+nbvehicule);
-        var sup =document.createTextNode("supprimer ce véhicule");
+        var sup =document.createTextNode("Supprimer ce véhicule");
         button.appendChild(sup);
     body.appendChild(button);
 

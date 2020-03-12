@@ -1,5 +1,5 @@
 <?php
-require_once(CONTROLLERS . DS . "sessionHandler.php");
+require_once(CLASSES . DS . "sessionHandler.php");
 GestionnaireSession::ouvreSession();
 setlocale(LC_TIME, "fr_FR");
 

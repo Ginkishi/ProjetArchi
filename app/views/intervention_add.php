@@ -33,13 +33,13 @@
 
                                             $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                                             if ($output == "") {
-                                                $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
+                                                $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                                             }
                                             echo $output;
                                             ?>"><?php
                                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                                 if ($output == "") {
-                                                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                                                    $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                                 }
                                                 echo $output;
                                                 ?></option>
@@ -108,14 +108,14 @@
 
                                                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
                                                 if ($output == "") {
-                                                    $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8");
+                                                    $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
                                                 }
                                                 echo $output;
                                                 ?>">
                                 <?php
                                     $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
                                     if ($output == "") {
-                                        $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                        $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
                                     }
                                     echo $output;
                                     ?>
@@ -199,6 +199,14 @@
         <div class="champ">
             <input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg">
         </div>
+        <?php
+            require_once(CLASSES . DS . "gestionnaireGrade.php");
+            if (GestionnaireGrade::aLesDroitsValidation()) {
+        ?>
+        <div class="champ">
+            <input type="submit" value="Valider" formaction="../intervention/addValidatedInterventionToBDD" class="btn btn-primary btn-lg">
+        </div>
+        <?php } ?>
     </form>
 </div>
 <script>
@@ -256,7 +264,7 @@ function html_entity_decode(str) {
 //ajout des champs pour l'equipe
 function selection(xml, sel, p, val) {
     var nb = p.split("%");
-
+    console.log(nb);
     while (document.contains(document.getElementById("team" + nb[1]))) {
         document.getElementById("team" + nb[1]).remove();
     }
@@ -316,8 +324,8 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-    if (nbchef == 0) {
-        nbchef++;
+    if (nb[1] == 0) {
+       
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -337,7 +345,7 @@ function selection(xml, sel, p, val) {
         input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("value", "<?= $_SESSION['prenom'] . '' . $_SESSION['nom'] ?>");
+        input.setAttribute("value", "<?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?>");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
@@ -379,7 +387,8 @@ function AddEngin() {
     console.log(nbvehicule);
     var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+        {
             addtoform(xhr.responseText);
         }
     };
@@ -537,7 +546,7 @@ function addtoform(types) {
     button.setAttribute("class", "btn btn-primary btn-lg");
     button.setAttribute("onClick", "javascript:deleteEngin(this.id);");
     button.setAttribute("id", "vehicule" + nbvehicule);
-    var sup = document.createTextNode("supprimer ce véhicule");
+    var sup = document.createTextNode("Supprimer ce véhicule");
     button.appendChild(sup);
     body.appendChild(button);
 }

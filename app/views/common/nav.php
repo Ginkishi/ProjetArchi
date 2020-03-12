@@ -1,5 +1,5 @@
 <?php
-require_once(CONTROLLERS . DS . "gestionnaireGrade.php");
+require_once(CLASSES . DS . "gestionnaireGrade.php");
 ?>
 <div class="menu">
     <div id="toggleBtn" class="toggleBtn"><i class="fa fa-bars fa-2x"></i></div>

@@ -1,5 +1,5 @@
 <?php
-require_once(CONTROLLERS . DS . "gestionnaireGrade.php")
+require_once(CLASSES . DS . "gestionnaireGrade.php")
 ?>
 <?php if ($interventions != null) { ?>
 <div class="table-responsive">
