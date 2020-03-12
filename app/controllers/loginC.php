@@ -11,7 +11,11 @@ class LoginController
 	{
 	}
 
-
+	public function test() {
+		require_once(API_PATH);
+		$res = API::getRolesById(1);
+		var_dump($res);
+	}
 
 	public function index()
 	{

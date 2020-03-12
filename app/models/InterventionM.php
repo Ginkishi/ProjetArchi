@@ -211,8 +211,6 @@ class InterventionM
 
 	public function AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend, $apprenti)
 	{
-
-		var_dump($listetosend);
 		$id = API::getVehiculeTV_CODE($IDvehicule);
 
 		for ($j = 0; $j < count($listetosend); $j++) {
