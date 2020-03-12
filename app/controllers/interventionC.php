@@ -158,7 +158,7 @@ class InterventionController
 	{
 		$InterventionModel = new InterventionM();
 		$intervention = $InterventionModel->getInterventionById($id);
-		if (GestionnaireGrade::aLesDroitsModification() && $intervention["IDstatus"] == 0) {
+		if (sizeof($intervention) != 0 && GestionnaireGrade::aLesDroitsModification() && $intervention["IDstatus"] == 0) {
 			$typeList = $InterventionModel->getTypeInterventionList();
 			$typeVehicule = $InterventionModel->getAllVehiculesIndicatif();
 			$listFirefighter = $InterventionModel->getAllFirefighter();

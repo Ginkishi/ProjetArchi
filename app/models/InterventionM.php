@@ -120,9 +120,17 @@ class InterventionM
 	{
 		$query = $this->con->query("SELECT * FROM  interventions where IDIntervention=$id");
 		$record = $query->fetch();
-		$res = API::getPompierById($record["IDResponsable"]);
-		$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
-		return $record;
+		
+		if($record != null)
+		{
+			$res = API::getPompierById($record["IDResponsable"]);
+			$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
+			return $record;
+		}
+		else
+		{
+			return [];
+		}
 	}
 
 	public function getAllVehiculeByIntervention($id)
