@@ -275,7 +275,8 @@
                     </div>
                 </div>
             </div>
-           
+         
+            <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id= "<?php echo "vehicule".$j ?>">Supprimer ce véhicule</button>
             <?php 
                     }
                 }
@@ -656,7 +657,7 @@ function addtoform(types) {
         button.setAttribute("class","btn btn-primary btn-lg");
         button.setAttribute("onClick","javascript:deleteEngin(this.id);");
         button.setAttribute("id","vehicule"+nbvehicule);
-        var sup =document.createTextNode("supprimer ce véhicule");
+        var sup =document.createTextNode("Supprimer ce véhicule");
         button.appendChild(sup);
     body.appendChild(button);
 

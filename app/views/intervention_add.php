@@ -538,7 +538,7 @@ function addtoform(types) {
     button.setAttribute("class", "btn btn-primary btn-lg");
     button.setAttribute("onClick", "javascript:deleteEngin(this.id);");
     button.setAttribute("id", "vehicule" + nbvehicule);
-    var sup = document.createTextNode("supprimer ce véhicule");
+    var sup = document.createTextNode("Supprimer ce véhicule");
     button.appendChild(sup);
     body.appendChild(button);
 }
