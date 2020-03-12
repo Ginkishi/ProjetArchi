@@ -160,6 +160,19 @@
 .cards.valid {
   background: #56ab2f; /* fallback for old browsers */
 }
+
+.cards.warn .logo i {
+  color: #f7971e;
+}
+
+.cards.danger .logo i {
+  color: #ed213a;
+}
+
+.cards.valid .logo i {
+  color: #56ab2f;
+}
+
 .contain.shadow .main .bandeau .bandeau-title {
   box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
   transition: 0.25s linear;
