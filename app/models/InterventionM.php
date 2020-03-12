@@ -39,6 +39,7 @@ class InterventionM
 		return $record;
 	}
 
+
 	public function AddIntervention($numIntervention, $adresse, $commune, $opm, $typeIntervention, $important, $requerant, $dateDeclenchement, $heureDeclenchement, $dateFin, $heureFin, $responsable, $idcreateur, $status)
 	{
 
@@ -126,7 +127,9 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 
 		for ($i = 0; $i < sizeof($record); $i++) {
+			$record[$i]["infoVehicule"] = API::getVehiculeById($id);
 			$record[$i]["vehicule"] = API::getVehiculeInterventionById($record[$i]["IDVehicule"]);
+
 			for ($j = 0; $j < sizeof($record[$i]["vehicule"]); $j++) {
 
 				$query = $this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole=" . (int) $record[$i]["vehicule"][$j]["ROLE_ID"]);
@@ -179,11 +182,11 @@ class InterventionM
 		return API::getVehiculeById($id);
 	}
 
-	
+
 	public function getRolesById($id)
 	{
 
-	 return API::getRolesById($id);
+		return API::getRolesById($id);
 	}
 
 	public function getTypeInterventionList()
@@ -200,37 +203,33 @@ class InterventionM
 		return API::getAllVehiculesIndicatif();
 	}
 
-	public function AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend,$apprenti)
+	public function AddTeamToVehicule($IDvehicule, $IDintervention, $listetosend, $apprenti)
 	{
 
-	 var_dump($listetosend);
-	        $id = API::getVehiculeTV_CODE($IDvehicule);
+		var_dump($listetosend);
+		$id = API::getVehiculeTV_CODE($IDvehicule);
 
 		for ($j = 0; $j < count($listetosend); $j++) {
 			$role = str_replace("_", " ", $listetosend[$j][0]);
 			// echo $role;
-			
+
 			$IDrole = $j + 1;
 			//  echo  $IDrole;
 			$pieces = explode(" ", $listetosend[$j][1]);
 			$IDPompier = API::getPompierID($pieces[0], $pieces[1]);
 			echo $listetosend[$j][1] . "<br>";
 			$this->con->query("INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention, $IDrole);");
-
 		}
-		if (strcmp($apprenti,"none")!==0)
-		{
-			$pieces = explode(" ",$apprenti);
+		if (strcmp($apprenti, "none") !== 0) {
+			$pieces = explode(" ", $apprenti);
 			$IDPompier = API::getPompierID($pieces[0], $pieces[1]);
-			$req="INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention,0);";
+			$req = "INSERT INTO  `personnelduvehicule` (IDVehicule, IDPersonne, IDIntervention, IDrole) VALUES($IDvehicule, $IDPompier,$IDintervention,0);";
 			$this->con->query($req);
-
 		}
 	}
 
 	function getAllFirefighter()
 	{
 		return API::getAllFirefighter();
-
 	}
 }

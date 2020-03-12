@@ -4,16 +4,19 @@ class API
 {
 	private static $bdd = null;
 
-	private function __construct(){}
+	private function __construct()
+	{
+	}
 
-	private static function postRequest ($url, $value) {
+	private static function postRequest($url, $value)
+	{
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($value));
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$server_output = curl_exec($ch);
-		$con = !($server_output == false ) && curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200;
-		curl_close ($ch);
+		$con = !($server_output == false) && curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200;
+		curl_close($ch);
 		if ($con) {
 			return json_decode($server_output, true);
 		} else {
@@ -22,13 +25,14 @@ class API
 	}
 
 
-	private static function getRequest ($url) {
+	private static function getRequest($url)
+	{
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,$url);
+		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$server_output = curl_exec($ch);
-		$con = !($server_output == false ) && curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200;
-		curl_close ($ch);
+		$con = !($server_output == false) && curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200;
+		curl_close($ch);
 		if ($con) {
 			return json_decode($server_output, true);
 		} else {
@@ -37,13 +41,15 @@ class API
 	}
 
 
-	private static function checkBDD() {
+	private static function checkBDD()
+	{
 		if (self::$bdd == null) {
 			self::$bdd = BDD::getInstance();
 		}
 	}
 
-	private static function cleanUserInput($input) {
+	private static function cleanUserInput($input)
+	{
 		$input = htmlentities($input);
 		return $input;
 	}
@@ -54,8 +60,8 @@ class API
 		$user = self::cleanUserInput($user);
 		$mp = self::cleanUserInput($mp);
 		$url = API_URL . "auth";
-		$value = array( "code" => $user, "mp" => $mp);
-		$res = self::postRequest($url,$value);
+		$value = array("code" => $user, "mp" => $mp);
+		$res = self::postRequest($url, $value);
 		return $res["pompier"];
 	}
 
@@ -92,7 +98,7 @@ class API
 		$res = self::getRequest(API_URL . "vehicule/" . $id);
 		return $res["vehicule"][0]["ROLE"];
 	}
-	
+
 
 	public static function getVehiculeInterventionById($id)
 	{
@@ -128,7 +134,7 @@ class API
 		$res = self::getRequest(API_URL . "typeIntervention");
 		$res = $res["typeIntervention"];
 		$i = 0;
-		while($i < sizeof($res) && $res[$i]["TI_DESCRIPTION"] != $description ) {
+		while ($i < sizeof($res) && $res[$i]["TI_DESCRIPTION"] != $description) {
 			$i++;
 		}
 		return $i < sizeof($res) ? $res[$i]['TI_CODE'] : false;
@@ -142,7 +148,7 @@ class API
 		$res = self::getRequest(API_URL . "pompier");
 		$res = $res["pompiers"];
 		$i = 0;
-		while($i < sizeof($res) && ($res[$i]["P_NOM"] != $nom && $res[$i]["P_PRENOM"] != $prenom)) {
+		while ($i < sizeof($res) && ($res[$i]["P_NOM"] != $nom && $res[$i]["P_PRENOM"] != $prenom)) {
 			$i++;
 		}
 		return $i < sizeof($res) ? $res[$i]['P_ID'] : -1;
@@ -154,13 +160,11 @@ class API
 		//$query = self::$bdd->query( "select P_PRENOM,P_NOM from pompier;");
 		$res = self::getRequest(API_URL . "pompier");
 		$res = $res["pompiers"];
-			$array = array();
-			foreach($res as $row)
-			{
-				$array[]= $row["P_PRENOM"]." ".$row["P_NOM"]."\n";
-		
-			}
-			return $array;
+		$array = array();
+		foreach ($res as $row) {
+			$array[] = $row["P_PRENOM"] . " " . $row["P_NOM"] . "\n";
+		}
+		return $array;
 	}
 	public static function getTypeInterventionList()
 	{
@@ -185,7 +189,7 @@ class API
 		$res = self::getRequest(API_URL . "vehicule");
 		$res = $res["vehicules"];
 		$i = 0;
-		while($i < sizeof($res) && $res[$i]["V_INDICATIF"] != $indicatif) {
+		while ($i < sizeof($res) && $res[$i]["V_INDICATIF"] !== $indicatif) {
 			$i++;
 		}
 		return $i < sizeof($res) ? $res[$i]["ROLE"] : false;
@@ -210,13 +214,13 @@ class API
 		$res = $res["vehicules"];
 		$i = 0;
 		$rid = -1;
-		while($i < sizeof($res) && $rid == -1) {
+		while ($i < sizeof($res) && $rid == -1) {
 			if ($res[$i]["TV_CODE"] == $code) {
-				$j = 0 ;
-				while($j < sizeof($res[$i]["ROLE"]) && $res[$i]["ROLE"][$j]["ROLE_NAME"] != $name) {
+				$j = 0;
+				while ($j < sizeof($res[$i]["ROLE"]) && $res[$i]["ROLE"][$j]["ROLE_NAME"] != $name) {
 					$j++;
 				}
-				$rid = $j < sizeof($res[$i]["ROLE"]) ? $res[$i]["ROLE"][$j]["ROLE_ID"] : $rid ;
+				$rid = $j < sizeof($res[$i]["ROLE"]) ? $res[$i]["ROLE"][$j]["ROLE_ID"] : $rid;
 			}
 			$i++;
 		}

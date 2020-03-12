@@ -26,7 +26,8 @@
                     <select name="typeIntervention" id="typeIntervention" class="form-control">
                         <option value="">Selectionnez un type d'intervention</option>
                         <?php
-                        while ($donnees = $typeList->fetch()) {
+
+                        foreach ($typeList as $donnees) {
                         ?>
                         <option value="<?php
 
@@ -101,7 +102,7 @@
                         <select name="typeEngin[]" id="nomEngin%0" class="form-control" onChange="javascript:addTeam(this.id);">
                             <option value="">Selectionnez un véhicule</option>
                             <?php
-                            while ($vehicule = $typeVehicule->fetch()) {
+                            foreach ($typeVehicule as $vehicule) {
                             ?>
                             <option value="<?php
 
@@ -165,7 +166,6 @@
                         <div class="barre"></div>
                     </div>
                 </div>
-              
             </div>
             <button type="button" class="btn btn-danger btn-lg" onClick="javascript:AddEngin();" id="addVehicule">Ajouter un véhicule</button>
         </div>
@@ -176,21 +176,21 @@
                     <label for="">Nom du responsable</label>
                     <input type="text" autocomplete="off" name="responsable" list="firefighters">
                     <datalist id="firefighters">
-                    <?php
-                           foreach ( $listFirefighter as $Firefighter) {
-                            ?>
-                            <option value="<?php
+                        <?php
+                        foreach ($listFirefighter as $Firefighter) {
+                        ?>
+                        <option value="<?php
 
+                                            $output = htmlentities($Firefighter, 0, "UTF-8");
+                                            if ($output == "") {
                                                 $output = htmlentities($Firefighter, 0, "UTF-8");
-                                                if ($output == "") {
-                                                    $output = htmlentities(utf8_encode($Firefighter), 0, "UTF-8");
-                                                }
-                                                echo $output;
-                                ?>">
-                            </option>
-                            <?php
-                            }
-                            ?>
+                                            }
+                                            echo $output;
+                                            ?>">
+                        </option>
+                        <?php
+                        }
+                        ?>
                     </datalist>
                     <div class="barre"></div>
                 </div>
@@ -201,9 +201,9 @@
         </div>
     </form>
 </div>
-<script type='text/javascript'>
+<script>
 var nbvehicule = 0;
-var nbchef=0;
+var nbchef = 0;
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -231,7 +231,6 @@ function addTeam(p) {
     var opt = sel.options[sel.selectedIndex].text;
     var val = sel.options[sel.selectedIndex].value;
 
-
     ///---------------- partie ajax
     var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -244,21 +243,20 @@ function addTeam(p) {
 
     xhr.open("GET", "../views/team.php?variable=" + sVar, true);
     xhr.send(null);
-
 }
 
-// solution pour le probleme d'encodage 
+// solution pour le probleme d'encodage
 function html_entity_decode(str) {
     var ta = document.createElement("textarea");
     ta.innerHTML = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     toReturn = ta.value;
     ta = null;
-    return toReturn
+    return toReturn;
 }
 //ajout des champs pour l'equipe
 function selection(xml, sel, p, val) {
     var nb = p.split("%");
-    console.log(val);
+
     while (document.contains(document.getElementById("team" + nb[1]))) {
         document.getElementById("team" + nb[1]).remove();
     }
@@ -268,35 +266,35 @@ function selection(xml, sel, p, val) {
         liste[i] = html_entity_decode(liste[i]);
     }
     var div = document.createElement("div");
-        div.setAttribute("id", "team" + nb[1]);
-        div.setAttribute("class", "champ");
-        var label = document.createElement("label");
-        label.setAttribute("for", "")
-        var text = document.createTextNode("Apprenti");
-        var span = document.createElement("span");
-        span.setAttribute("class", "important");
-        label.appendChild(text);
-        label.appendChild(span);
-        var deuxpoints = document.createTextNode(":");
-        label.appendChild(deuxpoints);
-        var input = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.setAttribute("list","firefighters");
-        input.required = false;
-        input.setAttribute("name", "apprenti[]");
-        input.setAttribute("placeholder", "Apprenti");
-        var span2 = document.createElement("span");
-        div.appendChild(label);
-        div.appendChild(input);
-        div.appendChild(span2);
-        sel.parentNode.insertBefore(div, sel.nextSibling);
+    div.setAttribute("id", "team" + nb[1]);
+    div.setAttribute("class", "champ");
+    var label = document.createElement("label");
+    label.setAttribute("for", "");
+    var text = document.createTextNode("Apprenti");
+    var span = document.createElement("span");
+    span.setAttribute("class", "important");
+    label.appendChild(text);
+    label.appendChild(span);
+    var deuxpoints = document.createTextNode(":");
+    label.appendChild(deuxpoints);
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.setAttribute("list", "firefighters");
+    input.required = false;
+    input.setAttribute("name", "apprenti[]");
+    input.setAttribute("placeholder", "Apprenti");
+    var span2 = document.createElement("span");
+    div.appendChild(label);
+    div.appendChild(input);
+    div.appendChild(span2);
+    sel.parentNode.insertBefore(div, sel.nextSibling);
 
-    for (let i =  liste.length-1; i >1; i--) {
+    for (let i = liste.length - 1; i > 1; i--) {
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
         var label = document.createElement("label");
-        label.setAttribute("for", "")
+        label.setAttribute("for", "");
         var text = document.createTextNode(liste[i]);
         var span = document.createElement("span");
         span.setAttribute("class", "important");
@@ -308,7 +306,7 @@ function selection(xml, sel, p, val) {
         label.appendChild(deuxpoints);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
-        input.setAttribute("list","firefighters");
+        input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[i] + "[]");
         input.setAttribute("placeholder", liste[i]);
@@ -318,13 +316,13 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-    if(nbchef==0)
-    { nbchef++;
+    if (nbchef == 0) {
+        nbchef++;
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
         var label = document.createElement("label");
-        label.setAttribute("for", "")
+        label.setAttribute("for", "");
         var text = document.createTextNode(liste[1]);
         var span = document.createElement("span");
         span.setAttribute("class", "important");
@@ -336,23 +334,21 @@ function selection(xml, sel, p, val) {
         label.appendChild(deuxpoints);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
-        input.setAttribute("list","firefighters");
+        input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("value", "<?php echo $_SESSION["prenom"]." ".$_SESSION["nom"] ?>");
+        input.setAttribute("value", "<?= $_SESSION['prenom'] . '' . $_SESSION['nom'] ?>");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
-
-    }
-    else{
+    } else {
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
         var label = document.createElement("label");
-        label.setAttribute("for", "")
+        label.setAttribute("for", "");
         var text = document.createTextNode(liste[1]);
         var span = document.createElement("span");
         span.setAttribute("class", "important");
@@ -364,7 +360,7 @@ function selection(xml, sel, p, val) {
         label.appendChild(deuxpoints);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
-        input.setAttribute("list","firefighters");
+        input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
         input.setAttribute("placeholder", "chef d'agrès");
@@ -374,10 +370,8 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-   
-   
-    
-    console.log(liste);
+
+    console.log(liste, "  je fais un test");
 }
 
 function AddEngin() {
@@ -401,7 +395,7 @@ function addtoform(types) {
     var body = document.createElement("div");
     body.setAttribute("class", "body");
     body.setAttribute("id", "vehicule" + nbvehicule);
-    section.insertAdjacentElement('beforebegin', body);
+    section.insertAdjacentElement("beforebegin", body);
     var champ2 = document.createElement("div");
     champ2.setAttribute("class", "group-champ col2");
     var champ = document.createElement("div");
@@ -546,8 +540,6 @@ function addtoform(types) {
     var sup = document.createTextNode("supprimer ce véhicule");
     button.appendChild(sup);
     body.appendChild(button);
-
-
 }
 
 function deleteEngin(id) {
@@ -555,6 +547,5 @@ function deleteEngin(id) {
         document.getElementById(id).remove();
     }
     nbvehicule--;
-
 }
 </script>

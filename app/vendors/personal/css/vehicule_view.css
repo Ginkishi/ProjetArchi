@@ -48,8 +48,16 @@
   margin: 10px;
   padding: 10px;
   display: grid;
-  grid-template-rows: 1fr;
   row-gap: 20px;
+  background-color: #6e93d8;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+  font-size: 18px;
+}
+.vehicule-container .body span.label {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .vehicule-container .body .statut:hover {
@@ -67,7 +75,6 @@
   font-size: 18px;
 }
 .contain.shadow .main .vehicule-container .body span.label {
-  font-weight: bold;
   font-size: 20px;
   color: #6e93d8;
 }

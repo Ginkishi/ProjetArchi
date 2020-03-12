@@ -48,4 +48,3 @@
             return GestionnaireSession::aUnDesRoles("84");
         }
     }
-?>
