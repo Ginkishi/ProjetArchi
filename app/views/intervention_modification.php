@@ -273,6 +273,8 @@
                     </div>
                 </div>
             </div>
+         
+            <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id= "<?php echo "vehicule".$j ?>">Supprimer ce véhicule</button>
             <?php 
                     }
                 }
@@ -435,6 +437,36 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
+    if (nb[1] == 0) {
+       
+       var div = document.createElement("div");
+       div.setAttribute("id", "team" + nb[1]);
+       div.setAttribute("class", "champ");
+       var label = document.createElement("label");
+       label.setAttribute("for", "");
+       var text = document.createTextNode(liste[1]);
+       var span = document.createElement("span");
+       span.setAttribute("class", "important");
+       var etoile = document.createTextNode("*");
+       span.appendChild(etoile);
+       label.appendChild(text);
+       label.appendChild(span);
+       var deuxpoints = document.createTextNode(":");
+       label.appendChild(deuxpoints);
+       var input = document.createElement("input");
+       input.setAttribute("type", "text");
+       input.setAttribute("list", "firefighters");
+       input.required = true;
+       input.setAttribute("name", liste[1] + "[]");
+       input.setAttribute("value", "<?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?>");
+       var span2 = document.createElement("span");
+       div.appendChild(label);
+       div.appendChild(input);
+       div.appendChild(span2);
+       sel.parentNode.insertBefore(div, sel.nextSibling);
+    }
+    else 
+    {
     
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
@@ -463,7 +495,7 @@ function selection(xml, sel, p, val) {
         sel.parentNode.insertBefore(div, sel.nextSibling);
         console.log(liste);
     }
-   
+}
    
    
   
@@ -631,7 +663,7 @@ function addtoform(types) {
         button.setAttribute("class","btn btn-primary btn-lg");
         button.setAttribute("onClick","javascript:deleteEngin(this.id);");
         button.setAttribute("id","vehicule"+nbvehicule);
-        var sup =document.createTextNode("supprimer ce véhicule");
+        var sup =document.createTextNode("Supprimer ce véhicule");
         button.appendChild(sup);
     body.appendChild(button);
 

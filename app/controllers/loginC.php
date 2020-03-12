@@ -23,10 +23,12 @@ class LoginController
 			$InterventionModel = new InterventionM();
 			$interventions = $InterventionModel->getAll();
 			$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
+			$interventionsForUser = $InterventionModel->getInterventionForPerson($_SESSION["id"]);
 			$v->ajouterVariable("interventions", $interventions);
 			$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 			$v->ajouterLink("personal", "home");
 			$v->ajouterLink("personal", "intervention_card");
+			$v->ajouterVariable("interventionsForUser", $interventionsForUser);
 			$v->ajouterScript("personal", "clock");
 			$v->afficher("home_index");
 		} else {
@@ -64,10 +66,12 @@ class LoginController
 				$InterventionModel = new InterventionM();
 				$interventions = $InterventionModel->getAll();
 				$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
+				$interventionsForUser = $InterventionModel->getInterventionForPerson($_SESSION["id"]);
 				$v->ajouterVariable("interventions", $interventions);
 				$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 				$v->ajouterLink("personal", "home");
 				$v->ajouterLink("personal", "intervention_card");
+				$v->ajouterVariable("interventionsForUser", $interventionsForUser);
 				$v->ajouterScript("personal", "clock");
 				$v->afficher("home_index");
 			} else {

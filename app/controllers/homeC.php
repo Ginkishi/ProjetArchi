@@ -15,7 +15,9 @@ class HomeController
 		$InterventionModel = new InterventionM();
 		$interventions = $InterventionModel->getAll();
 		$numberOfIntervention = $InterventionModel->getNumberOfInterventionType();
+		$interventionsForUser = $InterventionModel->getInterventionForPerson($_SESSION["id"]);
 		$v->ajouterVariable("interventions", $interventions);
+		$v->ajouterVariable("interventionsForUser", $interventionsForUser);
 		$v->ajouterVariable("numberOfIntervention", $numberOfIntervention);
 		$v->ajouterLink("personal", "home");
 		$v->ajouterLink("personal", "intervention_card");

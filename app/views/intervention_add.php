@@ -264,7 +264,7 @@ function html_entity_decode(str) {
 //ajout des champs pour l'equipe
 function selection(xml, sel, p, val) {
     var nb = p.split("%");
-
+    console.log(nb);
     while (document.contains(document.getElementById("team" + nb[1]))) {
         document.getElementById("team" + nb[1]).remove();
     }
@@ -324,8 +324,8 @@ function selection(xml, sel, p, val) {
         div.appendChild(span2);
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
-    if (nbchef == 0) {
-        nbchef++;
+    if (nb[1] == 0) {
+       
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -387,7 +387,8 @@ function AddEngin() {
     console.log(nbvehicule);
     var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+        {
             addtoform(xhr.responseText);
         }
     };
@@ -545,7 +546,7 @@ function addtoform(types) {
     button.setAttribute("class", "btn btn-primary btn-lg");
     button.setAttribute("onClick", "javascript:deleteEngin(this.id);");
     button.setAttribute("id", "vehicule" + nbvehicule);
-    var sup = document.createTextNode("supprimer ce véhicule");
+    var sup = document.createTextNode("Supprimer ce véhicule");
     button.appendChild(sup);
     body.appendChild(button);
 }

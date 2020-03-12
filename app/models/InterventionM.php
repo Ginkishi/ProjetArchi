@@ -236,4 +236,16 @@ class InterventionM
 	{
 		return API::getAllFirefighter();
 	}
+
+	public function getInterventionForPerson($id)
+	{
+		$query = "SELECT DISTINCT i.IDIntervention,NIntervention,Commune,Adresse,TypeIntervention,DateDeclenchement,DateFin
+		from  interventions i
+		JOIN personnelduvehicule p on p.IDIntervention = i.IDIntervention
+		WHERE p.IDPersonne = " . $id . " OR i.IDResponsable = " . $id;
+		$res = $this->con->query($query);
+		$record = $res->fetchAll(PDO::FETCH_ASSOC);
+
+		return sizeof($record) > 0 ? $record : null;
+	}
 }
