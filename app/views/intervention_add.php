@@ -33,13 +33,13 @@
 
                                             $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                                             if ($output == "") {
-                                                $output = htmlentities(utf8_encode($donnees['TI_CODE']), 0, "UTF-8");
+                                                $output = htmlentities($donnees['TI_CODE'], 0, "UTF-8");
                                             }
                                             echo $output;
                                             ?>"><?php
                                                 $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                                 if ($output == "") {
-                                                    $output = htmlentities(utf8_encode($donnees['TI_DESCRIPTION']), 0, "UTF-8");
+                                                    $output = htmlentities($donnees['TI_DESCRIPTION'], 0, "UTF-8");
                                                 }
                                                 echo $output;
                                                 ?></option>
@@ -108,14 +108,14 @@
 
                                                 $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
                                                 if ($output == "") {
-                                                    $output = htmlentities(utf8_encode($vehicule['V_ID']), 0, "UTF-8");
+                                                    $output = htmlentities($vehicule['V_ID'], 0, "UTF-8");
                                                 }
                                                 echo $output;
                                                 ?>">
                                 <?php
                                     $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
                                     if ($output == "") {
-                                        $output = htmlentities(utf8_encode($vehicule['V_INDICATIF']), 0, "UTF-8");
+                                        $output = htmlentities($vehicule['V_INDICATIF'], 0, "UTF-8");
                                     }
                                     echo $output;
                                     ?>
@@ -345,7 +345,7 @@ function selection(xml, sel, p, val) {
         input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("value", "<?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?>");
+        input.setAttribute("value", "<?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?>");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);

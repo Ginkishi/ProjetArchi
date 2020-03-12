@@ -148,7 +148,7 @@ class API
 		$res = self::getRequest(API_URL . "pompier");
 		$res = $res["pompiers"];
 		$i = 0;
-		while ($i < sizeof($res) && ($res[$i]["P_NOM"] != $nom && $res[$i]["P_PRENOM"] != $prenom)) {
+		while ($i < sizeof($res) && (($res[$i]["P_NOM"] != $nom || $res[$i]["P_PRENOM"] != $prenom))) {
 			$i++;
 		}
 		return $i < sizeof($res) ? $res[$i]['P_ID'] : -1;

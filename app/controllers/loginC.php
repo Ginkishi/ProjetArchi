@@ -11,8 +11,6 @@ class LoginController
 	{
 	}
 
-
-
 	public function index()
 	{
 		// Check if PHP session is started (start it if not already started)
