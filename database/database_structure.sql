@@ -104,6 +104,11 @@ INSERT INTO `status` (`IDstatus`, `label`) VALUES
     ('3', 'Chef demande modification '),
     ('4', 'Validé par le chef');
 
+ALTER TABLE `vehiculeutilise` 
+ADD FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
+
+ALTER TABLE `personnelduvehicule` 
+ADD FOREIGN KEY (IDIntervention) REFERENCES interventions(IDIntervention);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
