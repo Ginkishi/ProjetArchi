@@ -10,10 +10,10 @@ toggleBtn.addEventListener("click", () => {
   sidebar.classList.toggle("show");
   if (sidebar.classList.contains("show")) {
     setCookie("Menu", "show");
-    console.log("Menu ouvert");
+    // console.log("Menu ouvert");
   } else {
     setCookie("Menu", "hide");
-    console.log(getCookieValue("Menu"));
+    // console.log(getCookieValue("Menu"));
   }
 });
 sidebarItems.forEach(item => {
@@ -29,7 +29,20 @@ if (getCookieValue("Menu") == "hide") {
     sidebar.classList.toggle("show");
   }
 }
+if (getCookieValue("Mode") == "light") {
+  if (container.classList.contains("shadow")) {
+    container.classList.toggle("shadow");
+    darkBtn.checked = true;
+  } else {
+    darkBtn.checked = false;
+  }
+}
 
 function changeColor() {
   container.classList.toggle("shadow");
+  if (container.classList.contains("shadow")) {
+    setCookie("Mode", "dark");
+  } else {
+    setCookie("Mode", "light");
+  }
 }
