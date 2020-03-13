@@ -23,6 +23,13 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 		return $record;
 	}
+	public function getAllWait()
+	{
+		$query = $this->con->query("select IDIntervention,`NIntervention`,`Commune`,`Adresse`,`TypeIntervention`,`DateDeclenchement` datedec,`DateFin` datefin ,s.label statut,i.IDstatus idstatut from interventions i JOIN status s on s.IDstatus = i.IDstatus where i.IDstatus = 0");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+
 
 	public function getNumberOfInterventionType()
 	{
