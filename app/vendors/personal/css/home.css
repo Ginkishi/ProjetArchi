@@ -162,15 +162,15 @@
 }
 
 .cards.warn .logo i {
-  color: #f7971e;
+  color: white;
 }
 
 .cards.danger .logo i {
-  color: #ed213a;
+  color: white;
 }
 
 .cards.valid .logo i {
-  color: #56ab2f;
+  color: white;
 }
 
 .contain.shadow .main .bandeau .bandeau-title {
@@ -236,21 +236,21 @@
 }
 
 .contain.shadow .main .cards-container .cards.cards.warn .title,
-.contain.shadow .main .cards-container .cards.cards.warn .logo,
+.contain.shadow .main .cards-container .cards.cards.warn .logo i,
 .contain.shadow .main .cards-container .cards.cards.warn .number {
   color: #f7971e !important;
   transition: 0.25s linear;
 }
 
 .contain.shadow .main .cards-container .cards.cards.danger .title,
-.contain.shadow .main .cards-container .cards.cards.danger .logo,
+.contain.shadow .main .cards-container .cards.cards.danger .logo i,
 .contain.shadow .main .cards-container .cards.cards.danger .number {
   color: #ed213a !important;
   transition: 0.25s linear;
 }
 
 .contain.shadow .main .cards-container .cards.cards.valid .title,
-.contain.shadow .main .cards-container .cards.cards.valid .logo,
+.contain.shadow .main .cards-container .cards.cards.valid .logo i,
 .contain.shadow .main .cards-container .cards.cards.valid .number {
   color: #56ab2f !important;
   transition: 0.25s linear;
