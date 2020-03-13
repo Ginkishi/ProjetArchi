@@ -68,7 +68,8 @@ class InterventionM
 		return $ID['IDIntervention'];
 	}
 
-	public function validateIntervention($id, $ids) {
+	public function validateIntervention($id, $ids)
+	{
 		$this->con->query("UPDATE interventions 
 		  SET IDstatus = $ids
 		   WHERE IDIntervention = $id");
@@ -120,15 +121,12 @@ class InterventionM
 	{
 		$query = $this->con->query("SELECT * FROM  interventions where IDIntervention=$id");
 		$record = $query->fetch();
-		
-		if($record != null)
-		{
+
+		if ($record != null) {
 			$res = API::getPompierById($record["IDResponsable"]);
 			$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
 			return $record;
-		}
-		else
-		{
+		} else {
 			return [];
 		}
 	}
@@ -141,7 +139,7 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 
 		for ($i = 0; $i < sizeof($record); $i++) {
-			$record[$i]["infoVehicule"] = API::getVehiculeById($id);
+			$record[$i]["infoVehicule"] = API::getVehiculeById($record[$i]["IDVehicule"]);
 			$record[$i]["vehicule"] = API::getVehiculeInterventionById($record[$i]["IDVehicule"]);
 
 			for ($j = 0; $j < sizeof($record[$i]["vehicule"]); $j++) {
