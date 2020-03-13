@@ -22,6 +22,7 @@ class HomeController
 		$v->ajouterLink("personal", "home");
 		$v->ajouterLink("personal", "intervention_card");
 		$v->ajouterScript("personal", "clock");
+
 		$v->afficher("home_index");
 	}
 }
