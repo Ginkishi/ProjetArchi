@@ -31,7 +31,7 @@ setlocale(LC_TIME, "fr_FR");
         </div>
     </div>
     <div class="cards valid">
-        <div class="logo"><a href="#"><i class="far fa-check-circle"></i></a></div>
+        <div class="logo"><a href="<?= LOCAL_DIR ?>intervention/listValid"><i class="far fa-check-circle"></i></a></div>
         <div class="body">
             <div class="title">Validé :</div>
             <div class="number"><?= $numberOfIntervention[1]["nbIntervention"] + $numberOfIntervention[4]["nbIntervention"] ?> </div>
