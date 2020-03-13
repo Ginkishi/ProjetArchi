@@ -200,8 +200,8 @@
             <input type="submit" value="Sauvegarder" class="btn btn-primary btn-lg">
         </div>
         <?php
-            require_once(CLASSES . DS . "gestionnaireGrade.php");
-            if (GestionnaireGrade::aLesDroitsValidation()) {
+        require_once(CLASSES . DS . "gestionnaireGrade.php");
+        if (GestionnaireGrade::aLesDroitsValidation()) {
         ?>
         <div class="champ">
             <input type="submit" value="Valider" formaction="../intervention/addValidatedInterventionToBDD" class="btn btn-primary btn-lg">
@@ -325,7 +325,7 @@ function selection(xml, sel, p, val) {
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
     if (nb[1] == 0) {
-       
+
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
         div.setAttribute("class", "champ");
@@ -345,7 +345,8 @@ function selection(xml, sel, p, val) {
         input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("value", "<?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?>");
+        input.setAttribute("value", "<?php echo $_SESSION['prenom'] . "
+            " . $_SESSION['nom'] ?>");
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
@@ -387,8 +388,7 @@ function AddEngin() {
     console.log(nbvehicule);
     var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
-        {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
             addtoform(xhr.responseText);
         }
     };
