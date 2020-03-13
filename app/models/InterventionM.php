@@ -126,12 +126,26 @@ class InterventionM
 
 	public function getInterventionById($id)
 	{
-		$query = $this->con->query("SELECT * FROM  interventions where IDIntervention=$id");
+		$query = $this->con->query("SELECT i.IDIntervention,NIntervention,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,Adresse,Commune,OPM,i.IDstatus,s.label 
+		FROM  interventions i
+		JOIN status s on i.IDstatus = s.IDstatus
+		where IDIntervention=$id");
 		$record = $query->fetch();
 
 		if ($record != null) {
 			$res = API::getPompierById($record["IDResponsable"]);
 			$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
+			if ($record["Important"] == 1) {
+				$record["Important"] = "OUI";
+			} else {
+				$record["Important"] = "NON";
+			}
+			if ($record["OPM"] == 1) {
+				$record["OPM"] = "OUI";
+			} else {
+				$record["OPM"] = "NON";
+			}
+			$record["TypeInterventionInfo"] = API::getTypeInterventionByID($record["TypeIntervention"]);
 			return $record;
 		} else {
 			return [];

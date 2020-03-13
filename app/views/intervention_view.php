@@ -10,8 +10,11 @@
             <div id="date_fin"><span class="label">Date de fin : </span><?= $intervention["DateFin"] ?></div>
             <div id="adresse"><span class="label">Adresse : </span><?= $intervention["Adresse"] ?></div>
             <div id="commune"><span class="label">Commune : </span><?= $intervention["Commune"] ?></div>
+            <div id="type"><span class="label">Type d'intervention : </span><?= $intervention["TypeInterventionInfo"][0]["TI_DESCRIPTION"] ?></div>
             <div id="requerant"><span class="label">Requ&eacute;rant : </span><?= $intervention["Requerant"] ?></div>
             <div id="responsable"><span class="label">Responsable : </span><?= $intervention["IDResponsable"] ?></div>
+            <div id="important"><span class="label">Important : </span><?= $intervention["Important"] ?></div>
+            <div id="opm"><span class="label">OPM : </span><?= $intervention["OPM"] ?></div>
         </div>
         <div class="vehicule-container">
             <div class="title">V&eacute;hicule(s)</div>

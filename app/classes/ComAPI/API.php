@@ -173,6 +173,13 @@ class API
 		$res = self::getRequest(API_URL . "typeIntervention");
 		return	$res["typeIntervention"];
 	}
+	public static function getTypeInterventionByID($id)
+	{
+		self::checkBDD();
+		//$query = self::$bdd->query("SELECT TI_DESCRIPTION, TI_CODE FROM `type_intervention`;");
+		$res = self::getRequest(API_URL . "typeIntervention/" . $id);
+		return	$res["typeIntervention"];
+	}
 
 	public static function getAllVehiculesIndicatif()
 	{
