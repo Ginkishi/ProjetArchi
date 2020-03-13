@@ -325,6 +325,8 @@ function selection(xml, sel, p, val) {
         sel.parentNode.insertBefore(div, sel.nextSibling);
     }
     if (nb[1] == 0) {
+        var pompprenom = "<?php echo $_SESSION['prenom'] ?>";
+        var pompnom = "<?php echo $_SESSION['nom'] ?>";
 
         var div = document.createElement("div");
         div.setAttribute("id", "team" + nb[1]);
@@ -345,8 +347,7 @@ function selection(xml, sel, p, val) {
         input.setAttribute("list", "firefighters");
         input.required = true;
         input.setAttribute("name", liste[1] + "[]");
-        input.setAttribute("value", "<?php echo $_SESSION['prenom'] . "
-            " . $_SESSION['nom'] ?>");
+        input.setAttribute("value", pompprenom + " " + pompnom);
         var span2 = document.createElement("span");
         div.appendChild(label);
         div.appendChild(input);
