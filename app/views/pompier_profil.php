@@ -1,7 +1,7 @@
 <div class="pompier-container">
     <div class="bandeau-title">
         <div class="logo"><i class="far fa-address-card"></i></div>
-        <div class="title">Mon profil</div>
+        <div class="title">Profil</div>
     </div>
     <div class="body">
         <div class="info">

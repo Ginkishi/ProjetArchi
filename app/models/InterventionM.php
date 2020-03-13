@@ -141,7 +141,7 @@ class InterventionM
 
 		if ($record != null) {
 			$res = API::getPompierById($record["IDResponsable"]);
-			$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
+			$record["Responsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
 			if ($record["Important"] == 1) {
 				$record["Important"] = "OUI";
 			} else {
@@ -175,6 +175,7 @@ class InterventionM
 				$query = $this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole=" . (int) $record[$i]["vehicule"][$j]["ROLE_ID"]);
 				$record2 = $query->fetch(PDO::FETCH_ASSOC);
 				$np = API::getPompierById($record2["IDPersonne"]);
+				$record[$i]["vehicule"][$j]["IDPompier"] = $record2["IDPersonne"];
 				$record[$i]["vehicule"][$j]["pompier"] = $np["P_PRENOM"] . " " . $np["P_NOM"];
 			}
 			$qa = $this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole = 0");
@@ -182,6 +183,7 @@ class InterventionM
 			if ($ra != null) {
 				array_push($record[$i]["vehicule"], array("ROLE_NAME" => "apprenti", "ROLE_ID" => 0));
 				$npa = API::getPompierById($ra["IDPersonne"]);
+				$record[$i]["vehicule"][sizeof($record[$i]["vehicule"]) - 1]["IDPompier"] = $ra["IDPersonne"];
 				$record[$i]["vehicule"][sizeof($record[$i]["vehicule"]) - 1]["pompier"] = $npa["P_PRENOM"] . " " . $npa["P_NOM"];
 			}
 		}

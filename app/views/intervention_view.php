@@ -12,7 +12,8 @@
             <div id="commune"><span class="label">Commune : </span><?= $intervention["Commune"] ?></div>
             <div id="type"><span class="label">Type d'intervention : </span><?= $intervention["TypeInterventionInfo"][0]["TI_DESCRIPTION"] ?></div>
             <div id="requerant"><span class="label">Requ&eacute;rant : </span><?= $intervention["Requerant"] ?></div>
-            <div id="responsable"><span class="label">Responsable : </span><?= $intervention["IDResponsable"] ?></div>
+            <div id="responsable"><span class="label">Responsable : </span><a
+                    href="<?= LOCAL_DIR ?>pompier/view/<?= $intervention["IDResponsable"] ?>"><?= $intervention["Responsable"] ?></a></div>
             <div id="important"><span class="label">Important : </span><?= $intervention["Important"] ?></div>
             <div id="opm"><span class="label">OPM : </span><?= $intervention["OPM"] ?></div>
         </div>
@@ -25,7 +26,12 @@
                 <div class="immatriculation"><span class="label">Immatriculation : </span><?= $v["infoVehicule"]["V_IMMATRICULATION"] ?></div>
                 <div class="comp"><span class="label">Composition :</div>
                 <?php foreach ($v["vehicule"] as $ve) { ?>
-                <div class="poste"><span class="label"><?= $ve["ROLE_NAME"] ?> : </span><?= $ve["pompier"] ?></div>
+                <div class="poste">
+                    <span class="label"><?= $ve["ROLE_NAME"] ?> : </span>
+                    <?php if ($ve["pompier"] != "") { ?>
+                    <a href="<?= LOCAL_DIR ?>pompier/view/<?= $ve["IDPompier"] ?>"><?= $ve["pompier"] ?></a>
+                    <?php } ?>
+                </div>
                 <?php } ?>
             </div>
             <?php } ?>

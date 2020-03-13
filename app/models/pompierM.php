@@ -14,9 +14,10 @@ class PompierModel
     {
         return API::getPompierById($id);
     }
-    public function profil()
+
+    public function getProfilPompier($id)
     {
-        $pompier = API::getPompierById($_SESSION["id"]);
+        $pompier = API::getPompierById($id);
         if ($pompier["P_SEXE"] == "M") {
             $pompier["P_SEXE"] = "Masculin";
             $pompier["P_CIVILITE "] = "Monsieur";

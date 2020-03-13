@@ -27,7 +27,16 @@ class PompierController
     {
         $v = new View();
         $PompierModel = new PompierModel();
-        $profil = $PompierModel->profil();
+        $profil = $PompierModel->getProfilPompier($_SESSION["id"]);
+        $v->ajouterVariable("pompier", $profil);
+        $v->ajouterLink("personal", "pompier_profil");
+        $v->afficher("pompier_profil");
+    }
+    public function view($id)
+    {
+        $v = new View();
+        $PompierModel = new PompierModel();
+        $profil = $PompierModel->getProfilPompier($id);
         $v->ajouterVariable("pompier", $profil);
         $v->ajouterLink("personal", "pompier_profil");
         $v->afficher("pompier_profil");
