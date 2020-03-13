@@ -234,6 +234,14 @@ class API
 		return $rid;
 	}
 
+	public static function getLibelleRole($id)
+	{
+		self::checkBDD();
+		//$query = self::$bdd->query("SELECT TV_CODE  FROM `vehicule`  WHERE V_ID=$id;");
+		//$row = $query->fetch();
+		$res = self::getRequest(API_URL . "fonctionnalite/" . $id);
+		return $res["fonctionnalite"][0]['F_LIBELLE'];
+	}
 	public static function getVehiculeTV_CODE($id)
 	{
 		self::checkBDD();

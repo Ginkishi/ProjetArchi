@@ -13,7 +13,7 @@ require_once(CLASSES . DS . "gestionnaireGrade.php");
     <div class="tool">
         <!-- <a href="#" class="notif"><i class="fa fa-bell "></i></a>
         <a href="#" class="msg"><i class="fa fa-envelope"></i></a> -->
-        <a href="#" class="setting"><i class="fa fa-cog"></i></a>
+        <a href="<?= LOCAL_DIR ?>pompier/profil" class="setting"><i class="fa fa-cog"></i></a>
         <a href="<?= LOCAL_DIR ?>login/disconnect" class="statut"><i class="fa fa-power-off"></i></a>
     </div>
     <div class="sidebar-container">
