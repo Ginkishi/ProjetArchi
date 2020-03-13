@@ -225,7 +225,7 @@
                         ?>
                                 <div id="team<?php echo $i ?>" class="champs">
                                     <label for=""><?php echo $v["vehicule"][$j]["ROLE_NAME"];?><span class="important">*</span>:</label>
-                                    <input type="text" required name="<?php echo $v["vehicule"][$j]["ROLE_NAME"];?>[]" value="<?php echo $v["vehicule"][$j]["pompier"];?>">
+                                    <input type="text" required   list="firefighters" name="<?php echo $v["vehicule"][$j]["ROLE_NAME"];?>[]" value="<?php echo $v["vehicule"][$j]["pompier"];?>">
                                 </div>
                         <?php 
                             }
@@ -272,9 +272,10 @@
                         <div class="barre"></div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule".$i ?> ">Supprimer ce véhicule</button>
             </div>
     
-            <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule".$i ?> ">Supprimer ce véhicule</button>
+           
             <?php 
                     }
                 }
