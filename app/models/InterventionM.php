@@ -167,7 +167,7 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 
 		for ($i = 0; $i < sizeof($record); $i++) {
-			$record[$i]["infoVehicule"] = API::getVehiculeById($id);
+			$record[$i]["infoVehicule"] = API::getVehiculeById($record[$i]["IDVehicule"]);
 			$record[$i]["vehicule"] = API::getVehiculeInterventionById($record[$i]["IDVehicule"]);
 
 			for ($j = 0; $j < sizeof($record[$i]["vehicule"]); $j++) {

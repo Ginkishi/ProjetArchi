@@ -31,6 +31,6 @@
             <?php } ?>
         </div>
     </div>
-    <?php //var_dump($vehicules[0]["vehicule"]) 
+    <?php //var_dump($vehicules[0]["vehicule"])
     ?>
 </div>
