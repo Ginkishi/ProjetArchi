@@ -205,6 +205,7 @@
                                     ?>
                         </select>
                         <?php
+
                                 for ($j = 0; $j < sizeof($v["vehicule"]); $j++) {
                                 ?>
                         <div id="team<?php echo $i ?>" class="champs">
@@ -216,6 +217,7 @@
                                 }
                                 ?>
                     </div>
+
                     <div class="champ mycheckbox">
                         <label for="">Ronde</label>
                         <input type="checkbox" name="ronde[]" id="ronde<?php echo $i; ?>" <?php if ($v["Ronde"]) echo "checked"; ?>>
@@ -257,9 +259,12 @@
                         <div class="barre"></div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule".$i ?> ">Supprimer ce véhicule</button>
             </div>
+
             <button type="button" class="btn btn-primary btn-lg" onClick="javascript:deleteEngin(this.id);" id="<?php echo "vehicule" . $i ?> ">Supprimer ce véhicule</button>
             <?php
+
                 }
             }
             ?>
