@@ -173,6 +173,13 @@ class API
 		$res = self::getRequest(API_URL . "typeIntervention");
 		return	$res["typeIntervention"];
 	}
+	public static function getTypeInterventionByID($id)
+	{
+		self::checkBDD();
+		//$query = self::$bdd->query("SELECT TI_DESCRIPTION, TI_CODE FROM `type_intervention`;");
+		$res = self::getRequest(API_URL . "typeIntervention/" . $id);
+		return	$res["typeIntervention"];
+	}
 
 	public static function getAllVehiculesIndicatif()
 	{
@@ -227,6 +234,14 @@ class API
 		return $rid;
 	}
 
+	public static function getLibelleRole($id)
+	{
+		self::checkBDD();
+		//$query = self::$bdd->query("SELECT TV_CODE  FROM `vehicule`  WHERE V_ID=$id;");
+		//$row = $query->fetch();
+		$res = self::getRequest(API_URL . "fonctionnalite/" . $id);
+		return $res["fonctionnalite"][0]['F_LIBELLE'];
+	}
 	public static function getVehiculeTV_CODE($id)
 	{
 		self::checkBDD();

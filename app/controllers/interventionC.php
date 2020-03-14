@@ -154,6 +154,37 @@ class InterventionController
 		}
 	}
 
+	public function listValid()
+	{
+		if (GestionnaireGrade::aLesDroitsLecture()) {
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAllValid();
+
+			$v = new View();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterLink("personal", "intervention");
+
+			$v->afficher("intervention_listAll");
+		} else {
+			$this->displayForbidden();
+		}
+	}
+	public function listWait()
+	{
+		if (GestionnaireGrade::aLesDroitsLecture()) {
+			$InterventionModel = new InterventionM();
+			$interventions = $InterventionModel->getAllWait();
+
+			$v = new View();
+			$v->ajouterVariable("interventions", $interventions);
+			$v->ajouterLink("personal", "intervention");
+
+			$v->afficher("intervention_listAll");
+		} else {
+			$this->displayForbidden();
+		}
+	}
+
 
 	public function modification($id)
 	{

@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Lobster|Montserrat|Open+Sans|Prompt|Roboto|Ubuntu&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.pompier-container {
+  font-family: "Prompt", sans-serif;
+}
+.bandeau-title {
+  min-height: 75px;
+  max-height: 75px;
+  background: #0575e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #021b79, #0575e6); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #021b79, #0575e6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  min-width: 80%;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Prompt", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.bandeau-title .title {
+  font-size: 2em;
+  margin-left: 20px;
+}
+.bandeau-title .logo {
+  font-size: 52px;
+}
+.pompier-container .body .info,
+.pompier-container .body .droits {
+  color: black;
+  font-size: 20px;
+  font-family: "Prompt", sans-serif;
+  display: grid;
+  text-align: left;
+  row-gap: 10px;
+  padding: 10px 50px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.pompier-container .body .droits table thead th,
+.pompier-container .body .droits table tbody tr > td:first-child {
+  text-align: center;
+}
+
+.pompier-container .body .info .title,
+.pompier-container .body .droits .title {
+  background: #ff512f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f09819, #ff512f); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f09819, #ff512f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px 0px;
+  font-weight: bold;
+  padding: 5px 0px;
+  color: white;
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+}
+.pompier-container .body .droits .title {
+  background: #dce35b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #45b649, #dce35b); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #45b649, #dce35b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* .pompier-container .body .droits table {
+  box-shadow: 5px 5px 3px #bfbfbf, -5px -5px 3px #ffffff;
+} */
+.pompier-container .body .info .label {
+  font-weight: bold;
+  color: black;
+  font-size: 24px;
+  padding-left: 15px;
+}
+.contain.shadow .main .pompier-container .body .info .label {
+  color: orange;
+}
+.contain.shadow .main .pompier-container .bandeau-title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid rgb(38, 105, 192);
+}
+.contain.shadow .main .pompier-container .bandeau-title .title {
+  color: rgb(38, 105, 192);
+  transition: 0.25s linear;
+}
+.contain.shadow .main .pompier-container .bandeau-title .logo {
+  color: rgb(38, 105, 192);
+  transition: 0.25s linear;
+}
+.contain.shadow .main .pompier-container .body .info {
+  font-weight: normal;
+  color: white;
+}
+.contain.shadow .main .pompier-container .body .info .title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid orange;
+  color: orange;
+}
+.contain.shadow .main .pompier-container .body .droits {
+  color: white;
+}
+.contain.shadow .main .pompier-container .body .droits .title {
+  box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626;
+  transition: 0.25s linear;
+  background: #212121;
+  border: 3px solid #56ab2f;
+  color: #56ab2f;
+}
+.contain.shadow .main .pompier-container .body .droits table {
+  /* box-shadow: 5px 5px 0px #181818, -5px -5px 0px #262626; */
+  color: #56ab2f;
+}

@@ -6,7 +6,7 @@ error_reporting(E_STRICT | E_ALL);
 date_default_timezone_set('Europe/Paris');
 setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
 
-$existingController = ["home", "intervention", "login", "vehicule", "test"];
+$existingController = ["home", "intervention", "login", "vehicule", "pompier", "test"];
 
 // =====================  Détermination du controleur à utiliser: Est-ce que j'ai un paramètre 'c' dans mon URL?
 if (isset($_GET['c']) && !empty($_GET['c'])) {

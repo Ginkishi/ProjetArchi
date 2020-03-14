@@ -17,6 +17,20 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 		return $record;
 	}
+	public function getAllValid()
+	{
+		$query = $this->con->query("select IDIntervention,`NIntervention`,`Commune`,`Adresse`,`TypeIntervention`,`DateDeclenchement` datedec,`DateFin` datefin ,s.label statut,i.IDstatus idstatut from interventions i JOIN status s on s.IDstatus = i.IDstatus where i.IDstatus = 1");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+	public function getAllWait()
+	{
+		$query = $this->con->query("select IDIntervention,`NIntervention`,`Commune`,`Adresse`,`TypeIntervention`,`DateDeclenchement` datedec,`DateFin` datefin ,s.label statut,i.IDstatus idstatut from interventions i JOIN status s on s.IDstatus = i.IDstatus where i.IDstatus = 0");
+		$record = $query->fetchAll(PDO::FETCH_ASSOC);
+		return $record;
+	}
+
+
 	public function getNumberOfInterventionType()
 	{
 		$query = $this->con->query("SELECT s.IDstatus ID,label,count(i.IDstatus) nbIntervention FROM status s left join interventions i on i.IDstatus = s.IDstatus group by label ORDER by s.IDstatus");
@@ -68,7 +82,8 @@ class InterventionM
 		return $ID['IDIntervention'];
 	}
 
-	public function validateIntervention($id, $ids) {
+	public function validateIntervention($id, $ids)
+	{
 		$this->con->query("UPDATE interventions 
 		  SET IDstatus = $ids
 		   WHERE IDIntervention = $id");
@@ -118,17 +133,28 @@ class InterventionM
 
 	public function getInterventionById($id)
 	{
-		$query = $this->con->query("SELECT * FROM  interventions where IDIntervention=$id");
+		$query = $this->con->query("SELECT i.IDIntervention,NIntervention,TypeIntervention,DateDeclenchement,DateFin,Important,IDResponsable,Requerant,Adresse,Commune,OPM,i.IDstatus,s.label 
+		FROM  interventions i
+		JOIN status s on i.IDstatus = s.IDstatus
+		where IDIntervention=$id");
 		$record = $query->fetch();
-		
-		if($record != null)
-		{
+
+		if ($record != null) {
 			$res = API::getPompierById($record["IDResponsable"]);
-			$record["IDResponsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
+			$record["Responsable"] = $res["P_PRENOM"] . " " . $res["P_NOM"];
+			if ($record["Important"] == 1) {
+				$record["Important"] = "OUI";
+			} else {
+				$record["Important"] = "NON";
+			}
+			if ($record["OPM"] == 1) {
+				$record["OPM"] = "OUI";
+			} else {
+				$record["OPM"] = "NON";
+			}
+			$record["TypeInterventionInfo"] = API::getTypeInterventionByID($record["TypeIntervention"]);
 			return $record;
-		}
-		else
-		{
+		} else {
 			return [];
 		}
 	}
@@ -141,7 +167,7 @@ class InterventionM
 		$record = $query->fetchAll(PDO::FETCH_ASSOC);
 
 		for ($i = 0; $i < sizeof($record); $i++) {
-			$record[$i]["infoVehicule"] = API::getVehiculeById($id);
+			$record[$i]["infoVehicule"] = API::getVehiculeById($record[$i]["IDVehicule"]);
 			$record[$i]["vehicule"] = API::getVehiculeInterventionById($record[$i]["IDVehicule"]);
 
 			for ($j = 0; $j < sizeof($record[$i]["vehicule"]); $j++) {
@@ -149,7 +175,16 @@ class InterventionM
 				$query = $this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole=" . (int) $record[$i]["vehicule"][$j]["ROLE_ID"]);
 				$record2 = $query->fetch(PDO::FETCH_ASSOC);
 				$np = API::getPompierById($record2["IDPersonne"]);
+				$record[$i]["vehicule"][$j]["IDPompier"] = $record2["IDPersonne"];
 				$record[$i]["vehicule"][$j]["pompier"] = $np["P_PRENOM"] . " " . $np["P_NOM"];
+			}
+			$qa = $this->con->query("SELECT IDPersonne FROM  personnelduvehicule where IDIntervention=$id AND IDVehicule=" . $record[$i]["IDVehicule"] . " AND IDrole = 0");
+			$ra = $qa->fetch(PDO::FETCH_ASSOC);
+			if ($ra != null) {
+				array_push($record[$i]["vehicule"], array("ROLE_NAME" => "apprenti", "ROLE_ID" => 0));
+				$npa = API::getPompierById($ra["IDPersonne"]);
+				$record[$i]["vehicule"][sizeof($record[$i]["vehicule"]) - 1]["IDPompier"] = $ra["IDPersonne"];
+				$record[$i]["vehicule"][sizeof($record[$i]["vehicule"]) - 1]["pompier"] = $npa["P_PRENOM"] . " " . $npa["P_NOM"];
 			}
 		}
 
